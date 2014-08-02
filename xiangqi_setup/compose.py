@@ -113,8 +113,8 @@ def compose_svg(pieces_to_put, options):
         center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
         center_y_pixel = output_board_offset_top_pixel + output_board_height_pixel * y_rel
         original_piece_width_pixel = float(piece_fig.get_size()[0])
-        future_piece_width_pixel = output_board_width_pixel / _MAX_X
-        future_piece_height_pixel = output_board_height_pixel / _MAX_Y
+        future_piece_width_pixel = output_board_width_pixel / _MAX_X * options.piece_scale
+        future_piece_height_pixel = output_board_height_pixel / _MAX_Y * options.piece_scale
         scale = future_piece_width_pixel / original_piece_width_pixel
         x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
         y_pixel = center_y_pixel - future_piece_height_pixel / 2.0

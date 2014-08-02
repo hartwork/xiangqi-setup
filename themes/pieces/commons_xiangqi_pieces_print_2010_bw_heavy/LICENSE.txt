@@ -1,0 +1,16 @@
+Derived from:
+	Linked from (as of 2014-08-02):
+	https://commons.wikimedia.org/wiki/File:Xiangqi_pieces_print.svg
+
+	Downloaded from (as of 2014-08-02):
+	https://upload.wikimedia.org/wikipedia/commons/f/fb/Xiangqi_pieces_print.svg
+
+	License
+	GNU Free Documentation License Version 1.2 or later
+	https://gnu.org/licenses/fdl.html
+
+Author
+	Sebastian Pipping
+
+License of derivative
+	<same as original>

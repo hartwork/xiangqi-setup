@@ -1,0 +1,15 @@
+Based upon:
+	Linked from (as of 2014-08-02):
+	https://commons.wikimedia.org/wiki/File:Xiangqi_Board.svg
+
+	Downloaded from (as of 2014-08-02):
+	https://upload.wikimedia.org/wikipedia/commons/1/1c/Xiangqi_Board.svg
+
+	License
+	Public domain
+
+Author
+	Sebastian Pipping
+
+License
+	Public domain

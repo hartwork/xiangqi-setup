@@ -26,6 +26,8 @@ START_PARTY_BLACK = 'BLACK'
 
 _SETUP_EXTRACTOR = re.compile('SETUP\\{([^}]+)}', re.MULTILINE)
 _ITEM_ITERATOR = re.compile('(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)')
+_FEN_ELEMENT_PATERN = '[RHEAKCPrheakcp1-9]+'
+_FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( [rb])?' % (_FEN_ELEMENT_PATERN, _FEN_ELEMENT_PATERN), re.MULTILINE)
 
 
 _PIECE_OF_UPPER_LETTER = {
@@ -98,6 +100,23 @@ def iterate_wxf_tokens(filename):
     f = open(filename, 'r')
     content = f.read()
     f.close()
+
+    fen_match = _FEN_EXTRACTOR.search(content)
+    if fen_match:
+        field_state_raw = fen_match.groupdict()['field_state']
+        for i, line in enumerate(field_state_raw.split('/')):
+            x = 0
+            for char in line:
+                try:
+                    x += int(char)
+                except ValueError:
+                    party = BLACK if char.islower() else RED
+                    piece = _PIECE_OF_UPPER_LETTER[char.upper()]
+                    y = 9 - i
+                    p = PutPiece(party, piece, x, y)
+                    yield p
+                    x += 1
+        return
 
     setup_match = _SETUP_EXTRACTOR.search(content)
     if not setup_match:

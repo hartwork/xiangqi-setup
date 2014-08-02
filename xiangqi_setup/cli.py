@@ -27,7 +27,7 @@ def main():
     parser.add_argument('--board', dest='board_theme_dir', metavar='DIRECTORY', default='XXXXXXXXX')
     parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='DIRECTORY', default='XXXXXXXXX')
     parser.add_argument('--width', dest='width_pixel', metavar='PIXEL', type=float, default=cm_to_pixel(7.0))
-    parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=1.0)
+    parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('input_file', metavar='INPUT_FILE')
     parser.add_argument('output_file', metavar='OUTPUT_FILE')

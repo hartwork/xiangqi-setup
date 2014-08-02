@@ -4,6 +4,7 @@
 from __future__ import print_function
 
 import argparse
+import os
 import sys
 
 from .wxf_format import iterate_wxf_tokens
@@ -24,8 +25,8 @@ def run(options):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--board', dest='board_theme_dir', metavar='DIRECTORY', default='XXXXXXXXX')
-    parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='DIRECTORY', default='XXXXXXXXX')
+    parser.add_argument('--board', dest='board_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'board', 'commons_xiangqi_board_2008_bw_thin'))
+    parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'pieces', 'commons_xiangqi_pieces_print_2010_bw_heavy'))
     parser.add_argument('--width', dest='width_pixel', metavar='PIXEL', type=float, default=cm_to_pixel(7.0))
     parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9)
     parser.add_argument('--debug', action='store_true')

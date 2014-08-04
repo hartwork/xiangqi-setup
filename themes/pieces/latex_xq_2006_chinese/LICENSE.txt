@@ -1,0 +1,10 @@
+Derived from:
+	Fonts of LaTeX package "xq" version 0.3 of 2006
+	http://www.ctan.org/tex-archive/fonts/xq
+
+Author
+	Sebastian Pipping
+
+License of derivative
+	The LaTeX Project Public Li­cense 1.3c or later
+	http://latex-project.org/lppl/

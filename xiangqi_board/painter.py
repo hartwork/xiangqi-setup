@@ -20,8 +20,11 @@ class BoardPainter(object):
         self._lines = []
         self._square_width_pixel = _SQUARE_WIDTH_PIXEL
 
+    def _playing_field_offset(self):
+        return _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL / 2.0
+
     def _cross(self, (column, row)):
-        SHIFT = _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL / 2.0
+        SHIFT = self._playing_field_offset()
         x = SHIFT + column * self._square_width_pixel
         y = SHIFT + row * self._square_width_pixel
         return (x, y)

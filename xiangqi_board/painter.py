@@ -18,8 +18,9 @@ class BoardPainter(object):
         self._square_width_pixel = _SQUARE_WIDTH_PIXEL
 
     def _cross(self, (column, row)):
-        x = _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + column * self._square_width_pixel
-        y = _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + row * self._square_width_pixel
+        SHIFT = _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL / 2.0
+        x = SHIFT + column * self._square_width_pixel
+        y = SHIFT + row * self._square_width_pixel
         return (x, y)
 
     def _grid_line(self, start, end):
@@ -27,10 +28,12 @@ class BoardPainter(object):
         self._lines.append(line)
 
     def _outer_board_width_pixel(self):
-        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + 8 * self._square_width_pixel
+        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL \
+                + 8 * self._square_width_pixel
 
     def _outer_board_height_pixel(self):
-        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + 9 * self._square_width_pixel
+        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL \
+                + 9 * self._square_width_pixel
 
     def _draw_border(self):
         # Vertical lines

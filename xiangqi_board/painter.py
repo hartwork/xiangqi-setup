@@ -23,9 +23,12 @@ class BoardPainter(object):
         y = SHIFT + row * self._square_width_pixel
         return (x, y)
 
-    def _grid_line(self, start, end):
-        line = sg.LineElement([self._cross(start), self._cross(end)], width=_LINE_WIDTH_PIXEL)
+    def _raw_line(self, start, end, width):
+        line = sg.LineElement([start, end], width=width)
         self._lines.append(line)
+
+    def _grid_line(self, start, end):
+        self._raw_line(self._cross(start), self._cross(end), _LINE_WIDTH_PIXEL)
 
     def _outer_board_width_pixel(self):
         return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL \

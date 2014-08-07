@@ -32,7 +32,7 @@ def run(options):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--board', dest='board_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'board', 'commons_xiangqi_board_2008_bw_thin'))
+    parser.add_argument('--board', dest='board_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'board', 'clean_alpha'))
     parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'pieces', 'latex_xqlarge_2006_chinese_autotrace'))
     parser.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float)
     parser.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float)

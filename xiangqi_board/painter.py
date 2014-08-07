@@ -10,6 +10,9 @@ _BOARDER_WIDTH_PIXEL = 2
 _BOARDER_GAP_PIXEL = 40
 _LINE_WIDTH_PIXEL = 1
 _SQUARE_WIDTH_PIXEL = 53
+_START_HELPER_LENGTH_PIXEL = 10
+_START_HELPER_LINE_WIDTH_PIXEL = 1
+_START_HELPER_GAP_PIXEL = 4
 
 
 class BoardPainter(object):
@@ -77,8 +80,52 @@ class BoardPainter(object):
         self._grid_line((3, 7), (5, 9))
         self._grid_line((3, 9), (5, 7))
 
+    def _add_setup_helper(self, column, row, left, right):
+        assert left or right
+        center = self._cross((column, row))
+        for x_factor, y_factor, wanted in (
+                (1, -1, right),  # top right
+                (1, 1, right),  # bottom right
+                (-1, 1, left),  # bottom left
+                (-1, -1, left),  # top left
+                ):
+            if not wanted:
+                continue
+
+            GAP = _LINE_WIDTH_PIXEL / 2.0 + _START_HELPER_GAP_PIXEL + _START_HELPER_LINE_WIDTH_PIXEL / 2.0
+            start_x = center[0] + x_factor * GAP
+            start_y = center[1] + y_factor * GAP
+
+            # Vertical part
+            end_x = start_x
+            end_y = start_y + y_factor * _START_HELPER_LENGTH_PIXEL
+            SHIFT_Y = y_factor * _START_HELPER_LINE_WIDTH_PIXEL / 2.0
+            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y), _START_HELPER_LINE_WIDTH_PIXEL)
+
+            # Horizontal part
+            end_x = start_x + x_factor * _START_HELPER_LENGTH_PIXEL
+            end_y = start_y
+            SHIFT_X = x_factor * _START_HELPER_LINE_WIDTH_PIXEL / 2.0
+            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y), _START_HELPER_LINE_WIDTH_PIXEL)
+
+    def _draw_setup_helpers(self):
+        for column, row in (
+                # Black cannons
+                (1, 2), (7, 2),
+                # Black pawns
+                (0, 3),  (2, 3), (4, 3), (6, 3), (8, 3),
+                # Red pawns
+                (0, 6),  (2, 6), (4, 6), (6, 6), (8, 6),
+                # Red cannons
+                (1, 7), (7, 7),
+                ):
+            left = (column > 0)
+            right = (column < 8)
+            self._add_setup_helper(column, row, left, right)
+
     def draw(self):
         self._draw_playing_field()
+        self._draw_setup_helpers()
         self._draw_border()
 
     def write(self, filename):

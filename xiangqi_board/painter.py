@@ -3,6 +3,8 @@
 
 from __future__ import print_function
 
+import ConfigParser
+
 import svgutils.transform as sg
 
 
@@ -131,9 +133,21 @@ class BoardPainter(object):
         self._draw_setup_helpers()
         self._draw_border()
 
-    def write(self, filename):
+    def write_svg(self, filename):
         WIDTH = self._outer_board_width_pixel()
         HEIGHT = self._outer_board_height_pixel()
         output_fig = sg.SVGFigure(str(WIDTH), str(HEIGHT))
         output_fig.append(self._lines)
         output_fig.save(filename)
+
+    def write_board_ini(self, filename):
+        f = open(filename, 'w')
+        SHIFT = self._playing_field_offset()
+        config = ConfigParser.RawConfigParser()
+        config.add_section('Board')
+        config.set('Board', 'left', str(SHIFT))
+        config.set('Board', 'top', str(SHIFT))
+        config.set('Board', 'width', str(_SQUARE_WIDTH_PIXEL * 8))
+        config.set('Board', 'height', str(_SQUARE_WIDTH_PIXEL * 9))
+        config.write(f)
+        f.close()

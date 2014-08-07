@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="chinese-text.svg">
+   sodipodi:docname="chinese-potrace-text.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -59,7 +59,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot2987"
-       style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:xqlarge;-inkscape-font-specification:xqlarge"
+       style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:xqlarge-potrace.mf-potrace;-inkscape-font-specification:xqlarge-potrace.mf"
        transform="translate(30.72275,13.233438)"><flowRegion
          id="flowRegion2989"><rect
            id="rect2991"
@@ -67,15 +67,15 @@
            height="1020"
            x="102.85714"
            y="132.36218"
-           style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge" /></flowRegion><flowPara
+           style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge-potrace.mf-potrace;-inkscape-font-specification:xqlarge-potrace.mf" /></flowRegion><flowPara
          id="flowPara2993"
-         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge">w p e m f k s</flowPara><flowPara
-         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge"
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:'xqlarge-potrace.mf';-inkscape-font-specification:'xqlarge-potrace.mf'">w p e m f k s</flowPara><flowPara
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:'xqlarge-potrace.mf';-inkscape-font-specification:'xqlarge-potrace.mf'"
          id="flowPara2989" /><flowPara
          id="flowPara2995"
-         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge" /><flowPara
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:'xqlarge-potrace.mf';-inkscape-font-specification:'xqlarge-potrace.mf'" /><flowPara
          id="flowPara2997"
-         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge">W P E M F K S</flowPara><flowPara
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:'xqlarge-potrace.mf';-inkscape-font-specification:'xqlarge-potrace.mf'">W P E M F K S</flowPara><flowPara
          id="flowPara2999"
-         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:xqlarge;-inkscape-font-specification:xqlarge" /></flowRoot>  </g>
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:'xqlarge-potrace.mf';-inkscape-font-specification:'xqlarge-potrace.mf'" /></flowRoot>  </g>
 </svg>

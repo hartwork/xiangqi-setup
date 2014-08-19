@@ -1,0 +1,13 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Creation
+	Based on xiangqi-board CLI output with
+	* no border
+	* start helper line length 14.55px
+	* start helper line width 0.335px
+	* start helper gap 7.3px

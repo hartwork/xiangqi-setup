@@ -1,0 +1,11 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Creation
+	Characters from font WenQuanYi Micro Hei Mono
+	Version 0.2.0 beta at 56pt size
+	http://sourceforge.net/projects/wqy/

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="85.090012"
+   height="85.090012"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="black_chariot.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="9.918908"
+     inkscape:cx="42.545006"
+     inkscape:cy="42.544986"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-523.21214,-1051.0585)">
+    <g
+       id="g4600">
+      <path
+         transform="translate(315.13535,311.81312)"
+         d="m 293.1668,781.79041 c 0,23.49695 -19.04805,42.545 -42.545,42.545 -23.49696,0 -42.54501,-19.04805 -42.54501,-42.545 0,-23.49696 19.04805,-42.54501 42.54501,-42.54501 23.49695,0 42.545,19.04805 42.545,42.54501 z"
+         sodipodi:ry="42.545006"
+         sodipodi:rx="42.545006"
+         sodipodi:cy="781.79041"
+         sodipodi:cx="250.6218"
+         id="path4493"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.29999995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="arc" />
+      <path
+         d="m 559.8509,1062.9918 5.25,1.05 -3.15,7.0875 30.975,0 0,4.9875 -33.3375,0 c -2.97501,5.95 -6.38751,11.1126 -10.2375,15.4875 l 15.75,0 0,-11.025 5.25,0 0,11.025 19.425,0 0,4.9875 -19.425,0 0,8.4 25.725,0 0,4.9875 -25.725,0 0,14.4375 -5.25,0 0,-14.4375 -29.6625,0 0,-4.9875 29.6625,0 0,-8.4 -21.7875,0 -1.3125,-4.9875 c 4.375,-4.3749 8.225,-9.5375 11.55,-15.4875 l -15.225,0 0,-4.9875 17.85,0 c 1.39998,-2.625 2.62498,-5.3375 3.675,-8.1375"
+         style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:WenQuanYi Micro Hei Mono;-inkscape-font-specification:WenQuanYi Micro Hei Mono"
+         id="path4105"
+         inkscape:connector-curvature="0" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4531"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion4533"><rect
+           id="rect4535"
+           width="3112.199"
+           height="1194.5059"
+           x="-1251.8622"
+           y="-172.0687" /></flowRegion><flowPara
+         id="flowPara4537" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4539"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion4541"><rect
+           id="rect4543"
+           width="3249.3552"
+           height="1269.3184"
+           x="-1416.4496"
+           y="-226.93118" /></flowRegion><flowPara
+         id="flowPara4545" /></flowRoot>  </g>
+</svg>

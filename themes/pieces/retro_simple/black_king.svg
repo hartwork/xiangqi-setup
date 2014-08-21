@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="85.090012"
+   height="85.090012"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="black_king.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4.959454"
+     inkscape:cx="-4.7955844"
+     inkscape:cy="48.47435"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-435.92646,-1051.9402)">
+    <g
+       id="g4596">
+      <path
+         sodipodi:type="arc"
+         style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3.29999995;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="path4491"
+         sodipodi:cx="250.6218"
+         sodipodi:cy="781.79041"
+         sodipodi:rx="42.545006"
+         sodipodi:ry="42.545006"
+         d="m 293.1668,781.79041 c 0,23.49695 -19.04805,42.545 -42.545,42.545 -23.49696,0 -42.54501,-19.04805 -42.54501,-42.545 0,-23.49696 19.04805,-42.54501 42.54501,-42.54501 23.49695,0 42.545,19.04805 42.545,42.54501 z"
+         transform="translate(227.84967,312.69479)" />
+      <path
+         d="m 460.01182,1064.3891 5.25,0 0,60.375 -5.25,0 0,-23.8876 c -3.325,2.8 -6.7375,5.25 -10.2375,7.35 l -2.36249,-5.25 c 4.72499,-2.4499 8.92499,-5.25 12.59999,-8.4 l 0,-30.1874 m -6.825,8.1374 c 1.75,4.5501 3.2375,9.5375 4.4625,14.9626 l -4.98749,2.3624 c -1.225,-5.5999 -2.625,-10.6749 -4.20001,-15.225 l 4.725,-2.1 m 24.675,5.5126 c -1.57502,1.2249 -3.15002,2.3624 -4.725,3.4124 l -3.41249,-3.4124 c 6.12497,-3.85 10.58746,-8.6626 13.38749,-14.4376 l 4.98751,1.05 -1.57501,3.15 18.9,0 0,4.2 c -5.77504,11.2001 -16.62504,18.4625 -32.55,21.7876 l -2.8875,-4.4626 c 14.52497,-2.9749 24.23746,-8.6624 29.1375,-17.0624 l -15.4875,0 c -0.17503,0 -0.87502,0.7874 -2.09999,2.3624 1.74997,1.2251 3.49996,2.625 5.25,4.2 l -3.41251,4.2 c -1.75003,-1.7499 -3.58753,-3.4124 -5.5125,-4.9874 m -9.44999,17.5874 26.51249,0 0,-7.35 5.25,0 0,7.35 8.4,0 0,4.725 -8.4,0 0,17.0626 c -4e-5,2.625 -0.48129,4.4624 -1.44374,5.5124 -0.96256,1.05 -2.84379,1.575 -5.64376,1.575 -2.80004,0 -5.51253,-0.2625 -8.1375,-0.7874 l -1.05,-5.25 c 2.79997,0.525 5.59996,0.7874 8.4,0.7874 1.74996,0 2.62496,-1.05 2.625,-3.15 l 0,-15.75 -26.51249,0 0,-4.725 m 9.97499,7.6126 c 2.79998,3.15 5.07497,6.3875 6.825,9.7124 l -4.725,2.625 c -1.57502,-3.3249 -3.76252,-6.4749 -6.5625,-9.45 l 4.4625,-2.8874"
+         style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:WenQuanYi Micro Hei Mono;-inkscape-font-specification:WenQuanYi Micro Hei Mono"
+         id="path4249"
+         inkscape:connector-curvature="0" />
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4531"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion4533"><rect
+           id="rect4535"
+           width="3112.199"
+           height="1194.5059"
+           x="-1251.8622"
+           y="-172.0687" /></flowRegion><flowPara
+         id="flowPara4537" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4539"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+         id="flowRegion4541"><rect
+           id="rect4543"
+           width="3249.3552"
+           height="1269.3184"
+           x="-1416.4496"
+           y="-226.93118" /></flowRegion><flowPara
+         id="flowPara4545" /></flowRoot>  </g>
+</svg>

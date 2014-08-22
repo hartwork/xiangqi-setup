@@ -9,7 +9,15 @@ from .painter import BoardPainter
 
 
 def run(options):
-    board = BoardPainter()
+    board = BoardPainter(
+            options.line_thickness_px,
+            options.square_width_px,
+            options.border_thickness_px,
+            options.border_gap_px,
+            options.cross_width_px,
+            options.cross_thickness_px,
+            options.cross_gap_px,
+            )
     board.draw()
     board.write_svg(options.svg_output_file)
     board.write_board_ini(options.ini_output_file)
@@ -17,6 +25,24 @@ def run(options):
 
 def main():
     parser = argparse.ArgumentParser()
+
+    parser.add_argument('--line-thickness-px', metavar='FLOAT', default=1.0, type=float,
+            help='Line thickness of square fields in pixel (default: %(default)d)')
+    parser.add_argument('--square-width-px', metavar='FLOAT', default=53.0, type=float,
+            help='Width of square fields in pixel (default: %(default)d)')
+
+    parser.add_argument('--border-thickness-px', metavar='FLOAT', default=2.0, type=float,
+            help='Line thickness of border in pixel (default: %(default)d)')
+    parser.add_argument('--border-gap-px', metavar='FLOAT', default=40.0, type=float,
+            help='Gap to border in pixel (default: %(default)d)')
+
+    parser.add_argument('--cross-width-px', metavar='FLOAT', default=10.0, type=float,
+            help='Width of starting position cross segments in pixel (default: %(default)d)')
+    parser.add_argument('--cross-thickness-px', metavar='FLOAT', default=1.0, type=float,
+            help='Line thickness of starting position cross in pixel (default: %(default)d)')
+    parser.add_argument('--cross-gap-px', metavar='FLOAT', default=4.0, type=float,
+            help='Gap to starting position cross in pixel (default: %(default)d)')
+
     parser.add_argument('svg_output_file', metavar='SVG_FILE')
     parser.add_argument('ini_output_file', metavar='INI_FILE')
     options = parser.parse_args()

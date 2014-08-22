@@ -8,22 +8,28 @@ import ConfigParser
 import svgutils.transform as sg
 
 
-_BOARDER_WIDTH_PIXEL = 2
-_BOARDER_GAP_PIXEL = 40
-_LINE_WIDTH_PIXEL = 1
-_SQUARE_WIDTH_PIXEL = 53
-_START_HELPER_LENGTH_PIXEL = 10
-_START_HELPER_LINE_WIDTH_PIXEL = 1
-_START_HELPER_GAP_PIXEL = 4
-
-
 class BoardPainter(object):
-    def __init__(self):
+    def __init__(self,
+            line_thickness_pixel,
+            square_width_pixel,
+            border_thickness_pixel,
+            border_gap_pixel,
+            cross_length_pixel,
+            cross_thickness_pixel,
+            cross_gap_pixel,
+            ):
         self._lines = []
-        self._square_width_pixel = _SQUARE_WIDTH_PIXEL
+
+        self._line_thickness_pixel = line_thickness_pixel
+        self._square_width_pixel = square_width_pixel
+        self._border_thickness_pixel = border_thickness_pixel
+        self._border_gap_pixel = border_gap_pixel
+        self._cross_width_pixel = cross_length_pixel
+        self._cross_thickness_pixel = cross_thickness_pixel
+        self._cross_gap_pixel = cross_gap_pixel
 
     def _playing_field_offset(self):
-        return _BOARDER_WIDTH_PIXEL + _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL / 2.0
+        return self._border_thickness_pixel + self._border_gap_pixel + self._line_thickness_pixel / 2.0
 
     def _cross(self, (column, row)):
         SHIFT = self._playing_field_offset()
@@ -36,24 +42,24 @@ class BoardPainter(object):
         self._lines.append(line)
 
     def _grid_line(self, start, end):
-        self._raw_line(self._cross(start), self._cross(end), _LINE_WIDTH_PIXEL)
+        self._raw_line(self._cross(start), self._cross(end), self._line_thickness_pixel)
 
     def _outer_board_width_pixel(self):
-        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL \
+        return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
                 + 8 * self._square_width_pixel
 
     def _outer_board_height_pixel(self):
-        return 2 * _BOARDER_WIDTH_PIXEL + 2 * _BOARDER_GAP_PIXEL + _LINE_WIDTH_PIXEL \
+        return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
                 + 9 * self._square_width_pixel
 
     def _draw_border(self):
         # Vertical lines
         WIDTH = self._outer_board_width_pixel()
         HEIGHT = self._outer_board_height_pixel()
-        X_LEFT_CENTER = _BOARDER_WIDTH_PIXEL / 2.0
-        X_RIGHT_CENTER = WIDTH - _BOARDER_WIDTH_PIXEL / 2.0
-        Y_TOP_CENTER = _BOARDER_WIDTH_PIXEL / 2.0
-        Y_BOTTOM_CENTER = HEIGHT - _BOARDER_WIDTH_PIXEL / 2.0
+        X_LEFT_CENTER = self._border_thickness_pixel / 2.0
+        X_RIGHT_CENTER = WIDTH - self._border_thickness_pixel / 2.0
+        Y_TOP_CENTER = self._border_thickness_pixel / 2.0
+        Y_BOTTOM_CENTER = HEIGHT - self._border_thickness_pixel / 2.0
         for start, end in (
                 # Vertical lines
                 ((X_LEFT_CENTER, 0), (X_LEFT_CENTER, HEIGHT)),
@@ -63,7 +69,7 @@ class BoardPainter(object):
                 ((0, Y_TOP_CENTER), (WIDTH, Y_TOP_CENTER)),
                 ((0, Y_BOTTOM_CENTER), (WIDTH, Y_BOTTOM_CENTER)),
                 ):
-            line = sg.LineElement([start, end], width=_BOARDER_WIDTH_PIXEL)
+            line = sg.LineElement([start, end], width=self._border_thickness_pixel)
             self._lines.append(line)
 
     def _draw_playing_field(self):
@@ -97,21 +103,21 @@ class BoardPainter(object):
             if not wanted:
                 continue
 
-            GAP = _LINE_WIDTH_PIXEL / 2.0 + _START_HELPER_GAP_PIXEL + _START_HELPER_LINE_WIDTH_PIXEL / 2.0
+            GAP = self._line_thickness_pixel / 2.0 + self._cross_gap_pixel + self._cross_thickness_pixel / 2.0
             start_x = center[0] + x_factor * GAP
             start_y = center[1] + y_factor * GAP
 
             # Vertical part
             end_x = start_x
-            end_y = start_y + y_factor * _START_HELPER_LENGTH_PIXEL
-            SHIFT_Y = y_factor * _START_HELPER_LINE_WIDTH_PIXEL / 2.0
-            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y), _START_HELPER_LINE_WIDTH_PIXEL)
+            end_y = start_y + y_factor * self._cross_width_pixel
+            SHIFT_Y = y_factor * self._cross_thickness_pixel / 2.0
+            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y), self._cross_thickness_pixel)
 
             # Horizontal part
-            end_x = start_x + x_factor * _START_HELPER_LENGTH_PIXEL
+            end_x = start_x + x_factor * self._cross_width_pixel
             end_y = start_y
-            SHIFT_X = x_factor * _START_HELPER_LINE_WIDTH_PIXEL / 2.0
-            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y), _START_HELPER_LINE_WIDTH_PIXEL)
+            SHIFT_X = x_factor * self._cross_thickness_pixel / 2.0
+            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y), self._cross_thickness_pixel)
 
     def _draw_setup_helpers(self):
         for column, row in (
@@ -130,8 +136,10 @@ class BoardPainter(object):
 
     def draw(self):
         self._draw_playing_field()
-        self._draw_setup_helpers()
-        self._draw_border()
+        if self._cross_thickness_pixel != 0:
+            self._draw_setup_helpers()
+        if self._border_thickness_pixel != 0:
+            self._draw_border()
 
     def write_svg(self, filename):
         WIDTH = self._outer_board_width_pixel()
@@ -147,7 +155,7 @@ class BoardPainter(object):
         config.add_section('Board')
         config.set('Board', 'left', str(SHIFT))
         config.set('Board', 'top', str(SHIFT))
-        config.set('Board', 'width', str(_SQUARE_WIDTH_PIXEL * 8))
-        config.set('Board', 'height', str(_SQUARE_WIDTH_PIXEL * 9))
+        config.set('Board', 'width', str(self._square_width_pixel * 8))
+        config.set('Board', 'height', str(self._square_width_pixel * 9))
         config.write(f)
         f.close()

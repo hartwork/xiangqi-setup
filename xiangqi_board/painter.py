@@ -14,7 +14,8 @@ class BoardPainter(object):
             field_width_px,
             field_height_px,
             border_thickness_pixel,
-            border_gap_pixel,
+            border_gap_width_pixel,
+            border_gap_height_pixel,
             cross_length_pixel,
             cross_thickness_pixel,
             cross_gap_pixel,
@@ -25,18 +26,21 @@ class BoardPainter(object):
         self._field_width_px = field_width_px
         self._field_height_px = field_height_px
         self._border_thickness_pixel = border_thickness_pixel
-        self._border_gap_pixel = border_gap_pixel
+        self._border_gap_width_pixel = border_gap_width_pixel
+        self._border_gap_height_pixel = border_gap_height_pixel
         self._cross_width_pixel = cross_length_pixel
         self._cross_thickness_pixel = cross_thickness_pixel
         self._cross_gap_pixel = cross_gap_pixel
 
-    def _playing_field_offset(self):
-        return self._border_thickness_pixel + self._border_gap_pixel + self._line_thickness_pixel / 2.0
+    def _playing_field_offset_left(self):
+        return self._border_thickness_pixel + self._border_gap_width_pixel + self._line_thickness_pixel / 2.0
+
+    def _playing_field_offset_top(self):
+        return self._border_thickness_pixel + self._border_gap_height_pixel + self._line_thickness_pixel / 2.0
 
     def _cross(self, (column, row)):
-        SHIFT = self._playing_field_offset()
-        x = SHIFT + column * self._field_width_px
-        y = SHIFT + row * self._field_height_px
+        x = self._playing_field_offset_left() + column * self._field_width_px
+        y = self._playing_field_offset_top() + row * self._field_height_px
         return (x, y)
 
     def _raw_line(self, start, end, width):
@@ -47,11 +51,11 @@ class BoardPainter(object):
         self._raw_line(self._cross(start), self._cross(end), self._line_thickness_pixel)
 
     def _outer_board_width_pixel(self):
-        return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
+        return 2 * self._border_thickness_pixel + 2 * self._border_gap_width_pixel + self._line_thickness_pixel \
                 + 8 * self._field_width_px
 
     def _outer_board_height_pixel(self):
-        return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
+        return 2 * self._border_thickness_pixel + 2 * self._border_gap_height_pixel + self._line_thickness_pixel \
                 + 9 * self._field_height_px
 
     def _draw_border(self):
@@ -152,11 +156,10 @@ class BoardPainter(object):
 
     def write_board_ini(self, filename):
         f = open(filename, 'w')
-        SHIFT = self._playing_field_offset()
         config = ConfigParser.RawConfigParser()
         config.add_section('Board')
-        config.set('Board', 'left', str(SHIFT))
-        config.set('Board', 'top', str(SHIFT))
+        config.set('Board', 'left', str(self._playing_field_offset_left()))
+        config.set('Board', 'top', str(self._playing_field_offset_top()))
         config.set('Board', 'width', str(self._field_width_px * 8))
         config.set('Board', 'height', str(self._field_height_px * 9))
         config.write(f)

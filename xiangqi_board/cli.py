@@ -14,7 +14,8 @@ def run(options):
             options.field_width_px,
             options.field_height_px,
             options.border_thickness_px,
-            options.border_gap_px,
+            options.border_gap_width_px,
+            options.border_gap_height_px,
             options.cross_width_px,
             options.cross_thickness_px,
             options.cross_gap_px,
@@ -36,8 +37,10 @@ def main():
 
     parser.add_argument('--border-thickness-px', metavar='FLOAT', default=2.0, type=float,
             help='Line thickness of border in pixel (default: %(default)d)')
-    parser.add_argument('--border-gap-px', metavar='FLOAT', default=40.0, type=float,
-            help='Gap to border in pixel (default: %(default)d)')
+    parser.add_argument('--border-gap-width-px', metavar='FLOAT', default=40.0, type=float,
+            help='Widtn of gap to border in pixel (default: %(default)d)')
+    parser.add_argument('--border-gap-height-px', metavar='FLOAT', default=40.0, type=float,
+            help='Height of gap to border in pixel (default: %(default)d)')
 
     parser.add_argument('--cross-width-px', metavar='FLOAT', default=10.0, type=float,
             help='Width of starting position cross segments in pixel (default: %(default)d)')

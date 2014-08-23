@@ -11,7 +11,8 @@ import svgutils.transform as sg
 class BoardPainter(object):
     def __init__(self,
             line_thickness_pixel,
-            square_width_pixel,
+            field_width_px,
+            field_height_px,
             border_thickness_pixel,
             border_gap_pixel,
             cross_length_pixel,
@@ -21,7 +22,8 @@ class BoardPainter(object):
         self._lines = []
 
         self._line_thickness_pixel = line_thickness_pixel
-        self._square_width_pixel = square_width_pixel
+        self._field_width_px = field_width_px
+        self._field_height_px = field_height_px
         self._border_thickness_pixel = border_thickness_pixel
         self._border_gap_pixel = border_gap_pixel
         self._cross_width_pixel = cross_length_pixel
@@ -33,8 +35,8 @@ class BoardPainter(object):
 
     def _cross(self, (column, row)):
         SHIFT = self._playing_field_offset()
-        x = SHIFT + column * self._square_width_pixel
-        y = SHIFT + row * self._square_width_pixel
+        x = SHIFT + column * self._field_width_px
+        y = SHIFT + row * self._field_height_px
         return (x, y)
 
     def _raw_line(self, start, end, width):
@@ -46,11 +48,11 @@ class BoardPainter(object):
 
     def _outer_board_width_pixel(self):
         return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
-                + 8 * self._square_width_pixel
+                + 8 * self._field_width_px
 
     def _outer_board_height_pixel(self):
         return 2 * self._border_thickness_pixel + 2 * self._border_gap_pixel + self._line_thickness_pixel \
-                + 9 * self._square_width_pixel
+                + 9 * self._field_height_px
 
     def _draw_border(self):
         # Vertical lines
@@ -155,7 +157,7 @@ class BoardPainter(object):
         config.add_section('Board')
         config.set('Board', 'left', str(SHIFT))
         config.set('Board', 'top', str(SHIFT))
-        config.set('Board', 'width', str(self._square_width_pixel * 8))
-        config.set('Board', 'height', str(self._square_width_pixel * 9))
+        config.set('Board', 'width', str(self._field_width_px * 8))
+        config.set('Board', 'height', str(self._field_height_px * 9))
         config.write(f)
         f.close()

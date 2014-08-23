@@ -11,7 +11,8 @@ from .painter import BoardPainter
 def run(options):
     board = BoardPainter(
             options.line_thickness_px,
-            options.square_width_px,
+            options.field_width_px,
+            options.field_height_px,
             options.border_thickness_px,
             options.border_gap_px,
             options.cross_width_px,
@@ -28,8 +29,10 @@ def main():
 
     parser.add_argument('--line-thickness-px', metavar='FLOAT', default=1.0, type=float,
             help='Line thickness of square fields in pixel (default: %(default)d)')
-    parser.add_argument('--square-width-px', metavar='FLOAT', default=53.0, type=float,
-            help='Width of square fields in pixel (default: %(default)d)')
+    parser.add_argument('--field-width-px', metavar='FLOAT', default=53.0, type=float,
+            help='Width of fields in pixel (default: %(default)d)')
+    parser.add_argument('--field-height-px', metavar='FLOAT', default=53.0, type=float,
+            help='Height of fields in pixel (default: %(default)d)')
 
     parser.add_argument('--border-thickness-px', metavar='FLOAT', default=2.0, type=float,
             help='Line thickness of border in pixel (default: %(default)d)')

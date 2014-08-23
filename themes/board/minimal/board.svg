@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='ASCII' standalone='yes'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="479.0" viewbox="0 0 479.0 532.0" height="532.0">
+  <g>
+    <path d="M27.5 27.5 L27.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M80.5 27.5 L80.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M80.5 292.5 L80.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M133.5 27.5 L133.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M133.5 292.5 L133.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 27.5 L186.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 292.5 L186.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M239.5 27.5 L239.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M239.5 292.5 L239.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M292.5 27.5 L292.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M292.5 292.5 L292.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M345.5 27.5 L345.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M345.5 292.5 L345.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M398.5 27.5 L398.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M398.5 292.5 L398.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M451.5 27.5 L451.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 27.5 L451.5 27.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 80.5 L451.5 80.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 133.5 L451.5 133.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 186.5 L451.5 186.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 239.5 L451.5 239.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 292.5 L451.5 292.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 345.5 L451.5 345.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 398.5 L451.5 398.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 451.5 L451.5 451.5" stroke="black" stroke-width="1.0"/>
+    <path d="M27.5 504.5 L451.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 27.5 L292.5 133.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 133.5 L292.5 27.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 398.5 L292.5 504.5" stroke="black" stroke-width="1.0"/>
+    <path d="M186.5 504.5 L292.5 398.5" stroke="black" stroke-width="1.0"/>
+  </g>
+</svg>

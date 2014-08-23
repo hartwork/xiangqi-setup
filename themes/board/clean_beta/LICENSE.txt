@@ -1,0 +1,21 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Based on...
+	output from...
+
+	# ./xiangqi-board \
+		--border-thickness-px 3 \
+		--border-gap-width-px 29 \
+		--border-gap-height-px 28 \
+		--field-width-px 56 \
+		--field-height-px 55 \
+		--cross-gap-px 2 \
+		--cross-width-px 11 \
+		themes/board/clean_beta/board.{svg,ini}
+
+	Legend added using font DejaVu Sans Mono at 24pt.

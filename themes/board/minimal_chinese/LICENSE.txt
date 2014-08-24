@@ -1,0 +1,16 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Based on...
+	a board generate from
+
+	# ./xiangqi-board \
+		--border-thickness-px 0 \
+		--cross-thickness-px 0 \
+		themes/board/minimal_chinese/board.{svg,ini}
+
+	Legend added using font AR PL UKai CN at 33pt.

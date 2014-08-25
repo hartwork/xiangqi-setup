@@ -8,12 +8,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="100"
-   height="90"
+   width="82"
+   height="92"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="001.svg">
+   sodipodi:docname="red_advisor.svg">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -22,18 +22,19 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs10">
     <filter
-       height="150%"
-       width="150%"
+       height="1.5"
+       width="1.5"
        y="0"
        x="0"
-       id="f1">
+       id="f1"
+       color-interpolation-filters="sRGB">
       <feOffset
          id="feOffset3039"
          dy="0"
@@ -50,10 +51,10 @@
 -->
     </filter>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad1">
       <stop
          id="stop3034"
@@ -65,10 +66,10 @@
          offset="50%" />
     </linearGradient>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad0">
       <stop
          id="stop3029"
@@ -98,19 +99,24 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="2.6222222"
-     inkscape:cx="50"
+     inkscape:cx="-49.381356"
      inkscape:cy="45"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <g
-     id="use4">
+     id="use4"
+     transform="translate(-9,2)">
     <circle
        d="m 89,49.5 c 0,21.539105 -17.460895,39 -39,39 -21.539105,0 -39,-17.460895 -39,-39 0,-21.539105 17.460895,-39 39,-39 21.539105,0 39,17.460895 39,39 z"
        style="opacity:0.5;fill:#000000;filter:url(#f1)"
@@ -169,10 +175,12 @@
   </g>
   <g
      style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-     id="text6">
+     id="text6"
+     transform="translate(-9,2)">
     <path
        d="m 41.46875,38.179687 12.140625,0 0,-12.140625 3.28125,0 0,12.140625 12.140625,0 0,3.117188 -12.140625,0 0,17.554687 10.992187,0 0,3.117188 -25.265625,0 0,-3.117188 10.992188,0 0,-17.554687 -12.140625,0 0,-3.117188 m -0.820313,-12.140625 3.28125,0.984375 c -1.203138,3.171905 -2.625012,6.28909 -4.265625,9.351563 l 0,27.398437 -3.28125,0 0,-22.148437 c -1.312506,1.750017 -2.679692,3.39064 -4.101562,4.921875 l -1.640625,-3.28125 c 4.703119,-5.468728 8.039053,-11.21091 10.007812,-17.226563"
        style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-       id="path3088" />
+       id="path3088"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

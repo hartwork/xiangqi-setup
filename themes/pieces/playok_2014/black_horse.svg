@@ -8,12 +8,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="100"
-   height="90"
+   width="82"
+   height="92"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="012.svg">
+   sodipodi:docname="black_horse.svg">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -22,18 +22,19 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs10">
     <filter
-       height="150%"
-       width="150%"
+       height="1.5"
+       width="1.5"
        y="0"
        x="0"
-       id="f1">
+       id="f1"
+       color-interpolation-filters="sRGB">
       <feOffset
          id="feOffset3039"
          dy="1"
@@ -50,10 +51,10 @@
 -->
     </filter>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad2">
       <stop
          id="stop3034"
@@ -65,10 +66,10 @@
          offset="100%" />
     </linearGradient>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad3">
       <stop
          id="stop3029"
@@ -98,19 +99,24 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
      id="namedview8"
      showgrid="false"
      inkscape:zoom="2.6222222"
-     inkscape:cx="50"
+     inkscape:cx="-49.381356"
      inkscape:cy="45"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <g
-     id="use4">
+     id="use4"
+     transform="translate(-9,2)">
     <circle
        d="M 89,49 C 89,70.539105 71.539105,88 50,88 28.460895,88 11,70.539105 11,49 11,27.460895 28.460895,10 50,10 71.539105,10 89,27.460895 89,49 z"
        style="opacity:0.3;fill:#000000;filter:url(#f1)"
@@ -169,10 +175,12 @@
   </g>
   <g
      style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-     id="text6">
+     id="text6"
+     transform="translate(-9,2)">
     <path
        d="m 33.921875,49.5 0,-22.3125 32.648437,0 0,2.953125 -14.765625,0 0,3.445312 13.453125,0 0,2.953125 -13.453125,0 0,3.445313 13.453125,0 0,2.953125 -13.453125,0 0,3.445312 16.242188,0 c -0.109414,7.546882 -0.628945,12.332033 -1.558594,14.355469 -0.929724,2.023435 -2.433629,3.035153 -4.511719,3.035156 -1.312531,-3e-6 -3.281279,-0.218753 -5.90625,-0.65625 l -0.65625,-3.609375 c 2.843721,0.437501 5.031219,0.65625 6.5625,0.65625 0.656217,0 1.148404,-0.546874 1.476563,-1.640625 0.32809,-1.093747 0.601527,-4.101556 0.820312,-9.023437 l -30.351562,0 m 14.4375,-19.359375 -11.15625,0 0,3.445312 11.15625,0 0,-3.445312 m -11.15625,6.398437 0,3.445313 11.15625,0 0,-3.445313 -11.15625,0 m 0,6.398438 0,3.445312 11.15625,0 0,-3.445312 -11.15625,0 m 19.851562,7.710937 c 1.640596,1.968758 3.007782,4.156256 4.101563,6.5625 L 58.039062,58.6875 c -0.984403,-2.515621 -2.242214,-4.757806 -3.773437,-6.726563 l 2.789062,-1.3125 M 34.25,51.632812 37.695312,52.78125 c -1.203132,3.718753 -2.625006,6.890625 -4.265625,9.515625 l -3.28125,-1.804688 C 32.007809,57.539065 33.374996,54.585943 34.25,51.632812 m 15.421875,0.328125 c 1.859352,2.296881 3.117164,4.593754 3.773437,6.890625 l -3.28125,0.984375 c -0.65627,-2.515622 -1.859394,-4.921869 -3.609375,-7.21875 l 3.117188,-0.65625 m -7.054688,0.328125 c 1.42186,2.625006 2.351547,5.30469 2.789063,8.039063 L 41.796875,61.3125 c -0.328137,-2.953123 -1.148449,-5.687496 -2.460938,-8.203125 l 3.28125,-0.820313"
        style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-       id="path3088" />
+       id="path3088"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

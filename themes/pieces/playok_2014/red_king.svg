@@ -8,12 +8,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="100"
-   height="90"
+   width="82"
+   height="92"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="006.svg">
+   sodipodi:docname="red_king.svg">
   <metadata
      id="metadata12">
     <rdf:RDF>
@@ -22,18 +22,19 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs10">
     <filter
-       height="150%"
-       width="150%"
+       height="1.5"
+       width="1.5"
        y="0"
        x="0"
-       id="f1">
+       id="f1"
+       color-interpolation-filters="sRGB">
       <feOffset
          id="feOffset3039"
          dy="0"
@@ -50,10 +51,10 @@
 -->
     </filter>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad1">
       <stop
          id="stop3034"
@@ -65,10 +66,10 @@
          offset="50%" />
     </linearGradient>
     <linearGradient
-       y2="100%"
-       x2="0%"
-       y1="0%"
-       x1="0%"
+       y2="1"
+       x2="0"
+       y1="0"
+       x1="0"
        id="grad0">
       <stop
          id="stop3029"
@@ -98,19 +99,24 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="640"
-     inkscape:window-height="480"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
      id="namedview8"
      showgrid="false"
-     inkscape:zoom="2.6222222"
-     inkscape:cx="50"
-     inkscape:cy="45"
+     inkscape:zoom="9.173913"
+     inkscape:cx="32"
+     inkscape:cy="50.36019"
      inkscape:window-x="0"
      inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="svg2" />
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <g
-     id="use4">
+     id="use4"
+     transform="translate(-9,2)">
     <circle
        d="m 89,49.5 c 0,21.539105 -17.460895,39 -39,39 -21.539105,0 -39,-17.460895 -39,-39 0,-21.539105 17.460895,-39 39,-39 21.539105,0 39,17.460895 39,39 z"
        style="opacity:0.5;fill:#000000;filter:url(#f1)"
@@ -169,10 +175,12 @@
   </g>
   <g
      style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-     id="text6">
+     id="text6"
+     transform="translate(-9,2)">
     <path
        d="m 56.890625,25.875 3.28125,0 0,6.070312 7.382812,0 0,20.34375 c -3.8e-5,1.421882 -0.300819,2.460943 -0.902343,3.117188 -0.6016,0.656254 -1.503943,0.984379 -2.707032,0.984375 -0.656284,4e-6 -1.421908,-0.05468 -2.296875,-0.164063 l -0.820312,-3.28125 c 1.312467,0.109382 2.296841,0.16407 2.953125,0.164063 0.32809,7e-6 0.492152,-0.546868 0.492187,-1.640625 l 0,-16.40625 -4.101562,0 0,28.710937 -3.28125,0 0,-28.710937 -4.101563,0 0,21.164062 -3.117187,0 0,-24.28125 7.21875,0 0,-6.070312 m -17.71875,0 3.609375,0.820312 c -0.437513,1.203158 -0.984388,2.351594 -1.640625,3.445313 l 5.578125,0 0,12.632812 -10.992188,0 0,3.609375 11.648438,0 0,15.75 -3.28125,0 0,-2.789062 -8.367188,0 0,3.9375 -3.28125,0 0,-33.140625 5.085938,0 c 0.765616,-1.421844 1.31249,-2.843717 1.640625,-4.265625 m -3.445313,13.945312 7.710938,0 0,-6.726562 -7.710938,0 0,6.726562 m 0,9.679688 0,6.890625 8.367188,0 0,-6.890625 -8.367188,0"
        style="font-size:42px;font-weight:normal;text-anchor:middle;fill:#ffffff;stroke:#ffffff;stroke-width:1.25;font-family:'WenQuanYi Micro Hei, Arial'"
-       id="path3088" />
+       id="path3088"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>

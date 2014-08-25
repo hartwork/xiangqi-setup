@@ -69,7 +69,7 @@
        x2="0%"
        y1="0%"
        x1="0%"
-       id="grad1">
+       id="grad3">
       <stop
          id="stop3029"
          style="stop-color:rgb(255,255,255);stop-opacity:0.6"
@@ -81,8 +81,8 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#grad1"
-       id="linearGradient3085"
+       xlink:href="#grad3"
+       id="linearGradient4444"
        x1="10.900002"
        y1="4.9000015"
        x2="10.900002"
@@ -135,7 +135,7 @@
        id="circle3077" />
     <circle
        d="M 89.099998,44 C 89.099998,65.594333 71.594333,83.099998 50,83.099998 28.405667,83.099998 10.900002,65.594333 10.900002,44 10.900002,22.405667 28.405667,4.9000015 50,4.9000015 71.594333,4.9000015 89.099998,22.405667 89.099998,44 z"
-       style="fill:url(#linearGradient3085)"
+       style="fill:url(#linearGradient4444)"
        sodipodi:ry="39.099998"
        sodipodi:rx="39.099998"
        sodipodi:cy="44"

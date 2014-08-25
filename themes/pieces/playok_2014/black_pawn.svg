@@ -69,7 +69,7 @@
        x2="0%"
        y1="0%"
        x1="0%"
-       id="grad1">
+       id="grad3">
       <stop
          id="stop3113"
          style="stop-color:rgb(255,255,255);stop-opacity:0.6"
@@ -81,7 +81,7 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#grad1"
+       xlink:href="#grad3"
        id="linearGradient3169"
        x1="10.900002"
        y1="4.9000015"

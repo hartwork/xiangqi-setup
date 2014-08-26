@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="90">
+<defs>
+<linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="10%" style="stop-color:rgb(255,255,255);stop-opacity:0.6" />
+      <stop offset="60%" style="stop-color:rgb(50,30,20);stop-opacity:0.3" />
+</linearGradient>
+<linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="30%" style="stop-color:rgb(32,32,32);stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:rgb(255,255,255);stop-opacity:0.3" />
+</linearGradient>
+<filter id="f1" x="0" y="0" width="150%" height="150%">
+      <feOffset result="offOut" in="SourceAlpha" dx="1" dy="1" />
+      <feGaussianBlur result="blurOut" in="offOut" stdDeviation="1" />
+<!--
+      <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+-->
+</filter>
+
+</defs>
+
+<g id="p0">
+
+<circle cx="50" cy="49" r="39" fill="#000" opacity=".3" filter="url(#f1)" />
+<circle cx="50" cy="44" r="39" fill="#302010" opacity="1" />
+<circle cx="50" cy="44" r="39.1" fill="url(#grad1)" opacity="1.0" />
+
+<circle cx="50" cy="44" r="39" fill="none" stroke="#421" stroke-width="1" />
+
+<circle cx="50" cy="44" r="34.05" fill="#483420" />
+
+</g>
+
+</svg>

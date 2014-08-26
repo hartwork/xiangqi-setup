@@ -92,11 +92,9 @@ def compose_svg(pieces_to_put, options):
     board_root = board_fig.getroot()
 
     # Scale board to output
-    board_size_pixel = [_length_string_to_pixel(e) for e in board_fig.get_size()]
-    min_board_size_pixel = min(board_size_pixel)
-    width_factor = board_size_pixel[0] / min_board_size_pixel
-    height_factor = board_size_pixel[1] / min_board_size_pixel
-    board_scale = options.width_pixel / board_size_pixel[0]
+    board_width_pixel, board_height_pixel = [_length_string_to_pixel(e) for e in board_fig.get_size()]
+    height_factor = board_height_pixel / float(board_width_pixel)
+    board_scale = options.width_pixel / board_width_pixel
     board_root.moveto(0, 0, scale=board_scale)
 
     output_board_offset_left_pixel *= board_scale
@@ -106,21 +104,27 @@ def compose_svg(pieces_to_put, options):
 
     # Initialize output figure
     output_fig = sg.SVGFigure(
-            str(options.width_pixel * width_factor),
+            str(options.width_pixel),
             str(options.width_pixel * height_factor))
     output_fig.append([board_root, ])
 
     for (x_rel, y_rel, filename) in jobs:
         piece_fig = sg.fromfile(filename)
         piece_root = piece_fig.getroot()
+        original_piece_width_pixel, original_piece_height_pixel = [_length_string_to_pixel(s) for s in piece_fig.get_size()]
 
         # Scale and put piece onto board
         center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
         center_y_pixel = output_board_offset_top_pixel + output_board_height_pixel * y_rel
-        original_piece_width_pixel = float(piece_fig.get_size()[0])
-        future_piece_width_pixel = output_board_width_pixel / _MAX_X * options.piece_scale
-        future_piece_height_pixel = output_board_height_pixel / _MAX_Y * options.piece_scale
-        scale = future_piece_width_pixel / original_piece_width_pixel
+
+        maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * options.piece_scale
+        maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * options.piece_scale
+
+        scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel, maximum_future_piece_height_pixel / original_piece_height_pixel)
+
+        future_piece_width_pixel = original_piece_width_pixel * scale
+        future_piece_height_pixel = original_piece_height_pixel * scale
+
         x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
         y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
         piece_root.moveto(x_pixel, y_pixel, scale=scale)

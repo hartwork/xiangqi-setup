@@ -1,0 +1,17 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Based on...
+	a board generate from
+
+	# ./xiangqi-board \
+		--border-thickness-px 0 \
+		--line-thickness-px 2 \
+		--field-width-px 61 \
+		--field-height-px 55 \
+		--cross-thickness-px 0 \
+		themes/board/playok_2014_remake/board.{svg,ini}

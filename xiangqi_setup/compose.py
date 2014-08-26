@@ -92,11 +92,9 @@ def compose_svg(pieces_to_put, options):
     board_root = board_fig.getroot()
 
     # Scale board to output
-    board_size_pixel = [_length_string_to_pixel(e) for e in board_fig.get_size()]
-    min_board_size_pixel = min(board_size_pixel)
-    width_factor = board_size_pixel[0] / min_board_size_pixel
-    height_factor = board_size_pixel[1] / min_board_size_pixel
-    board_scale = options.width_pixel / board_size_pixel[0]
+    board_width_pixel, board_height_pixel = [_length_string_to_pixel(e) for e in board_fig.get_size()]
+    height_factor = board_height_pixel / float(board_width_pixel)
+    board_scale = options.width_pixel / board_width_pixel
     board_root.moveto(0, 0, scale=board_scale)
 
     output_board_offset_left_pixel *= board_scale
@@ -106,7 +104,7 @@ def compose_svg(pieces_to_put, options):
 
     # Initialize output figure
     output_fig = sg.SVGFigure(
-            str(options.width_pixel * width_factor),
+            str(options.width_pixel),
             str(options.width_pixel * height_factor))
     output_fig.append([board_root, ])
 

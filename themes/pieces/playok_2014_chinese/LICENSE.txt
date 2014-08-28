@@ -1,9 +1,10 @@
 Derived from:
-	Original source SVGs of playing pieces seen on the playok website.
+	Original source SVGs of playing pieces as seen on the PlayOK website.
 	Thanks a lot for sharing and for the extra-liberal licensing!
 
 	Author
-		playok.com
+		PlayOK -- Free Online Games
+		http://www.playok.com/
 
 	License
 		CC0 1.0 Universal: Public Domain Dedication

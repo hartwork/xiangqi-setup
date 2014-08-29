@@ -15,7 +15,7 @@
    height="99.995232"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="red_horse.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata
@@ -42,9 +42,9 @@
      bordercolor="#666666"
      pagecolor="#ffffff"
      id="base"
-     inkscape:zoom="2.7718586"
-     inkscape:cx="122.91361"
-     inkscape:cy="41.667719"
+     inkscape:zoom="7.990381"
+     inkscape:cx="50.020817"
+     inkscape:cy="49.997616"
      inkscape:window-x="0"
      inkscape:window-y="42"
      inkscape:current-layer="layer3"
@@ -109,7 +109,7 @@
      style="display:inline"
      transform="translate(-107.94702,-304.68408)">
     <path
-       d="m 89,229.36218 a 32,32 0 1 1 -64,0 32,32 0 1 1 64,0 z"
+       d="m 89,229.36218 c 0,17.67311 -14.326888,32 -32,32 -17.673112,0 -32,-14.32689 -32,-32 0,-17.67311 14.326888,-32 32,-32 17.673112,0 32,14.32689 32,32 z"
        sodipodi:ry="32"
        sodipodi:rx="32"
        sodipodi:cy="229.36218"
@@ -119,9 +119,9 @@
        sodipodi:type="arc"
        transform="matrix(1.484848,0,0,1.484848,73.331497,14.117885)" />
     <g
-       style="display:inline;fill:#000000"
+       style="fill:#000000;display:inline"
        id="g2565"
-       transform="translate(-1.4902793,-0.1807241)">
+       transform="matrix(1.2,0,0,1.2,-29.230412,-71.102293)">
       <path
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccccscccsccccccccccccsccccccccsccccccccccccsscccccccccccccccccccccccccccsccccccccsscsccccscccccc"

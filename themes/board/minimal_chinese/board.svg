@@ -8,7 +8,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
-   width="481.60306"
+   width="481.60001"
    viewbox="0 0 479.0 532.0"
    height="604.10999"
    id="svg2"
@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -46,15 +46,22 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1"
-     inkscape:cx="240.80004"
-     inkscape:cy="302.05748"
+     inkscape:cx="240.8"
+     inkscape:cy="302.05499"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2" />
+  <rect
+     style="color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     id="rect3033"
+     width="481.60001"
+     height="604.10999"
+     x="0"
+     y="0" />
   <g
      id="g3193"
-     transform="translate(1.6421614,35.941639)">
+     transform="translate(1.6421614,35.941654)">
     <g
        id="g4">
       <path

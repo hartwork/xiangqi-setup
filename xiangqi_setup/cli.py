@@ -11,6 +11,9 @@ from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
 
 
+_DEFAULT_WIDTH_CM = 7.0
+
+
 def check(options):
     if 0 < options.piece_scale <= 1.0:
         pass
@@ -22,7 +25,7 @@ def check(options):
         options.width_pixel = cm_to_pixel(options.width_centimeter)
     delattr(options, 'width_centimeter')
     if options.width_pixel is None:
-        options.width_pixel = cm_to_pixel(7.0)
+        options.width_pixel = cm_to_pixel(_DEFAULT_WIDTH_CM)
 
 
 def run(options):

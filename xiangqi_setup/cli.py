@@ -22,10 +22,10 @@ def check(options):
         sys.exit(1)
 
     if options.width_centimeter is not None:
-        options.width_pixel = cm_to_pixel(options.width_centimeter)
+        options.width_pixel = cm_to_pixel(options.width_centimeter, options.resolution_dpi)
     delattr(options, 'width_centimeter')
     if options.width_pixel is None:
-        options.width_pixel = cm_to_pixel(_DEFAULT_WIDTH_CM)
+        options.width_pixel = cm_to_pixel(_DEFAULT_WIDTH_CM, options.resolution_dpi)
 
 
 def run(options):
@@ -39,6 +39,7 @@ def main():
     parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='DIRECTORY', default=os.path.join('themes', 'pieces', 'retro_simple'))
     parser.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float)
     parser.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float)
+    parser.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0)
     parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9)
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('input_file', metavar='INPUT_FILE')

@@ -18,8 +18,6 @@ from .wxf_format import \
         RED, BLACK 
 
 
-_RESOLUTION_DPI = 90.0
-
 _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'
 _BOARD_CONFIG_SECTION = 'Board'
@@ -58,8 +56,8 @@ def _length_string_to_pixel(text):
 def _cm_to_inch(cm):
     return cm * 0.393700787
 
-def cm_to_pixel(cm):
-    return _cm_to_inch(cm) * _RESOLUTION_DPI
+def cm_to_pixel(cm, resolution_dpi):
+    return _cm_to_inch(cm) * resolution_dpi
 
 
 def compose_svg(pieces_to_put, options):

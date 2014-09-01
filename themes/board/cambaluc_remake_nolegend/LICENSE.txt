@@ -1,0 +1,12 @@
+Re-draw of ..
+	the western board presented at
+	http://www.chessvariants.org/xiangqi.dir/xiangqi-western.png
+	and
+	http://www.chessvariants.org/d.photo/cambaluc/index.html
+
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/

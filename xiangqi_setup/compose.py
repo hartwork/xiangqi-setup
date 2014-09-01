@@ -64,13 +64,14 @@ def compose_svg(pieces_to_put, options):
     board_svg_filename = os.path.join(options.board_theme_dir, _BOARD_SVG_BASENAME)
     board_ini_filename = os.path.join(options.board_theme_dir, _BOARD_INI_BASENAME)
 
-    config = ConfigParser.RawConfigParser()
+    config = ConfigParser.RawConfigParser(defaults={'river': 0.0})
     config.read(board_ini_filename)
 
     output_board_offset_left_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'left')
     output_board_offset_top_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'top')
     output_board_width_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'width')
     output_board_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'height')
+    output_board_river_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'river')
 
     jobs = []
     for put_piece in pieces_to_put:
@@ -99,6 +100,7 @@ def compose_svg(pieces_to_put, options):
     output_board_offset_top_pixel *= board_scale
     output_board_width_pixel *= board_scale
     output_board_height_pixel *= board_scale
+    output_board_river_height_pixel *= board_scale
 
     # Initialize output figure
     output_fig = sg.SVGFigure(
@@ -113,7 +115,8 @@ def compose_svg(pieces_to_put, options):
 
         # Scale and put piece onto board
         center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
-        center_y_pixel = output_board_offset_top_pixel + output_board_height_pixel * y_rel
+        center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
+                + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
 
         maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * options.piece_scale
         maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * options.piece_scale

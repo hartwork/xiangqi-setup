@@ -1,0 +1,21 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Based on...
+	a board generate from
+
+	# ./xiangqi-board \
+		--line-thickness-px 2 \
+		--cross-gap-px 2 \
+		--cross-thickness-px 2 \
+		--cross-width-px 13 \
+		--border-gap-width-px 2 \
+		--border-gap-height-px 2 \
+		--border-thickness-px 5 \
+		--field-width-px 56 \
+		--field-height-px 56 \
+		themes/board/xiexie_2_5_0_remake_minimal/board.{svg,ini}

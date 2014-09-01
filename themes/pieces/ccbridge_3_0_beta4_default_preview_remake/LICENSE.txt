@@ -1,0 +1,11 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Creation
+	Characters from font Noto Sans T Chinese Medium
+	Version 2014-07-15 at 40pt size
+	http://www.google.com/get/noto/

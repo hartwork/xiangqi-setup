@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="56.568542"
+   height="56.568542"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="red_king.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="14.919953"
+     inkscape:cx="28.284271"
+     inkscape:cy="28.284271"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1024"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-258.63133,-31.191184)">
+    <g
+       id="g4064">
+      <path
+         transform="translate(-67.142866,-271.13273)"
+         d="m 382.34274,330.60818 c 0,15.62098 -12.6633,28.28428 -28.28427,28.28428 -15.62097,0 -28.28427,-12.6633 -28.28427,-28.28428 0,-15.62097 12.6633,-28.28427 28.28427,-28.28427 15.62097,0 28.28427,12.6633 28.28427,28.28427 z"
+         sodipodi:ry="28.284271"
+         sodipodi:rx="28.284271"
+         sodipodi:cy="330.60818"
+         sodipodi:cx="354.05847"
+         id="path3992"
+         style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         sodipodi:type="arc" />
+      <path
+         d="m 295.70735,78.1278 c -1.0417,-0.10418 -2.08336,-0.10418 -3.125,0 0.0781,-1.92709 0.11716,-3.86719 0.11718,-5.82032 l 0,-20.625 -5.11718,0 0,13.20313 c -2e-5,1.95313 0.0521,3.89323 0.15625,5.82031 -1.06773,-0.10416 -2.12242,-0.10416 -3.16407,0 0.10415,-1.92708 0.15624,-3.86718 0.15625,-5.82031 l 0,-15.54688 7.96875,0 0,-3.04687 c -2e-5,-1.9531 -0.0391,-3.8932 -0.11718,-5.82031 1.04164,0.10419 2.0833,0.10419 3.125,0 -0.0782,1.92711 -0.11722,3.86721 -0.11719,5.82031 l 0,3.04687 8.75,0 0,17.57813 c -0.1042,1.69271 -0.82035,2.8125 -2.14844,3.35937 -1.17191,0.54688 -2.56513,0.82032 -4.17969,0.82032 0.26039,-1.30208 -3e-5,-2.47396 -0.78125,-3.51563 0.67706,0.10417 1.44529,0.16928 2.30469,0.19531 0.88539,1e-5 1.43226,-0.0651 1.64063,-0.19531 0.2083,-0.15624 0.31246,-0.66406 0.3125,-1.52344 l 0,-14.375 -5.89844,0 0,20.625 c -3e-5,1.95313 0.039,3.89323 0.11719,5.82032 m -17.61719,-13.32032 0,-18.24218 c -1e-5,-1.9531 -0.0391,-3.8932 -0.11719,-5.82032 1.04166,0.1042 2.08332,0.1042 3.125,0 -0.0781,1.92712 -0.1172,3.86722 -0.11719,5.82032 l 0,18.24218 c -10e-6,3.12501 -0.88542,5.95053 -2.65625,8.47657 -1.77084,2.49999 -4.12761,4.23176 -7.07031,5.19531 -0.3125,-1.14584 -0.98958,-2.01823 -2.03125,-2.61719 2.47396,-0.41667 4.57031,-1.6276 6.28906,-3.63281 1.71875,-2.03125 2.57812,-4.5052 2.57813,-7.42188 m -3.08594,3.04688 c -1.06771,-0.10416 -2.1224,-0.10416 -3.16406,0 0.10416,-1.92708 0.15625,-3.85416 0.15625,-5.78125 l 0,-9.64844 c 0,-1.92706 -0.0521,-3.86716 -0.15625,-5.82031 1.04166,0.10419 2.09635,0.10419 3.16406,0 -0.10417,1.92711 -0.15625,3.86721 -0.15625,5.82031 l 0,9.64844 c 0,1.92709 0.0521,3.85417 0.15625,5.78125"
+         style="font-size:40px;font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Noto Sans T Chinese;-inkscape-font-specification:Noto Sans T Chinese Medium"
+         id="path3886"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

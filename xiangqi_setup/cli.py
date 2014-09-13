@@ -13,12 +13,16 @@ from .compose import compose_svg, cm_to_pixel
 
 _DEFAULT_WIDTH_CM = 7.0
 
+_PIECE_SCALE_MIN = 0.0
+_PIECE_SCALE_MAX = 1.2
+
 
 def check(options):
-    if 0 < options.piece_scale <= 1.0:
+    if _PIECE_SCALE_MIN < options.piece_scale <= _PIECE_SCALE_MAX:
         pass
     else:
-        print('ERROR: Piece scale must be larger than zero and greater or equal one.', file=sys.stderr)
+        print('ERROR: Piece scale must be larger than %.1f and greater or equal %.1f .' \
+                % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX), file=sys.stderr)
         sys.exit(1)
 
     if options.width_centimeter is not None:

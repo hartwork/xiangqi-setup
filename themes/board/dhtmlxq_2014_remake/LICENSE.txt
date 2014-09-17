@@ -1,0 +1,26 @@
+Author
+	Sebastian Pipping
+
+License
+	CC0 1.0 Universal: Public Domain Dedication
+	https://creativecommons.org/publicdomain/zero/1.0/
+
+Based on...
+	a board generate from
+
+	# ./xiangqi-board \
+			--line-thickness-px 1 \
+			--field-width-px 29 \
+			--field-height-px 29 \
+			--border-thickness-px 3 \
+			--border-gap-width-px 3 \
+			--border-gap-height-px 3 \
+			--cross-width-px 6 \
+			--cross-thickness-px 1 \
+			--cross-gap-px 1 \
+			themes/board/dhtmlxq_2014_remake/board.{svg,ini}
+
+	Fonts used:
+		Top legend: Liberation Mono Normal @ 17pt
+		River text: Noto Sans S Chinese Normal @ 14pt
+		Bottom legend: Noto Sans S Chinese Normal @ 16pt

@@ -2,9 +2,16 @@ Derived from:
 	Fonts of LaTeX package "xq" version 0.3 of 2006
 	http://www.ctan.org/tex-archive/fonts/xq
 
+	Which in turn seems derived from
+		xiangqi.ttf also shipped with WinBoard
+		said to be by Kai Wan Leung
+		licensed "free for all non-commercial purposes"
+			http://hgm.nubati.net/cgi-bin/gitweb.cgi?p=xboard.git;a=commitdiff;h=f7f6d954bca7c593d7656edf24a2df177cb06869
+		which is confirmed by
+			https://groups.google.com/forum/#!msg/rec.games.chinese-chess/K2YZ_wCTEm0/EzjeUe8T4BoJ
+
 Author
 	Sebastian Pipping
 
 License of derivative
-	The LaTeX Project Public Li­cense 1.3c or later
-	http://latex-project.org/lppl/
+	Free for non-commercial use

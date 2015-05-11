@@ -11,6 +11,7 @@ import sys
 
 from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
+from .version import VERSION_STR
 
 
 _DEFAULT_WIDTH_CM = 7.0
@@ -114,6 +115,9 @@ def main():
             help='location of WXF file to render')
     parser.add_argument('output_file', metavar='OUTPUT_FILE',
             help='location of SVG output file to write')
+
+    parser.add_argument('--version', action='version', version='%(prog)s ' + VERSION_STR)
+
     options = parser.parse_args()
 
     # Turn theme names into paths

@@ -4,6 +4,7 @@
 from __future__ import print_function
 
 import ConfigParser
+import errno
 import os
 
 try:
@@ -63,6 +64,11 @@ def cm_to_pixel(cm, resolution_dpi):
 def compose_svg(pieces_to_put, options):
     board_svg_filename = os.path.join(options.board_theme_dir, _BOARD_SVG_BASENAME)
     board_ini_filename = os.path.join(options.board_theme_dir, _BOARD_INI_BASENAME)
+
+    # Check for existance ourselves since ConfigParser would throw NoSectionError
+    # at us for a missing file.
+    if not os.path.exists(board_ini_filename):
+        raise IOError(errno.ENOENT, "No such file or directory: '%s'" % board_ini_filename)
 
     config = ConfigParser.RawConfigParser(defaults={'river': 0.0})
     config.read(board_ini_filename)

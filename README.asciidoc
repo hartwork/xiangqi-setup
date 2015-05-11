@@ -1,0 +1,59 @@
+Usage
+-----
+-----------------------------------------------------------------------------
+# xiangqi-setup --help
+usage: xiangqi-setup [-h] [--board THEME] [--pieces THEME]
+                     [--width-px PIXEL | --width-cm CENTIMETER] [--dpi FLOAT]
+                     [--scale-pieces FACTOR] [--debug]
+                     INPUT_FILE OUTPUT_FILE
+
+positional arguments:
+  INPUT_FILE            location of WXF file to render
+  OUTPUT_FILE           location of SVG output file to write
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --debug               enable debugging (e.g. mark corners of the board)
+
+theme selection:
+  --board THEME         name of board theme to use (default: "clean_alpha";
+                        please check the list of available themes below
+  --pieces THEME        name of pieces theme to use (default: "retro_simple";
+                        please check the list of available themes below
+
+scaling:
+  --width-px PIXEL      width of the output in pixels
+  --width-cm CENTIMETER
+                        width of the output in centimeters
+  --dpi FLOAT           resolution of the output in dots per inch
+  --scale-pieces FACTOR
+                        factor to scale pieces by (0.0 to 1.2, default: 0.9)
+
+available board themes (in alphabetic order):
+  a4_blank_2cm_margin
+  cambaluc_remake_nolegend
+  cambaluc_remake_nolegend_nogap
+  ccbridge_3_0_beta4_default_preview_remake
+  clean_alpha
+  clean_beta
+  commons_xiangqi_board_2008
+  commons_xiangqi_board_2008_bw_thin
+  dhtmlxq_2014_remake
+  latex_xq_remake
+  minimal
+  minimal_chinese
+  minimal_chinese_arabic
+  playok_2014_remake
+  western_red_wine
+  xiexie_2_5_0_remake_minimal
+
+available pieces themes (in alphabetic order):
+  ccbridge_3_0_beta4_default_preview_remake
+  commons_xiangqi_pieces_print_2010
+  commons_xiangqi_pieces_print_2010_bw_heavy
+  latex_xqlarge_2006_chinese_autotrace
+  latex_xqlarge_2006_chinese_potrace
+  playok_2014_chinese
+  playok_2014_chinese_noshadow
+  retro_simple
+-----------------------------------------------------------------------------

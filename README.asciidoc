@@ -16,7 +16,7 @@ for short.
 
 For link:doc/demo.wxf[demo.wxf], the result is:
 
-image:doc/demo.svg["demo.svg, CC0 1.0 Universal: Public Domain Dedication", align="center", link="doc/demo.svg"]
+image:doc/demo.png["demo.{png,svg}, CC0 1.0 Universal: Public Domain Dedication", align="center", link="doc/demo.svg"]
 
 
 Usage

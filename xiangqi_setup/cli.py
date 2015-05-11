@@ -70,7 +70,7 @@ def main():
             (board_themes_home_dir, board_theme_choices),
             (pieces_themes_home_dir, pieces_theme_choices),
             ):
-        target_list += [os.path.basename(e) for e in glob.glob(os.path.join(directory, '*'))]
+        target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
 
     epilog_chunks = []
     for category, source_list, blank_line_after in (

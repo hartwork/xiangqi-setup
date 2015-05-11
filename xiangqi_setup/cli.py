@@ -87,20 +87,26 @@ def main():
             epilog='\n'.join(epilog_chunks),
             formatter_class=argparse.RawDescriptionHelpFormatter,
             )
-    parser.add_argument('--board', dest='board_theme_dir', metavar='THEME',
+
+    theme_options = parser.add_argument_group('theme selection')
+    theme_options.add_argument('--board', dest='board_theme_dir', metavar='THEME',
             type=_theme_name, default='clean_alpha',
             help='name of board theme to use (default: "%(default)s"; please check the list of available themes below')
-    parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='THEME',
+    theme_options.add_argument('--pieces', dest='pieces_theme_dir', metavar='THEME',
             type=_theme_name, default='retro_simple',
             help='name of pieces theme to use (default: "%(default)s"; please check the list of available themes below')
-    parser.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float,
+
+    scaling_options = parser.add_argument_group('scaling')
+    width_options = scaling_options.add_mutually_exclusive_group()
+    width_options.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float,
             help='width of the output in pixels')
-    parser.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float,
+    width_options.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float,
             help='width of the output in centimeters')
-    parser.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0,
+    scaling_options.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0,
             help='resolution of the output in dots per inch')
-    parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9,
+    scaling_options.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9,
             help='factor to scale pieces by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
+
     parser.add_argument('--debug', action='store_true',
             help='enable debugging (e.g. mark corners of the board)')
 

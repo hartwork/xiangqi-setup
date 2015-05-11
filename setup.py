@@ -1,0 +1,41 @@
+#! /usr/bin/env python2
+# Copyright (C) 2015 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under GNU Affero General Public License version 3.0 or later
+
+import os
+from distutils.core import setup
+
+from xiangqi_setup.version import VERSION_STR
+
+
+def _find_all_files_below(path):
+    for root, dirs, files in os.walk(path):
+        for f in files:
+            yield os.path.join(root, f)
+
+
+def _fill_data_files(data_files_tuples, source_dir, dest_prefix):
+    for source in _find_all_files_below(source_dir):
+        dest = os.path.join(dest_prefix, os.path.dirname(os.path.relpath(source, source_dir)))
+        data_files_tuples.append((dest, [source]))
+
+
+if __name__ == '__main__':
+    data_files_tuples = []
+    _fill_data_files(data_files_tuples, 'themes', 'share/themes/xiangqi-setup/')
+
+    setup(
+            name='xiangqi-setup',
+            description='Command line tool to generate razor-sharp Xiangqi setup graphics',
+            license='GNU Affero General Public License version 3.0 or later',
+            version=VERSION_STR,
+            author='Sebastian Pipping',
+            author_email='sebastian@pipping.org',
+            url='https://github.com/hartwork/xiangqi-setup',
+            download_url='https://github.com/hartwork/xiangqi-setup/archive/%s.tar.gz' % VERSION_STR,
+            packages=[
+                'xiangqi_board',
+                'xiangqi_setup',
+            ],
+            data_files=data_files_tuples,
+    )

@@ -77,7 +77,7 @@ def main():
             ('available board themes', board_theme_choices, True),
             ('available pieces themes', pieces_theme_choices, False),
             ):
-        epilog_chunks.append('%s:' % category)
+        epilog_chunks.append('%s (in alphabetic order):' % category)
         for name in sorted(source_list, key=lambda x: x.lower()):
             epilog_chunks.append('  %s' % name)
         if blank_line_after:
@@ -87,15 +87,27 @@ def main():
             epilog='\n'.join(epilog_chunks),
             formatter_class=argparse.RawDescriptionHelpFormatter,
             )
-    parser.add_argument('--board', dest='board_theme_dir', metavar='THEME', type=_theme_name, default='clean_alpha')
-    parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='THEME', type=_theme_name, default='retro_simple')
-    parser.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float)
-    parser.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float)
-    parser.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0)
-    parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9)
-    parser.add_argument('--debug', action='store_true')
-    parser.add_argument('input_file', metavar='INPUT_FILE')
-    parser.add_argument('output_file', metavar='OUTPUT_FILE')
+    parser.add_argument('--board', dest='board_theme_dir', metavar='THEME',
+            type=_theme_name, default='clean_alpha',
+            help='name of board theme to use (default: "%(default)s"; please check the list of available themes below')
+    parser.add_argument('--pieces', dest='pieces_theme_dir', metavar='THEME',
+            type=_theme_name, default='retro_simple',
+            help='name of pieces theme to use (default: "%(default)s"; please check the list of available themes below')
+    parser.add_argument('--width-px', dest='width_pixel', metavar='PIXEL', type=float,
+            help='width of the output in pixels')
+    parser.add_argument('--width-cm', dest='width_centimeter', metavar='CENTIMETER', type=float,
+            help='width of the output in centimeters')
+    parser.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0,
+            help='resolution of the output in dots per inch')
+    parser.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9,
+            help='factor to scale pieces by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
+    parser.add_argument('--debug', action='store_true',
+            help='enable debugging (e.g. mark corners of the board)')
+
+    parser.add_argument('input_file', metavar='INPUT_FILE',
+            help='location of WXF file to render')
+    parser.add_argument('output_file', metavar='OUTPUT_FILE',
+            help='location of SVG output file to write')
     options = parser.parse_args()
 
     # Turn theme names into paths

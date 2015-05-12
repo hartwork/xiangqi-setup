@@ -11,6 +11,7 @@ import sys
 
 from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
+from .license import get_license_choices_of_theme
 from .version import VERSION_STR
 
 
@@ -74,13 +75,14 @@ def main():
         target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
 
     epilog_chunks = []
-    for category, source_list, blank_line_after in (
-            ('available board themes', board_theme_choices, True),
-            ('available pieces themes', pieces_theme_choices, False),
+    for category, category_home_dir, source_list, blank_line_after in (
+            ('available board themes', board_themes_home_dir, board_theme_choices, True),
+            ('available pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
             ):
         epilog_chunks.append('%s (in alphabetic order):' % category)
         for name in sorted(source_list, key=lambda x: x.lower()):
-            epilog_chunks.append('  %s' % name)
+            license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
+            epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))
         if blank_line_after:
             epilog_chunks.append('')
 

@@ -11,7 +11,7 @@ import sys
 
 from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
-from .license import get_license_choices_of_theme
+from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 
 
@@ -51,6 +51,7 @@ def check(options):
 def run(options):
     pieces_to_put = list(iterate_wxf_tokens(options.input_file))
     compose_svg(pieces_to_put, options)
+    inform_license(options.board_theme_dir, options.pieces_theme_dir)
 
 
 def _theme_name(text):

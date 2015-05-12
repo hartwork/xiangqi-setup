@@ -1,0 +1,16 @@
+{
+	"work": {
+		"license_ids_any_of": [
+			"FDL-1.2+",
+			"CC-BY-SA-4.0"
+		],
+		"authors": [
+			{
+				"Empro2": {
+				}
+			}
+		],
+		"source_url": "https://commons.wikimedia.org/wiki/File:Xiangqi_pieces_print.svg",
+		"source_fetched_on": "2014-08-02"
+	}
+}

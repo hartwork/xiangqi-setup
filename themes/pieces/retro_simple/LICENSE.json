@@ -1,0 +1,21 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"font": {
+					"title": "WenQuanYi Micro Hei Mono",
+					"version": "0.2.0 beta",
+					"size_points": 56
+				}
+			}
+		]
+	}
+}

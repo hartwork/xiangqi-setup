@@ -1,0 +1,44 @@
+{
+	"work": {
+		"license_id": "non-commercial",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"work": {
+					"source_url": "http://www.ctan.org/tex-archive/fonts/xq",
+					"version": "0.3",
+					"authors": [
+						{
+							"Stephan Weinhold": {
+							}
+						}
+					],
+					"directly_based_upon": [
+						{
+							"font": {
+								"title": "xiangqi.ttf",
+								"license_id": "non-commercial",
+								"authors": [
+									{
+										"Kai Wan Leung": {
+										}
+									}
+								],
+								"license_hint_urls": [
+									"http://hgm.nubati.net/cgi-bin/gitweb.cgi?p=xboard.git;a=commitdiff;h=f7f6d954bca7c593d7656edf24a2df177cb06869",
+									"https://groups.google.com/forum/#!msg/rec.games.chinese-chess/K2YZ_wCTEm0/EzjeUe8T4BoJ"
+								]
+							}
+						}
+					]
+				}
+			}
+		]
+	}
+}

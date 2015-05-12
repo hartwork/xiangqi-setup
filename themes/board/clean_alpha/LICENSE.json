@@ -1,0 +1,18 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_base_upon": [
+			{
+				"xiangqi_board": {
+				}
+			}
+		]
+	}
+}

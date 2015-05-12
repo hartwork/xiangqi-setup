@@ -1,0 +1,31 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_base_upon": [
+			{
+				"xiangqi_board": {
+					"cross_gap_px": 2,
+					"cross_width_px": 11,
+					"border_gap_width_px": 29,
+					"border_gap_height_px": 28,
+					"border_thickness_px": 3,
+					"field_width_px": 56,
+					"field_height_px": 55
+				}
+			},
+			{
+				"font": {
+					"title": "DejaVu Sans Mono",
+					"size_points": 24
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"work": {
+		"license_ids_any_of": [
+			"FDL-1.2+",
+			"CC-BY-SA-4.0"
+		],
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				},
+				"Empro2": {
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"work": {
+					"license_ids_any_of": [
+						"FDL-1.2+",
+						"CC-BY-SA-1.0",
+						"CC-BY-SA-2.0",
+						"CC-BY-SA-2.5",
+						"CC-BY-SA-3.0",
+						"CC-BY-SA-4.0"
+					],
+					"authors": [
+						{
+							"Empro2": {
+							}
+						}
+					],
+					"source_url": "https://commons.wikimedia.org/wiki/File:Xiangqi_pieces_print.svg",
+					"source_fetched_on": "2014-08-02"
+				}
+			}
+		]
+	}
+}

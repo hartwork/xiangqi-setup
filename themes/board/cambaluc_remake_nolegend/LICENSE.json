@@ -1,0 +1,24 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"redraw_of": [
+			{
+				"work": {
+					"source_url": "http://www.chessvariants.org/xiangqi.dir/xiangqi-western.png"
+				}
+			},
+			{
+				"hardware": {
+					"source_url": "http://www.chessvariants.org/d.photo/cambaluc/index.html"
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_base_upon": [
+			{
+				"xiangqi_board": {
+					"cross_thickness_px": 0,
+					"border_gap_width_px": 27,
+					"border_gap_height_px": 27,
+					"border_thickness_px": 0
+				}
+			}
+		]
+	}
+}

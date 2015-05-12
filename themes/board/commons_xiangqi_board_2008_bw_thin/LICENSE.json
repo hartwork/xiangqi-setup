@@ -1,0 +1,28 @@
+{
+	"work": {
+		"license_id": "public-domain",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"work": {
+					"license_id": "public-domain",
+					"authors": [
+						{
+							"Inductiveload": {
+								"email": ["inductiveload", "gmail.com"]
+							}
+						}
+					],
+					"source_url": "https://commons.wikimedia.org/wiki/File:Xiangqi_Board.svg",
+					"source_fetched_on": "2014-08-02"
+				}
+			}
+		]
+	}
+}

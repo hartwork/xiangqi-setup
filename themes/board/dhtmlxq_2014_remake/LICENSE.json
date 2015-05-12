@@ -1,0 +1,54 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_base_upon": [
+			{
+				"xiangqi_board": {
+					"line_thickness_px": 1,
+					"cross_gap_px": 1,
+					"cross_thickness_px": 1,
+					"cross_width_px": 6,
+					"border_gap_width_px": 3,
+					"border_gap_height_px": 3,
+					"border_thickness_px": 3,
+					"field_width_px": 29,
+					"field_height_px": 29
+				}
+			},
+			{
+				"font": {
+					"title": "Liberation Mono Normal",
+					"size_points": 17,
+					"used_at": [
+						"Top legend"
+					]
+				}
+			},
+			{
+				"font": {
+					"title": "Noto Sans S Chinese Normal",
+					"size_points": 14,
+					"used_at": [
+						"River text"
+					]
+				}
+			},
+			{
+				"font": {
+					"title": "Noto Sans S Chinese Normal",
+					"size_points": 16,
+					"used_at": [
+						"Bottom legend"
+					]
+				}
+			}
+		]
+	}
+}

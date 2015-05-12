@@ -1,0 +1,22 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"font": {
+					"title": "Noto Sans T Chinese Medium",
+					"website": "http://www.google.com/get/noto/",
+					"version": "2014-07-15",
+					"size_points": 40
+				}
+			}
+		]
+	}
+}

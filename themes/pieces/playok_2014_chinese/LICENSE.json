@@ -1,0 +1,35 @@
+{
+	"work": {
+		"license_id": "CC0-1.0",
+		"authors": [
+			{
+				"Sebastian Pipping": {
+					"email": ["sebastian", "pipping.org"]
+				}
+			}
+		],
+		"directly_based_upon": [
+			{
+				"work": {
+					"license_id": "CC0-1.0",
+					"authors": [
+						{
+							"PlayOK": {
+								"website": "http://www.playok.com/"
+							}
+						}
+					],
+					"directly_based_upon": [
+						{
+							"font": {
+								"title": "WenQuanYi Micro Hei",
+								"size_points": 42,
+								"website": "http://sourceforge.net/projects/wqy/"
+							}
+						}
+					]
+				}
+			}
+		]
+	}
+}

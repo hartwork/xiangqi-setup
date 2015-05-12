@@ -66,25 +66,28 @@ def main():
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
     pieces_themes_home_dir = os.path.join(themes_home_dir, 'pieces')
 
-    board_theme_choices = []
-    pieces_theme_choices = []
-    for directory, target_list in (
-            (board_themes_home_dir, board_theme_choices),
-            (pieces_themes_home_dir, pieces_theme_choices),
-            ):
-        target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
-
     epilog_chunks = []
-    for category, category_home_dir, source_list, blank_line_after in (
-            ('available board themes', board_themes_home_dir, board_theme_choices, True),
-            ('available pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
-            ):
-        epilog_chunks.append('%s (in alphabetic order):' % category)
-        for name in sorted(source_list, key=lambda x: x.lower()):
-            license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
-            epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))
-        if blank_line_after:
-            epilog_chunks.append('')
+
+    # Are we in --help mode (or can we save wasting time collecting all that data)
+    if '--help' in sys.argv[1:] or '-h' in sys.argv[1:]:
+        board_theme_choices = []
+        pieces_theme_choices = []
+        for directory, target_list in (
+                (board_themes_home_dir, board_theme_choices),
+                (pieces_themes_home_dir, pieces_theme_choices),
+                ):
+            target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
+
+        for category, category_home_dir, source_list, blank_line_after in (
+                ('available board themes', board_themes_home_dir, board_theme_choices, True),
+                ('available pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
+                ):
+            epilog_chunks.append('%s (in alphabetic order):' % category)
+            for name in sorted(source_list, key=lambda x: x.lower()):
+                license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
+                epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))
+            if blank_line_after:
+                epilog_chunks.append('')
 
     parser = argparse.ArgumentParser(
             epilog='\n'.join(epilog_chunks),

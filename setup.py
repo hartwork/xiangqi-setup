@@ -22,7 +22,7 @@ def _fill_data_files(data_files_tuples, source_dir, dest_prefix):
 
 if __name__ == '__main__':
     data_files_tuples = []
-    _fill_data_files(data_files_tuples, 'themes', 'share/themes/xiangqi-setup/')
+    _fill_data_files(data_files_tuples, 'themes', 'share/xiangqi-setup/themes/')
 
     setup(
             name='xiangqi-setup',

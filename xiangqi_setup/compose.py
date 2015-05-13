@@ -23,7 +23,7 @@ _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'
 _BOARD_CONFIG_SECTION = 'Board'
 
-_DIAMOND_FILE_NAME = os.path.join('themes', 'pieces', 'diamond.svg')
+_DIAMOND_FILE_NAME = os.path.join('..', 'diamond.svg')
 
 _MAX_X = 8
 _MAX_Y = 9
@@ -90,7 +90,7 @@ def compose_svg(pieces_to_put, options):
     if options.debug:
         for x_rel in (0.0, 1.0):
             for y_rel in (0.0, 1.0):
-                jobs.append((x_rel, y_rel, _DIAMOND_FILE_NAME))
+                jobs.append((x_rel, y_rel, os.path.join(options.pieces_theme_dir, _DIAMOND_FILE_NAME)))
 
     # Read board
     board_fig = sg.fromfile(board_svg_filename)

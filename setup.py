@@ -37,6 +37,10 @@ if __name__ == '__main__':
                 'xiangqi_board',
                 'xiangqi_setup',
             ],
+            scripts=[
+                'xiangqi-board',
+                'xiangqi-setup',
+            ],
             data_files=data_files_tuples,
             classifiers=[
                 'Development Status :: 4 - Beta',

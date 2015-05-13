@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     setup(
             name='xiangqi-setup',
-            description='Command line tool to generate razor-sharp Xiangqi setup graphics',
+            description='Command line tool to generate razor-sharp Xiangqi (Chinese chess) setup graphics',
             license='GNU Affero General Public License version 3.0 or later',
             version=VERSION_STR,
             author='Sebastian Pipping',

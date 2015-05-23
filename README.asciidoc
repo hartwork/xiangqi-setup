@@ -77,6 +77,7 @@ available pieces themes (in alphabetic order):
   ccbridge_3_0_beta4_default_preview_remake  (license: CC0-1.0)
   commons_xiangqi_pieces_print_2010          (license: FDL-1.2+ / CC-BY-SA-4.0)
   commons_xiangqi_pieces_print_2010_bw_heavy (license: FDL-1.2+ / CC-BY-SA-4.0)
+  euro_xiangqi_js                            (license: CC-BY-4.0)
   latex_xqlarge_2006_chinese_autotrace       (license: non-commercial)
   latex_xqlarge_2006_chinese_potrace         (license: non-commercial)
   playok_2014_chinese                        (license: CC0-1.0)

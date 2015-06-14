@@ -9,6 +9,10 @@ from textwrap import dedent
 
 
 _LICENSE_DETAILS = {
+    'CC-BY-4.0': (
+        'Creative Commons Attribution 4.0',
+        'https://creativecommons.org/licenses/by/4.0/',
+        ),
     'CC-BY-SA-4.0': (
         'Creative Commons Attribution-ShareAlike 4.0',
         'https://creativecommons.org/licenses/by-sa/4.0/',
@@ -86,15 +90,19 @@ def inform_license(board_theme_dir, pieces_theme_dir):
         author_chunks = []
         for author_dict in top_work['authors']:
             for author_name, details_dict in author_dict.items():
+                contact_infos = []
+
+                if 'website' in details_dict:
+                    contact_infos.append(details_dict['website'])
+
                 if 'email' in details_dict:
-                    details_dict['email'][0]
-                    author_display = '%s <%s@%s>' % (
-                            author_dict.keys()[0],
-                            details_dict['email'][0],
-                            details_dict['email'][1],
-                            )
+                    contact_infos.append('%s@%s' % tuple(details_dict['email']))
+
+                if contact_infos:
+                    author_display = '%s (%s)' % (author_name, ', '.join(contact_infos))
                 else:
                     author_display = author_name
+
                 author_chunks.append(author_display)
         authors = '\n'.join(('    ' + e) for e in author_chunks)
 

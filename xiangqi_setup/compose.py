@@ -51,7 +51,9 @@ _FILENAME_OF_PARTY_PIECE = {
 }
 
 
-def _length_string_to_pixel(text):
+def _length_string_to_pixel(text, resolution_dpi):
+    if text.endswith('cm'):
+        return cm_to_pixel(float(text[:-2]), resolution_dpi)
     return float(text)
 
 def _cm_to_inch(cm):
@@ -97,7 +99,7 @@ def compose_svg(pieces_to_put, options):
     board_root = board_fig.getroot()
 
     # Scale board to output
-    board_width_pixel, board_height_pixel = [_length_string_to_pixel(e) for e in board_fig.get_size()]
+    board_width_pixel, board_height_pixel = [_length_string_to_pixel(e, options.resolution_dpi) for e in board_fig.get_size()]
     height_factor = board_height_pixel / float(board_width_pixel)
     board_scale = options.width_pixel / board_width_pixel
     board_root.moveto(0, 0, scale=board_scale)
@@ -117,7 +119,10 @@ def compose_svg(pieces_to_put, options):
     for (x_rel, y_rel, filename) in jobs:
         piece_fig = sg.fromfile(filename)
         piece_root = piece_fig.getroot()
-        original_piece_width_pixel, original_piece_height_pixel = [_length_string_to_pixel(s) for s in piece_fig.get_size()]
+        original_piece_width_pixel, original_piece_height_pixel = [
+                _length_string_to_pixel(s, options.resolution_dpi)
+                for s in piece_fig.get_size()
+                ]
 
         # Scale and put piece onto board
         center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel

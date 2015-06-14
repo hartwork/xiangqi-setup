@@ -16,7 +16,10 @@ for short.
 
 For link:doc/demo.wxf[demo.wxf], the result is:
 
-image:doc/demo.png["demo.{png,svg}, CC0 1.0 Universal: Public Domain Dedication", align="center", link="doc/demo.svg"]
+image:doc/demo_retro_simple.png[title="demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication", align="center", link="doc/demo_retro_simple.svg"]
+image:doc/demo_euro_xiangqi_js.png[title="demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping", align="center", link="doc/demo_euro_xiangqi_js.svg"]
+
+(left: default themes -- right: default board, _euro_xiangqi_js_ pieces)
 
 There are a number of themes to pick from for board and pieces (independently).
 The `--help` listing below also includes the list of all themes

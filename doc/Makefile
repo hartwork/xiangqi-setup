@@ -12,6 +12,19 @@ all: setup_imitate_latex_xq.png setup_imitate_chinese_books.png setup_imitate_pl
 clean:
 	$(RM) setup_imitate_*
 
+demo_euro_xiangqi_js.svg:
+	"$(XIANGQI_SETUP)" \
+		 \
+		--pieces euro_xiangqi_js \
+		--width-cm 7 demo.wxf \
+		$@
+
+demo_retro_simple.svg:
+	"$(XIANGQI_SETUP)" \
+		--pieces retro_simple \
+		--width-cm 7 demo.wxf \
+		$@
+
 setup_imitate_latex_xq.svg:
 	"$(XIANGQI_SETUP)" \
 		--board latex_xq_remake \

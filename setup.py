@@ -42,6 +42,9 @@ if __name__ == '__main__':
                 'xiangqi-setup',
             ],
             data_files=data_files_tuples,
+            install_requires=[
+                'svgutils>=0.3.1',
+            ],
             classifiers=[
                 'Development Status :: 4 - Beta',
                 'Environment :: Console',

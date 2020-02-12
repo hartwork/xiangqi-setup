@@ -20,6 +20,8 @@ if __name__ == '__main__':
     setup(
             name='xiangqi-setup',
             description='Command line tool to generate razor-sharp Xiangqi (Chinese chess) setup graphics',
+            long_description=open('README.md').read(),
+            long_description_content_type='text/markdown',
             license='GNU Affero General Public License version 3.0 or later',
             version=VERSION_STR,
             author='Sebastian Pipping',
@@ -34,6 +36,9 @@ if __name__ == '__main__':
                     'xiangqi-setup = xiangqi_setup.__main__:main',
                 ],
             },
+            setup_requires=[
+                'setuptools>=38.6.0',  # for long_description_content_type
+            ],
             install_requires=[
                 'six',
                 'svgutils>=0.3.1',

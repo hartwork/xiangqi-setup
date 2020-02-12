@@ -28,10 +28,12 @@ if __name__ == '__main__':
             download_url='https://github.com/hartwork/xiangqi-setup/archive/%s.tar.gz' % VERSION_STR,
             packages=find_packages(),
             package_data=_generate_package_data(),
-            scripts=[
-                'xiangqi-board',
-                'xiangqi-setup',
-            ],
+            entry_points={
+                'console_scripts': [
+                    'xiangqi-board = xiangqi_board.__main__:main',
+                    'xiangqi-setup = xiangqi_setup.__main__:main',
+                ],
+            },
             install_requires=[
                 'svgutils>=0.3.1',
             ],

@@ -133,3 +133,7 @@ def main():
 
     check(options)
     run(options)
+
+
+if __name__ == '__main__':
+     main()

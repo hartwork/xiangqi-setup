@@ -3,27 +3,20 @@
 # Licensed under GNU Affero General Public License version 3.0 or later
 
 import os
-from distutils.core import setup
+from setuptools import find_packages, setup
 
 from xiangqi_setup.version import VERSION_STR
 
 
-def _find_all_files_below(path):
-    for root, dirs, files in os.walk(path):
-        for f in files:
-            yield os.path.join(root, f)
-
-
-def _fill_data_files(data_files_tuples, source_dir, dest_prefix):
-    for source in _find_all_files_below(source_dir):
-        dest = os.path.join(dest_prefix, os.path.dirname(os.path.relpath(source, source_dir)))
-        data_files_tuples.append((dest, [source]))
+def _generate_package_data():
+    return {
+        root.replace(os.sep, '.'): files
+        for root, dirs, files
+        in os.walk('xiangqi_setup/themes')
+    }
 
 
 if __name__ == '__main__':
-    data_files_tuples = []
-    _fill_data_files(data_files_tuples, 'themes', 'share/xiangqi-setup/themes/')
-
     setup(
             name='xiangqi-setup',
             description='Command line tool to generate razor-sharp Xiangqi (Chinese chess) setup graphics',
@@ -33,15 +26,15 @@ if __name__ == '__main__':
             author_email='sebastian@pipping.org',
             url='https://github.com/hartwork/xiangqi-setup',
             download_url='https://github.com/hartwork/xiangqi-setup/archive/%s.tar.gz' % VERSION_STR,
-            packages=[
-                'xiangqi_board',
-                'xiangqi_setup',
-            ],
+            packages=find_packages(),
+            package_data=_generate_package_data(),
             scripts=[
                 'xiangqi-board',
                 'xiangqi-setup',
             ],
-            data_files=data_files_tuples,
+            install_requires=[
+                'svgutils>=0.3.1',
+            ],
             classifiers=[
                 'Development Status :: 4 - Beta',
                 'Environment :: Console',

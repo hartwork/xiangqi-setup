@@ -41,7 +41,7 @@ if __name__ == '__main__':
             ],
             install_requires=[
                 'six',
-                'svgutils>=0.3.1',
+                'svgutils==0.3.1',  # unreleased svgutils Git master breaks
             ],
             classifiers=[
                 'Development Status :: 4 - Beta',

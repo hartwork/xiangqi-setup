@@ -1,4 +1,4 @@
-# About
+# xiangqi-setup (and xiangqi-board)
 
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.1 to
 render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF files to SVG images.
@@ -14,14 +14,26 @@ For [demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wx
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_retro_simple.svg)
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_euro_xiangqi_js.svg)
 
-(left: default board, default pieces — right: default board, _euro_xiangqi_js_ pieces)
+(left: default board, default pieces — right: default board, `euro_xiangqi_js` pieces)
 
 There are a number of themes to pick from for board and pieces (independently).
 The `--help` listing below also includes the list of all themes
 and their license information.
 
+The [default board theme `clean_alpha`](https://github.com/hartwork/xiangqi-setup/blob/master/xiangqi_setup/themes/board/clean_alpha/board.svg)
+has been generated with command line tool `xiangqi-board`
+that is included with the **xiangqi-setup** package.  It can be used to create
+variations of the detault theme, e.g. to create a version with reduced spacing
+in crosses you would run:
+
+```
+# xiangqi-board --cross-gap-px 2 board.{svg,ini}
+```
+
 
 # Usage
+
+## `xiangqi-setup` — render WXF files to SVG images
 
 ```
 # xiangqi-setup --help
@@ -81,4 +93,43 @@ available pieces themes (in alphabetic order):
   playok_2014_chinese                        (license: CC0-1.0)
   playok_2014_chinese_noshadow               (license: CC0-1.0)
   retro_simple                               (license: CC0-1.0)
+```
+
+
+## `xiangqi-board` — create custom board themes
+
+```
+# xiangqi-board --help
+usage: xiangqi-board [-h] [--line-thickness-px FLOAT] [--field-width-px FLOAT]
+                     [--field-height-px FLOAT] [--border-thickness-px FLOAT]
+                     [--border-gap-width-px FLOAT]
+                     [--border-gap-height-px FLOAT] [--cross-width-px FLOAT]
+                     [--cross-thickness-px FLOAT] [--cross-gap-px FLOAT]
+                     SVG_FILE INI_FILE
+
+positional arguments:
+  SVG_FILE
+  INI_FILE
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --line-thickness-px FLOAT
+                        Line thickness of square fields in pixel (default: 1)
+  --field-width-px FLOAT
+                        Width of fields in pixel (default: 53)
+  --field-height-px FLOAT
+                        Height of fields in pixel (default: 53)
+  --border-thickness-px FLOAT
+                        Line thickness of border in pixel (default: 2)
+  --border-gap-width-px FLOAT
+                        Widtn of gap to border in pixel (default: 40)
+  --border-gap-height-px FLOAT
+                        Height of gap to border in pixel (default: 40)
+  --cross-width-px FLOAT
+                        Width of starting position cross segments in pixel
+                        (default: 10)
+  --cross-thickness-px FLOAT
+                        Line thickness of starting position cross in pixel
+                        (default: 1)
+  --cross-gap-px FLOAT  Gap to starting position cross in pixel (default: 4)
 ```

@@ -53,3 +53,7 @@ def main():
     parser.add_argument('ini_output_file', metavar='INI_FILE')
     options = parser.parse_args()
     run(options)
+
+
+if __name__ == '__main__':
+     main()

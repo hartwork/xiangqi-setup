@@ -8,6 +8,7 @@ import glob
 import inspect
 import os
 import sys
+from pkg_resources import resource_filename
 
 from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
@@ -28,9 +29,9 @@ def _get_self_dir():
 def _get_themes_home_dir():
     self_dir = _get_self_dir()
     if os.path.exists(os.path.join(self_dir, '..', '.git')):
-        return os.path.join(self_dir, '..', 'themes')
+        return os.path.join(self_dir, 'themes')
     else:
-        return os.path.join('/usr/share/xiangqi-setup/themes')
+        return resource_filename('xiangqi_setup', 'themes')
 
 
 def check(options):

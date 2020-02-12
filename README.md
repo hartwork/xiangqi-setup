@@ -1,28 +1,20 @@
 # About
 
-**xiangqi-setup** is a command line tool using [svg_utils](https://github.com/btel/svg_utils) to
+**xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) to
 render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF files to SVG images.
 
 The most simple way to render a given setup is:
 
 ```
-# xiangqi-setup demo.wxf demo.svg
+# xiangqi-setup input.wxf output.svg
 ```
 
-or
+For [demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wxf), the result is:
 
-```
-# xiangqi-setup demo.{wxf,svg}
-```
+[![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_retro_simple.svg)
+[![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_euro_xiangqi_js.svg)
 
-for short.
-
-For [demo.wxf](doc/demo.wxf), the result is:
-
-[![](doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](doc/demo_retro_simple.svg)
-[![](doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](doc/demo_euro_xiangqi_js.svg)
-
-(left: default themes — right: default board, _euro_xiangqi_js_ pieces)
+(left: default board, default pieces — right: default board, _euro_xiangqi_js_ pieces)
 
 There are a number of themes to pick from for board and pieces (independently).
 The `--help` listing below also includes the list of all themes

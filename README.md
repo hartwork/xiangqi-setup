@@ -1,34 +1,37 @@
-About
------
-*xiangqi-setup* is a command line tool using https://github.com/btel/svg_utils[svg_utils] to
-render https://en.wikipedia.org/wiki/Xiangqi[Xiangqi] (Chinese chess) board setups from WXF files to SVG images.
+# About
+
+**xiangqi-setup** is a command line tool using [svg_utils](https://github.com/btel/svg_utils) to
+render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF files to SVG images.
 
 The most simple way to render a given setup is:
 
------------------------------------------------------------------------------
+```
 # xiangqi-setup demo.wxf demo.svg
------------------------------------------------------------------------------
+```
+
 or
------------------------------------------------------------------------------
+
+```
 # xiangqi-setup demo.{wxf,svg}
------------------------------------------------------------------------------
+```
+
 for short.
 
-For link:doc/demo.wxf[demo.wxf], the result is:
+For [demo.wxf](doc/demo.wxf), the result is:
 
-image:doc/demo_retro_simple.png[title="demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication", align="center", link="doc/demo_retro_simple.svg"]
-image:doc/demo_euro_xiangqi_js.png[title="demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping", align="center", link="doc/demo_euro_xiangqi_js.svg"]
+[![](doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](doc/demo_retro_simple.svg)
+[![](doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](doc/demo_euro_xiangqi_js.svg)
 
-(left: default themes -- right: default board, _euro_xiangqi_js_ pieces)
+(left: default themes — right: default board, _euro_xiangqi_js_ pieces)
 
 There are a number of themes to pick from for board and pieces (independently).
 The `--help` listing below also includes the list of all themes
 and their license information.
 
 
-Usage
------
------------------------------------------------------------------------------
+# Usage
+
+```
 # xiangqi-setup --help
 usage: xiangqi-setup [-h] [--board THEME] [--pieces THEME]
                      [--width-px PIXEL | --width-cm CENTIMETER] [--dpi FLOAT]
@@ -86,4 +89,4 @@ available pieces themes (in alphabetic order):
   playok_2014_chinese                        (license: CC0-1.0)
   playok_2014_chinese_noshadow               (license: CC0-1.0)
   retro_simple                               (license: CC0-1.0)
------------------------------------------------------------------------------
+```

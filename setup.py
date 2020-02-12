@@ -1,4 +1,4 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python
 # Copyright (C) 2015 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
@@ -35,6 +35,7 @@ if __name__ == '__main__':
                 ],
             },
             install_requires=[
+                'six',
                 'svgutils>=0.3.1',
             ],
             classifiers=[
@@ -47,7 +48,10 @@ if __name__ == '__main__':
                 'Programming Language :: Python',
                 'Programming Language :: Python :: 2',
                 'Programming Language :: Python :: 2.7',
-                'Programming Language :: Python :: 2 :: Only',
+                'Programming Language :: Python :: 3',
+                'Programming Language :: Python :: 3.6',
+                'Programming Language :: Python :: 3.7',
+                'Programming Language :: Python :: 3.8',
                 'Topic :: Artistic Software',
                 'Topic :: Games/Entertainment :: Board Games',
                 'Topic :: Multimedia :: Graphics',

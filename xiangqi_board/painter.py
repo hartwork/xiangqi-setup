@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-import ConfigParser
+from six.moves import configparser
 
 import svgutils.transform as sg
 
@@ -38,7 +38,8 @@ class BoardPainter(object):
     def _playing_field_offset_top(self):
         return self._border_thickness_pixel + self._border_gap_height_pixel + self._line_thickness_pixel / 2.0
 
-    def _cross(self, (column, row)):
+    def _cross(self, location):
+        column, row = location
         x = self._playing_field_offset_left() + column * self._field_width_px
         y = self._playing_field_offset_top() + row * self._field_height_px
         return (x, y)
@@ -156,7 +157,7 @@ class BoardPainter(object):
 
     def write_board_ini(self, filename):
         f = open(filename, 'w')
-        config = ConfigParser.RawConfigParser()
+        config = configparser.RawConfigParser()
         config.add_section('Board')
         config.set('Board', 'left', str(self._playing_field_offset_left()))
         config.set('Board', 'top', str(self._playing_field_offset_top()))

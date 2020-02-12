@@ -3,7 +3,7 @@
 
 from __future__ import print_function
 
-import ConfigParser
+from six.moves import configparser
 import errno
 import os
 
@@ -67,12 +67,12 @@ def compose_svg(pieces_to_put, options):
     board_svg_filename = os.path.join(options.board_theme_dir, _BOARD_SVG_BASENAME)
     board_ini_filename = os.path.join(options.board_theme_dir, _BOARD_INI_BASENAME)
 
-    # Check for existance ourselves since ConfigParser would throw NoSectionError
+    # Check for existance ourselves since configparser would throw NoSectionError
     # at us for a missing file.
     if not os.path.exists(board_ini_filename):
         raise IOError(errno.ENOENT, "No such file or directory: '%s'" % board_ini_filename)
 
-    config = ConfigParser.RawConfigParser(defaults={'river': 0.0})
+    config = configparser.RawConfigParser(defaults={'river': 0.0})
     config.read(board_ini_filename)
 
     output_board_offset_left_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'left')

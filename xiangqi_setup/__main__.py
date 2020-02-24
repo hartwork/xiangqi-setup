@@ -63,6 +63,12 @@ def _theme_name(text):
 _theme_name.__name__ = 'theme name'  # used by arparse error message
 
 
+def _discover_themes_in(directory):
+    return [os.path.relpath(e, directory)
+            for e
+            in glob.glob(os.path.join(directory, '*', ''))]
+
+
 def main():
     themes_home_dir = _get_themes_home_dir()
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
@@ -78,7 +84,7 @@ def main():
                 (board_themes_home_dir, board_theme_choices),
                 (pieces_themes_home_dir, pieces_theme_choices),
                 ):
-            target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
+            target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
                 ('available board themes', board_themes_home_dir, board_theme_choices, True),

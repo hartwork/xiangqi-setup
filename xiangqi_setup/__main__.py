@@ -10,6 +10,11 @@ import os
 import sys
 from pkg_resources import resource_filename
 
+if sys.version_info[:2] < (3, 5):
+    from scandir import walk
+else:
+    from os import walk
+
 from .wxf_format import iterate_wxf_tokens
 from .compose import compose_svg, cm_to_pixel
 from .license import get_license_choices_of_theme, inform_license
@@ -64,7 +69,7 @@ _theme_name.__name__ = 'theme name'  # used by arparse error message
 
 
 def _discover_themes_in(directory):
-    for _root, dirs, _files in os.walk(directory, topdown=True):
+    for _root, dirs, _files in walk(directory, topdown=True):
         return [d for d in dirs if d != '__pycache__']
 
 

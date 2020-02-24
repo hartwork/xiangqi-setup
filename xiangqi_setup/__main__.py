@@ -63,6 +63,11 @@ def _theme_name(text):
 _theme_name.__name__ = 'theme name'  # used by arparse error message
 
 
+def _discover_themes_in(directory):
+    for _root, dirs, _files in os.walk(directory, topdown=True):
+        return [d for d in dirs if d != '__pycache__']
+
+
 def main():
     themes_home_dir = _get_themes_home_dir()
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
@@ -78,13 +83,13 @@ def main():
                 (board_themes_home_dir, board_theme_choices),
                 (pieces_themes_home_dir, pieces_theme_choices),
                 ):
-            target_list += [os.path.relpath(e, directory) for e in glob.glob(os.path.join(directory, '*', ''))]
+            target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
-                ('available board themes', board_themes_home_dir, board_theme_choices, True),
-                ('available pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
+                ('board themes', board_themes_home_dir, board_theme_choices, True),
+                ('pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
                 ):
-            epilog_chunks.append('%s (in alphabetic order):' % category)
+            epilog_chunks.append('%s (%d available, in alphabetic order):' % (category, len(source_list)))
             for name in sorted(source_list, key=lambda x: x.lower()):
                 license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
                 epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))

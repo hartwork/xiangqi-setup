@@ -65,7 +65,7 @@ scaling:
   --scale-pieces FACTOR
                         factor to scale pieces by (0.0 to 1.2, default: 0.9)
 
-available board themes (in alphabetic order):
+board themes (16 available, in alphabetic order):
   a4_blank_2cm_margin                        (license: CC0-1.0)
   cambaluc_remake_nolegend                   (license: CC0-1.0)
   cambaluc_remake_nolegend_nogap             (license: CC0-1.0)
@@ -83,7 +83,7 @@ available board themes (in alphabetic order):
   western_red_wine                           (license: CC0-1.0)
   xiexie_2_5_0_remake_minimal                (license: CC0-1.0)
 
-available pieces themes (in alphabetic order):
+pieces themes (9 available, in alphabetic order):
   ccbridge_3_0_beta4_default_preview_remake  (license: CC0-1.0)
   commons_xiangqi_pieces_print_2010          (license: FDL-1.2+ / CC-BY-SA-4.0)
   commons_xiangqi_pieces_print_2010_bw_heavy (license: FDL-1.2+ / CC-BY-SA-4.0)

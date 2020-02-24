@@ -86,10 +86,10 @@ def main():
             target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
-                ('available board themes', board_themes_home_dir, board_theme_choices, True),
-                ('available pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
+                ('board themes', board_themes_home_dir, board_theme_choices, True),
+                ('pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
                 ):
-            epilog_chunks.append('%s (in alphabetic order):' % category)
+            epilog_chunks.append('%s (%d available, in alphabetic order):' % (category, len(source_list)))
             for name in sorted(source_list, key=lambda x: x.lower()):
                 license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
                 epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))

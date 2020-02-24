@@ -64,9 +64,8 @@ _theme_name.__name__ = 'theme name'  # used by arparse error message
 
 
 def _discover_themes_in(directory):
-    return [os.path.relpath(e, directory)
-            for e
-            in glob.glob(os.path.join(directory, '*', ''))]
+    for _root, dirs, _files in os.walk(directory, topdown=True):
+        return [d for d in dirs if d != '__pycache__']
 
 
 def main():

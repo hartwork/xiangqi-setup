@@ -41,7 +41,6 @@ if __name__ == '__main__':
                 'setuptools>=38.6.0',  # for long_description_content_type
             ],
             install_requires=[
-                'six',
                 'svgutils==0.3.1',  # unreleased svgutils Git master breaks
             ],
             classifiers=[

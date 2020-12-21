@@ -1,8 +1,6 @@
 # Copyright (C) 2014 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
-from __future__ import print_function
-
 import re
 import sys
 
@@ -14,11 +12,11 @@ ADVISOR, \
 KING, \
 CANNON, \
 PAWN, \
-= range(7)
+= list(range(7))
 
 RED, \
 BLACK, \
-= range(2)
+= list(range(2))
 
 START_PARTY_RED = 'RED'
 START_PARTY_BLACK = 'BLACK'

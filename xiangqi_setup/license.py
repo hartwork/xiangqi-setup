@@ -1,8 +1,6 @@
 # Copyright (C) 2015 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
-from __future__ import print_function
-
 import json
 import os
 from textwrap import dedent
@@ -89,7 +87,7 @@ def inform_license(board_theme_dir, pieces_theme_dir):
 
         author_chunks = []
         for author_dict in top_work['authors']:
-            for author_name, details_dict in author_dict.items():
+            for author_name, details_dict in list(author_dict.items()):
                 contact_infos = []
 
                 if 'website' in details_dict:

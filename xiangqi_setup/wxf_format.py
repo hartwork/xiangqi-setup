@@ -26,18 +26,23 @@ START_PARTY_BLACK = 'BLACK'
 
 _SETUP_EXTRACTOR = re.compile('SETUP\\{([^}]+)}', re.MULTILINE)
 _ITEM_ITERATOR = re.compile('(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)')
-_FEN_ELEMENT_PATERN = '[RHEAKCPrheakcp1-9]+'
+_FEN_ELEMENT_PATERN = '[RHEAKCPNBrheakcpnb1-9]+'
 _FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( [rb])?' % (_FEN_ELEMENT_PATERN, _FEN_ELEMENT_PATERN), re.MULTILINE)
 
 
 _PIECE_OF_UPPER_LETTER = {
-    'R': CHARIOT,
+    # Official letters from http://wxf.ca/xq/computer/fen.pdf
+    'R': CHARIOT,  # "r" is for "rook"
     'H': HORSE,
     'E': ELEPHANT,
     'A': ADVISOR,
     'K': KING,
     'C': CANNON,
     'P': PAWN,
+
+    # As seen at https://www.chessdb.cn/query_en/
+    'N': HORSE,  # "n" is for "k[n]ight"; "k" is taken by "king"
+    'B': ELEPHANT,  # "b" for "bishop"
 }
 
 

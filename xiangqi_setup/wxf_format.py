@@ -31,7 +31,8 @@ _FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( [rb])?' %
 
 
 _PIECE_OF_UPPER_LETTER = {
-    'R': CHARIOT,
+    # Official letters from http://wxf.ca/xq/computer/fen.pdf
+    'R': CHARIOT,  # "r" is for "rook"
     'H': HORSE,
     'E': ELEPHANT,
     'A': ADVISOR,

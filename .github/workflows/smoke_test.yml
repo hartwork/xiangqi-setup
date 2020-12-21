@@ -1,4 +1,4 @@
-name: Build and smoke test (Python 3.8)
+name: Build and smoke test
 
 on:
 - pull_request
@@ -6,15 +6,18 @@ on:
 
 jobs:
   build_and_test:
+    strategy:
+      matrix:
+        python-version: [3.6, 3.9]
     name: Build and smoke test
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Python 3.8
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1.1.1
         with:
-          python-version: 3.8
+          python-version: ${{ matrix.python-version }}
 
       - name: Install
         run: |-

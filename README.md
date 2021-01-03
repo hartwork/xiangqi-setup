@@ -1,5 +1,7 @@
 # xiangqi-setup (and xiangqi-board)
 
+## Overview
+
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.1 to
 render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF files to SVG images.
 
@@ -37,9 +39,9 @@ For a demo of how to use **xiangqi-setup** in writing a book
 please see https://github.com/hartwork/xiangqi-book-example .
 
 
-# Usage
+# Usage in Detail
 
-## `xiangqi-setup` — render WXF files to SVG images
+## `xiangqi-setup` — Renders WXF Files to SVG Images
 
 ```console
 # xiangqi-setup --help
@@ -102,7 +104,7 @@ pieces themes (9 available, in alphabetic order):
 ```
 
 
-## `xiangqi-board` — create custom board themes
+## `xiangqi-board` — Creates Custom Board Themes
 
 ```console
 # xiangqi-board --help

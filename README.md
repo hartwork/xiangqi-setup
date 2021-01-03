@@ -31,6 +31,12 @@ in crosses you would run:
 ```
 
 
+# Writing a Book
+
+For a demo of how to use **xiangqi-setup** in writing a book
+please see https://github.com/hartwork/xiangqi-book-example .
+
+
 # Usage
 
 ## `xiangqi-setup` — render WXF files to SVG images

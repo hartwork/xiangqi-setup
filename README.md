@@ -33,6 +33,25 @@ in crosses you would run:
 ```
 
 
+# Installation
+
+You can install the latest release using pip like so:
+
+```console
+# pip install xiangqi-setup
+```
+
+If you would rather run the latest pre-release code off Git `master` in a virtualenv, you could do:
+
+```console
+# git clone --depth 1 https://github.com/hartwork/xiangqi-setup
+# cd xiangqi-setup/
+# python3 -m venv venv
+# source venv/bin/activate
+# pip install -e .
+```
+
+
 # Writing a Book
 
 For a demo of how to use **xiangqi-setup** in writing a book

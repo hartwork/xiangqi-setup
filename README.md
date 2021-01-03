@@ -5,7 +5,7 @@ render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board se
 
 The most simple way to render a given setup is:
 
-```
+```console
 # xiangqi-setup input.wxf output.svg
 ```
 
@@ -26,7 +26,7 @@ that is included with the **xiangqi-setup** package.  It can be used to create
 variations of the detault theme, e.g. to create a version with reduced spacing
 in crosses you would run:
 
-```
+```console
 # xiangqi-board --cross-gap-px 2 board.{svg,ini}
 ```
 
@@ -35,7 +35,7 @@ in crosses you would run:
 
 ## `xiangqi-setup` — render WXF files to SVG images
 
-```
+```console
 # xiangqi-setup --help
 usage: xiangqi-setup [-h] [--board THEME] [--pieces THEME]
                      [--width-px PIXEL | --width-cm CENTIMETER] [--dpi FLOAT]
@@ -98,7 +98,7 @@ pieces themes (9 available, in alphabetic order):
 
 ## `xiangqi-board` — create custom board themes
 
-```
+```console
 # xiangqi-board --help
 usage: xiangqi-board [-h] [--line-thickness-px FLOAT] [--field-width-px FLOAT]
                      [--field-height-px FLOAT] [--border-thickness-px FLOAT]

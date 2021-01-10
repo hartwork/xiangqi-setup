@@ -2,16 +2,12 @@
 # Licensed under GNU Affero General Public License version 3.0 or later
 
 import argparse
-import glob
 import inspect
 import os
 import sys
 from pkg_resources import resource_filename
 
-if sys.version_info[:2] < (3, 5):
-    from scandir import walk
-else:
-    from os import walk
+from os import walk
 
 from .wxf_format import iterate_wxf_tokens, iterate_fen_tokens
 from .compose import compose_svg, cm_to_pixel

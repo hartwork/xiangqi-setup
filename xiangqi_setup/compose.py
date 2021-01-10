@@ -6,10 +6,13 @@ import errno
 import os
 
 try:
-    import svgutils.transform as sg
+    from svgutils.compose import Unit
+    from svgutils.transform import fromfile, SVGFigure
 except ImportError:
     import sys
-    print('Please install svg_utils first: https://github.com/btel/svg_utils', file=sys.stderr)
+    print('Please install version 0.3.2 of svgutils'
+          ' (https://github.com/btel/svg_utils) first,'
+          ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
     sys.exit(1)
 
 from .wxf_format import \
@@ -93,14 +96,14 @@ def compose_svg(pieces_to_put, options):
                 jobs.append((x_rel, y_rel, os.path.join(options.pieces_theme_dir, _DIAMOND_FILE_NAME)))
 
     # Read board
-    board_fig = sg.fromfile(board_svg_filename)
+    board_fig = fromfile(board_svg_filename)
     board_root = board_fig.getroot()
 
     # Scale board to output
     board_width_pixel, board_height_pixel = [_length_string_to_pixel(e, options.resolution_dpi) for e in board_fig.get_size()]
     height_factor = board_height_pixel / float(board_width_pixel)
     board_scale = options.width_pixel / board_width_pixel
-    board_root.moveto(0, 0, scale=board_scale)
+    board_root.moveto(0, 0, scale_x=board_scale, scale_y=board_scale)
 
     output_board_offset_left_pixel *= board_scale
     output_board_offset_top_pixel *= board_scale
@@ -109,13 +112,13 @@ def compose_svg(pieces_to_put, options):
     output_board_river_height_pixel *= board_scale
 
     # Initialize output figure
-    output_fig = sg.SVGFigure(
-            str(options.width_pixel),
-            str(options.width_pixel * height_factor))
+    output_fig = SVGFigure(
+            Unit(f'{options.width_pixel}px'),
+            Unit(f'{options.width_pixel * height_factor}px'))
     output_fig.append([board_root, ])
 
     for (x_rel, y_rel, filename) in jobs:
-        piece_fig = sg.fromfile(filename)
+        piece_fig = fromfile(filename)
         piece_root = piece_fig.getroot()
         original_piece_width_pixel, original_piece_height_pixel = [
                 _length_string_to_pixel(s, options.resolution_dpi)
@@ -137,7 +140,7 @@ def compose_svg(pieces_to_put, options):
 
         x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
         y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
-        piece_root.moveto(x_pixel, y_pixel, scale=scale)
+        piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
         output_fig.append([piece_root, ])
 
     output_fig.save(options.output_file)

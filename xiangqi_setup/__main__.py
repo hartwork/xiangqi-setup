@@ -13,7 +13,7 @@ if sys.version_info[:2] < (3, 5):
 else:
     from os import walk
 
-from .wxf_format import iterate_wxf_tokens
+from .wxf_format import iterate_wxf_tokens, iterate_fen_tokens
 from .compose import compose_svg, cm_to_pixel
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
@@ -53,7 +53,12 @@ def check(options):
 
 
 def run(options):
-    pieces_to_put = list(iterate_wxf_tokens(options.input_file))
+    with open(options.input_file, 'r') as f:
+        content = f.read()
+        if 'WXF' in content:
+            pieces_to_put = list(iterate_wxf_tokens(content))
+        else:
+            pieces_to_put = list(iterate_fen_tokens(content))
     compose_svg(pieces_to_put, options)
     inform_license(options.board_theme_dir, options.pieces_theme_dir)
 
@@ -127,7 +132,7 @@ def main():
             help='enable debugging (e.g. mark corners of the board)')
 
     parser.add_argument('input_file', metavar='INPUT_FILE',
-            help='location of WXF file to render')
+            help='location of WXF or FEN file to render')
     parser.add_argument('output_file', metavar='OUTPUT_FILE',
             help='location of SVG output file to write')
 

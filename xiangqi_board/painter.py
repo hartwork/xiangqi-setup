@@ -3,6 +3,7 @@
 
 import configparser
 
+from svgutils.compose import Unit
 from svgutils.transform import LineElement, SVGFigure
 
 
@@ -149,7 +150,7 @@ class BoardPainter(object):
     def write_svg(self, filename):
         WIDTH = self._outer_board_width_pixel()
         HEIGHT = self._outer_board_height_pixel()
-        output_fig = SVGFigure(str(WIDTH), str(HEIGHT))
+        output_fig = SVGFigure(Unit(f'{WIDTH}px'), Unit(f'{HEIGHT}px'))
         output_fig.append(self._lines)
         output_fig.save(filename)
 

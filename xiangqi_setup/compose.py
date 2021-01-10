@@ -6,6 +6,7 @@ import errno
 import os
 
 try:
+    from svgutils.compose import Unit
     from svgutils.transform import fromfile, SVGFigure
 except ImportError:
     import sys
@@ -100,7 +101,7 @@ def compose_svg(pieces_to_put, options):
     board_width_pixel, board_height_pixel = [_length_string_to_pixel(e, options.resolution_dpi) for e in board_fig.get_size()]
     height_factor = board_height_pixel / float(board_width_pixel)
     board_scale = options.width_pixel / board_width_pixel
-    board_root.moveto(0, 0, scale=board_scale)
+    board_root.moveto(0, 0, scale_x=board_scale, scale_y=board_scale)
 
     output_board_offset_left_pixel *= board_scale
     output_board_offset_top_pixel *= board_scale
@@ -110,8 +111,8 @@ def compose_svg(pieces_to_put, options):
 
     # Initialize output figure
     output_fig = SVGFigure(
-            str(options.width_pixel),
-            str(options.width_pixel * height_factor))
+            Unit(f'{options.width_pixel}px'),
+            Unit(f'{options.width_pixel * height_factor}px'))
     output_fig.append([board_root, ])
 
     for (x_rel, y_rel, filename) in jobs:
@@ -137,7 +138,7 @@ def compose_svg(pieces_to_put, options):
 
         x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
         y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
-        piece_root.moveto(x_pixel, y_pixel, scale=scale)
+        piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
         output_fig.append([piece_root, ])
 
     output_fig.save(options.output_file)

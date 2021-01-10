@@ -22,7 +22,10 @@ jobs:
       - name: Install
         run: |-
           set -e
+          # The svgutils==0.3.1 wheel does not contain 0.3.1 code
+          # see https://github.com/btel/svg_utils/issues/59
           pip install \
+            --no-binary svgutils \
             --disable-pip-version-check \
             --user \
             --no-warn-script-location \

@@ -99,6 +99,21 @@ def _iterate_default_setup():
         yield PutPiece(party, piece, x, y)
 
 
+def iterate_fen_tokens(field_state_raw):
+    for i, line in enumerate(field_state_raw.split('/')):
+        x = 0
+        for char in line:
+            try:
+                x += int(char)
+            except ValueError:
+                party = BLACK if char.islower() else RED
+                piece = _PIECE_OF_UPPER_LETTER[char.upper()]
+                y = 9 - i
+                p = PutPiece(party, piece, x, y)
+                yield p
+                x += 1
+
+
 def iterate_wxf_tokens(filename):
     f = open(filename, 'r')
     content = f.read()
@@ -107,18 +122,7 @@ def iterate_wxf_tokens(filename):
     fen_match = _FEN_EXTRACTOR.search(content)
     if fen_match:
         field_state_raw = fen_match.groupdict()['field_state']
-        for i, line in enumerate(field_state_raw.split('/')):
-            x = 0
-            for char in line:
-                try:
-                    x += int(char)
-                except ValueError:
-                    party = BLACK if char.islower() else RED
-                    piece = _PIECE_OF_UPPER_LETTER[char.upper()]
-                    y = 9 - i
-                    p = PutPiece(party, piece, x, y)
-                    yield p
-                    x += 1
+        yield from iterate_fen_tokens(field_state_raw)
         return
 
     setup_match = _SETUP_EXTRACTOR.search(content)

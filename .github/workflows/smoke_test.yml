@@ -41,4 +41,5 @@ jobs:
           xiangqi-board dummy-board.{svg,ini}
 
           xiangqi-setup --help
-          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.wxf demo.svg
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.fen demo-fen.svg
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.wxf demo-wxf.svg

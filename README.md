@@ -60,7 +60,7 @@ please see https://github.com/hartwork/xiangqi-book-example .
 
 # Usage in Detail
 
-## `xiangqi-setup` — Renders WXF Files to SVG Images
+## `xiangqi-setup` — Renders WXF and FEN Files to SVG Images
 
 ```console
 # xiangqi-setup --help
@@ -70,7 +70,7 @@ usage: xiangqi-setup [-h] [--board THEME] [--pieces THEME]
                      INPUT_FILE OUTPUT_FILE
 
 positional arguments:
-  INPUT_FILE            location of WXF file to render
+  INPUT_FILE            location of WXF or FEN file to render
   OUTPUT_FILE           location of SVG output file to write
 
 optional arguments:

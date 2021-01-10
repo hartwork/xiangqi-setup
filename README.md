@@ -3,7 +3,7 @@
 ## Overview
 
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.2 to
-render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF files to SVG images.
+render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF and FEN files to SVG images.
 
 The most simple way to render a given setup is:
 

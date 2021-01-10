@@ -114,11 +114,7 @@ def iterate_fen_tokens(field_state_raw):
                 x += 1
 
 
-def iterate_wxf_tokens(filename):
-    f = open(filename, 'r')
-    content = f.read()
-    f.close()
-
+def iterate_wxf_tokens(content):
     fen_match = _FEN_EXTRACTOR.search(content)
     if fen_match:
         field_state_raw = fen_match.groupdict()['field_state']

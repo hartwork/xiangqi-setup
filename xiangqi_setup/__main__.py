@@ -53,7 +53,9 @@ def check(options):
 
 
 def run(options):
-    pieces_to_put = list(iterate_wxf_tokens(options.input_file))
+    with open(options.input_file, 'r') as f:
+        content = f.read()
+        pieces_to_put = list(iterate_wxf_tokens(content))
     compose_svg(pieces_to_put, options)
     inform_license(options.board_theme_dir, options.pieces_theme_dir)
 

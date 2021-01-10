@@ -10,7 +10,9 @@ try:
     from svgutils.transform import fromfile, SVGFigure
 except ImportError:
     import sys
-    print('Please install svg_utils first: https://github.com/btel/svg_utils', file=sys.stderr)
+    print('Please install version 0.3.2 of svgutils'
+          ' (https://github.com/btel/svg_utils) first,'
+          ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
     sys.exit(1)
 
 from .wxf_format import \

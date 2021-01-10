@@ -3,8 +3,15 @@
 
 import configparser
 
-from svgutils.compose import Unit
-from svgutils.transform import LineElement, SVGFigure
+try:
+    from svgutils.compose import Unit
+    from svgutils.transform import LineElement, SVGFigure
+except ImportError:
+    import sys
+    print('Please install version 0.3.2 of svgutils'
+          ' (https://github.com/btel/svg_utils) first,'
+          ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
+    sys.exit(1)
 
 
 class BoardPainter(object):

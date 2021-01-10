@@ -6,7 +6,7 @@ import errno
 import os
 
 try:
-    import svgutils.transform as sg
+    from svgutils.transform import fromfile, SVGFigure
 except ImportError:
     import sys
     print('Please install svg_utils first: https://github.com/btel/svg_utils', file=sys.stderr)
@@ -93,7 +93,7 @@ def compose_svg(pieces_to_put, options):
                 jobs.append((x_rel, y_rel, os.path.join(options.pieces_theme_dir, _DIAMOND_FILE_NAME)))
 
     # Read board
-    board_fig = sg.fromfile(board_svg_filename)
+    board_fig = fromfile(board_svg_filename)
     board_root = board_fig.getroot()
 
     # Scale board to output
@@ -109,13 +109,13 @@ def compose_svg(pieces_to_put, options):
     output_board_river_height_pixel *= board_scale
 
     # Initialize output figure
-    output_fig = sg.SVGFigure(
+    output_fig = SVGFigure(
             str(options.width_pixel),
             str(options.width_pixel * height_factor))
     output_fig.append([board_root, ])
 
     for (x_rel, y_rel, filename) in jobs:
-        piece_fig = sg.fromfile(filename)
+        piece_fig = fromfile(filename)
         piece_root = piece_fig.getroot()
         original_piece_width_pixel, original_piece_height_pixel = [
                 _length_string_to_pixel(s, options.resolution_dpi)

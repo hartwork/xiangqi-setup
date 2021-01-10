@@ -3,7 +3,7 @@
 
 import configparser
 
-import svgutils.transform as sg
+from svgutils.transform import LineElement, SVGFigure
 
 
 class BoardPainter(object):
@@ -43,7 +43,7 @@ class BoardPainter(object):
         return (x, y)
 
     def _raw_line(self, start, end, width):
-        line = sg.LineElement([start, end], width=width)
+        line = LineElement([start, end], width=width)
         self._lines.append(line)
 
     def _grid_line(self, start, end):
@@ -74,7 +74,7 @@ class BoardPainter(object):
                 ((0, Y_TOP_CENTER), (WIDTH, Y_TOP_CENTER)),
                 ((0, Y_BOTTOM_CENTER), (WIDTH, Y_BOTTOM_CENTER)),
                 ):
-            line = sg.LineElement([start, end], width=self._border_thickness_pixel)
+            line = LineElement([start, end], width=self._border_thickness_pixel)
             self._lines.append(line)
 
     def _draw_playing_field(self):
@@ -149,7 +149,7 @@ class BoardPainter(object):
     def write_svg(self, filename):
         WIDTH = self._outer_board_width_pixel()
         HEIGHT = self._outer_board_height_pixel()
-        output_fig = sg.SVGFigure(str(WIDTH), str(HEIGHT))
+        output_fig = SVGFigure(str(WIDTH), str(HEIGHT))
         output_fig.append(self._lines)
         output_fig.save(filename)
 

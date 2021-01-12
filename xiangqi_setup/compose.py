@@ -87,13 +87,13 @@ def compose_svg(pieces_to_put, options):
         x_rel = float(put_piece.x) / _MAX_X
         y_rel = float(_MAX_Y - put_piece.y) / _MAX_Y
         basename = _FILENAME_OF_PARTY_PIECE[put_piece.party][put_piece.piece]
-        filename = os.path.join(options.pieces_theme_dir, basename)
+        filename = os.path.join(options.piece_theme_dir, basename)
         jobs.append((x_rel, y_rel, filename))
 
     if options.debug:
         for x_rel in (0.0, 1.0):
             for y_rel in (0.0, 1.0):
-                jobs.append((x_rel, y_rel, os.path.join(options.pieces_theme_dir, _DIAMOND_FILE_NAME)))
+                jobs.append((x_rel, y_rel, os.path.join(options.piece_theme_dir, _DIAMOND_FILE_NAME)))
 
     # Read board
     board_fig = fromfile(board_svg_filename)

@@ -81,7 +81,7 @@ optional arguments:
 theme selection:
   --board THEME         name of board theme to use (default: "clean_alpha";
                         please check the list of available themes below
-  --pieces THEME        name of pieces theme to use (default: "retro_simple";
+  --pieces THEME        name of piece theme to use (default: "retro_simple";
                         please check the list of available themes below
 
 scaling:
@@ -110,7 +110,7 @@ board themes (16 available, in alphabetic order):
   western_red_wine                           (license: CC0-1.0)
   xiexie_2_5_0_remake_minimal                (license: CC0-1.0)
 
-pieces themes (9 available, in alphabetic order):
+piece themes (9 available, in alphabetic order):
   ccbridge_3_0_beta4_default_preview_remake  (license: CC0-1.0)
   commons_xiangqi_pieces_print_2010          (license: FDL-1.2+ / CC-BY-SA-4.0)
   commons_xiangqi_pieces_print_2010_bw_heavy (license: FDL-1.2+ / CC-BY-SA-4.0)

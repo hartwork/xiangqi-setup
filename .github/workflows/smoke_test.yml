@@ -44,6 +44,10 @@ jobs:
           xiangqi-board dummy-board.{svg,ini}
 
           xiangqi-setup --help
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.annofen demo-annofen.svg
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.fen demo-fen.svg
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.wxf demo-wxf.svg
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.xay demo-xay.svg
           xiangqi-setup --debug --moves 54 "${GITHUB_WORKSPACE}"/doc/demo-with-history-playok.{wxf,svg}
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo-last-two-moves.{annofen,svg}
+          xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo-movement-horse.{annofen,svg}

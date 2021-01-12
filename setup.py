@@ -51,6 +51,7 @@ if __name__ == '__main__':
                 'setuptools>=38.6.0',  # for long_description_content_type
             ],
             install_requires=[
+                'pyyaml',
                 # NOTE: svgutils 0.3.2 was incompatible to 0.3.1 plus semver guarantees
                 #       start from >=1.0.0 only (rule 4) so svgutils is pinned here.
                 # KEEP IN SYNC with painter.py and compose.py

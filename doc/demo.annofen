@@ -1,0 +1,5 @@
+# Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under GNU Affero General Public License version 3.0 or later
+
+# This is a xiangqi-setup annotated FEN ("annoFEN" for short) file
+v1 [r<sg>][<cb>n]ba[<cg>k]abnr/<bg>8/<bg>c5c1/[<cb>p]1p1p1p1p/9/6P2/P1P1P3P/1C4<bg>C<bg>/5<bb>/RNBA[K<sb>]A[<cb>B][N<sg>]R

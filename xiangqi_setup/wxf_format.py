@@ -102,8 +102,7 @@ def _iterate_default_setup():
 def iterate_fen_tokens(field_state_raw):
     # Make sure we're only operating on the first part the FEN,
     # the piece setup matrix (empty board: "9/9/9/9/9/9/9/9/9/9 w - - 0 1")
-    if ' ' in field_state_raw:
-        field_state_raw = field_state_raw.split(' ')[0]
+    field_state_raw = field_state_raw.split()[0]
 
     for i, line in enumerate(field_state_raw.split('/')):
         x = 0

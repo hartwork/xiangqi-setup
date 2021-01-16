@@ -9,10 +9,10 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    width="652.14355"
-   viewbox="0 0 548.0 553.0"
+   viewBox="0 0 652.14355 593.80878"
    height="593.80878"
    id="svg3587"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="board.svg">
   <metadata
      id="metadata3655">
@@ -22,6 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -50,7 +51,8 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg3587" />
+     inkscape:current-layer="svg3587"
+     inkscape:document-rotation="0" />
   <rect
      style="color:#000000;fill:#e0b562;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:10;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
      id="rect3670"

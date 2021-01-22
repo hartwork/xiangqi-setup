@@ -10,7 +10,7 @@ jobs:
       matrix:
         python-version: [3.6, 3.9]
     name: Build and smoke test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
@@ -21,7 +21,8 @@ jobs:
 
       - name: Install
         run: |-
-          set -e
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends imagemagick inkscape
           pip install \
             --disable-pip-version-check \
             --user \
@@ -32,6 +33,9 @@ jobs:
       - name: Smoke test
         run: |-
           set -e
+
+          ./test-for-rendering-regressions.sh
+
           cd /tmp  # to not be in Git clone folder
 
           xiangqi-board --help

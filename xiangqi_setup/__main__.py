@@ -9,8 +9,8 @@ from pkg_resources import resource_filename
 
 from os import walk
 
-from .wxf_format import iterate_wxf_tokens, iterate_fen_tokens
 from .compose import compose_svg, cm_to_pixel
+from .file_formats.wxf import iterate_wxf_tokens, iterate_fen_tokens
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 

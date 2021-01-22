@@ -16,10 +16,8 @@ except ImportError:
           ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
     sys.exit(1)
 
-from .wxf_format import \
-        CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, \
-        RED, BLACK 
-
+from .parties import RED, BLACK
+from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN
 
 _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'

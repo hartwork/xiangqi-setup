@@ -4,6 +4,7 @@
 import configparser
 import errno
 import os
+from typing import Optional, Tuple
 
 try:
     from svgutils.compose import Unit
@@ -51,11 +52,42 @@ _FILENAME_OF_PARTY_PIECE = {
     }
 }
 
+def _anything_to_pixel(unit: str, raw_value: float, resolution_dpi: float) -> float:
+    if unit == 'cm':
+        return cm_to_pixel(raw_value, resolution_dpi)
+    if unit == 'mm':
+        return cm_to_pixel(raw_value / 10.0, resolution_dpi)
+    if unit == 'px':
+        return raw_value
+    raise ValueError(f'Unit {unit!r} not yet supported, please open a bug.')
 
-def _length_string_to_pixel(text, resolution_dpi):
-    if text.endswith('cm'):
-        return cm_to_pixel(float(text[:-2]), resolution_dpi)
-    return float(text)
+def _length_string_to_pixel(text: str, resolution_dpi: float) -> float:
+    try:
+        raw_value = float(text)
+    except ValueError:
+        raw_value, unit = float(text[:-2]), text[-2:]
+        return _anything_to_pixel(unit, raw_value, resolution_dpi)
+
+    return raw_value
+
+def _pixel_viewbox_of_figure(figure: SVGFigure, resolution_dpi: float) -> Tuple[float, float]:
+    # NOTE: Attribute "viewbox" (with lowercase "b") is ignored by Inkscape 1.0.1
+    #       in practice so I'm following Inkscape here and ignore the lowercase
+    #       edition, too.
+    try:
+        view_box = figure.root.attrib['viewBox']
+    except KeyError:
+        left_str, top_str = '0', '0'
+        width_str, height_str = figure.get_size()
+    else:
+        left_str, top_str, width_str, height_str = view_box.split()
+
+    return (
+        _length_string_to_pixel(left_str, resolution_dpi),
+        _length_string_to_pixel(top_str, resolution_dpi),
+        _length_string_to_pixel(width_str, resolution_dpi),
+        _length_string_to_pixel(height_str, resolution_dpi),
+    )
 
 def _cm_to_inch(cm):
     return cm * 0.393700787
@@ -100,7 +132,8 @@ def compose_svg(pieces_to_put, options):
     board_root = board_fig.getroot()
 
     # Scale board to output
-    board_width_pixel, board_height_pixel = [_length_string_to_pixel(e, options.resolution_dpi) for e in board_fig.get_size()]
+    board_width_pixel, board_height_pixel = _pixel_viewbox_of_figure(board_fig,
+                                                                     options.resolution_dpi)[2:]
     height_factor = board_height_pixel / float(board_width_pixel)
     board_scale = options.width_pixel / board_width_pixel
     board_root.moveto(0, 0, scale_x=board_scale, scale_y=board_scale)
@@ -120,10 +153,8 @@ def compose_svg(pieces_to_put, options):
     for (x_rel, y_rel, filename) in jobs:
         piece_fig = fromfile(filename)
         piece_root = piece_fig.getroot()
-        original_piece_width_pixel, original_piece_height_pixel = [
-                _length_string_to_pixel(s, options.resolution_dpi)
-                for s in piece_fig.get_size()
-                ]
+        original_piece_width_pixel, original_piece_height_pixel = \
+            _pixel_viewbox_of_figure(piece_fig, options.resolution_dpi)[2:]
 
         # Scale and put piece onto board
         center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel

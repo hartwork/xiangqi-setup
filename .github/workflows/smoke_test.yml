@@ -21,7 +21,8 @@ jobs:
 
       - name: Install
         run: |-
-          set -e
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends imagemagick inkscape
           pip install \
             --disable-pip-version-check \
             --user \
@@ -32,6 +33,9 @@ jobs:
       - name: Smoke test
         run: |-
           set -e
+
+          ./test-for-rendering-regressions.sh
+
           cd /tmp  # to not be in Git clone folder
 
           xiangqi-board --help

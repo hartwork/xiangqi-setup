@@ -56,7 +56,7 @@ def run(options):
         else:
             pieces_to_put = list(iterate_fen_tokens(content))
     compose_svg(pieces_to_put, options)
-    inform_license(options.board_theme_dir, options.pieces_theme_dir)
+    inform_license(options.board_theme_dir, options.piece_theme_dir)
 
 
 def _theme_name(text):
@@ -75,23 +75,23 @@ def _discover_themes_in(directory):
 def main():
     themes_home_dir = _get_themes_home_dir()
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
-    pieces_themes_home_dir = os.path.join(themes_home_dir, 'pieces')
+    piece_themes_home_dir = os.path.join(themes_home_dir, 'pieces')
 
     epilog_chunks = []
 
     # Are we in --help mode (or can we save wasting time collecting all that data)
     if '--help' in sys.argv[1:] or '-h' in sys.argv[1:]:
         board_theme_choices = []
-        pieces_theme_choices = []
+        piece_theme_choices = []
         for directory, target_list in (
                 (board_themes_home_dir, board_theme_choices),
-                (pieces_themes_home_dir, pieces_theme_choices),
+                (piece_themes_home_dir, piece_theme_choices),
                 ):
             target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
                 ('board themes', board_themes_home_dir, board_theme_choices, True),
-                ('pieces themes', pieces_themes_home_dir, pieces_theme_choices, False),
+                ('piece themes', piece_themes_home_dir, piece_theme_choices, False),
                 ):
             epilog_chunks.append('%s (%d available, in alphabetic order):' % (category, len(source_list)))
             for name in sorted(source_list, key=lambda x: x.lower()):
@@ -109,9 +109,9 @@ def main():
     theme_options.add_argument('--board', dest='board_theme_dir', metavar='THEME',
             type=_theme_name, default='clean_alpha',
             help='name of board theme to use (default: "%(default)s"; please check the list of available themes below')
-    theme_options.add_argument('--pieces', dest='pieces_theme_dir', metavar='THEME',
+    theme_options.add_argument('--pieces', dest='piece_theme_dir', metavar='THEME',
             type=_theme_name, default='retro_simple',
-            help='name of pieces theme to use (default: "%(default)s"; please check the list of available themes below')
+            help='name of piece theme to use (default: "%(default)s"; please check the list of available themes below')
 
     scaling_options = parser.add_argument_group('scaling')
     width_options = scaling_options.add_mutually_exclusive_group()
@@ -138,7 +138,7 @@ def main():
 
     # Turn theme names into paths
     options.board_theme_dir = os.path.join(board_themes_home_dir, options.board_theme_dir)
-    options.pieces_theme_dir = os.path.join(pieces_themes_home_dir, options.pieces_theme_dir)
+    options.piece_theme_dir = os.path.join(piece_themes_home_dir, options.piece_theme_dir)
 
     check(options)
     run(options)

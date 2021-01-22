@@ -74,13 +74,13 @@ def _describe_license(license_id):
         return '%s  (%s)' % (long_name, details_url)
 
 
-def inform_license(board_theme_dir, pieces_theme_dir):
+def inform_license(board_theme_dir, piece_theme_dir):
     print('The license of the themes used apply to the generated image.  In detail:')
     print()
 
     for category, theme_dir in (
             ('Board', board_theme_dir),
-            ('Pieces', pieces_theme_dir),
+            ('Pieces', piece_theme_dir),
             ):
         top_work = _get_license_json(theme_dir)
 

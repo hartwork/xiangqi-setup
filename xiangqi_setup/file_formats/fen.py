@@ -1,8 +1,8 @@
 # Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
-from .parties import BLACK, RED
-from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, PutPiece
+from ..parties import BLACK, RED
+from ..pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, PutPiece
 
 PIECE_OF_UPPER_LETTER = {
     # Official letters from http://wxf.ca/xq/computer/fen.pdf

@@ -4,10 +4,10 @@
 import re
 import sys
 
-from .default_setup import iterate_default_setup
-from .fen_format import iterate_fen_tokens, PIECE_OF_UPPER_LETTER
-from .parties import RED, BLACK
-from .pieces import PutPiece
+from ..default_setup import iterate_default_setup
+from ..file_formats.fen import iterate_fen_tokens, PIECE_OF_UPPER_LETTER
+from ..parties import RED, BLACK
+from ..pieces import PutPiece
 
 START_PARTY_RED = 'RED'
 START_PARTY_BLACK = 'BLACK'

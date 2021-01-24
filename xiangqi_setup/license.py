@@ -80,7 +80,7 @@ def inform_license(board_theme_dir, piece_theme_dir):
 
     for category, theme_dir in (
             ('Board', board_theme_dir),
-            ('Pieces', piece_theme_dir),
+            ('Piece', piece_theme_dir),
             ):
         top_work = _get_license_json(theme_dir)
 
@@ -130,6 +130,6 @@ def inform_license(board_theme_dir, piece_theme_dir):
             %s
             """) % (category, authors, license_options))
 
-    print('If this license does not work for you, please pick a different board theme and/or pieces theme.'
+    print('If this license does not work for you, please pick a different board theme and/or piece theme.'
         '  '
         'Thank you!')

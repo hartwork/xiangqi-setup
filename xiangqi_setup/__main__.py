@@ -55,7 +55,7 @@ def run(options):
     with open(options.input_file, 'r') as f:
         content = f.read()
         if 'WXF' in content:
-            pieces_to_put = list(iterate_wxf_tokens(content))
+            pieces_to_put = list(iterate_wxf_tokens(content, options.moves_to_play))
         else:
             pieces_to_put = list(iterate_fen_tokens(content))
     compose_svg(pieces_to_put, options)
@@ -143,6 +143,16 @@ def main():
 
     parser.add_argument('--debug', action='store_true',
             help='enable debugging (e.g. mark corners of the board)')
+
+    parser.add_argument('--moves', default='0', dest='moves_to_play', metavar='COUNT',
+            help=_format_right_help_column(
+                'how many moves of a game in a WXF file to play'
+                 ', e.g. "3" would play the first move of red,'
+                 ' the first move of black and the second move of red'
+                 ' and then skip any remaining moves,'
+                 ' "all" would play all moves,'
+                 ' "-1" all moves but the last, "-2" all but the last two'
+                 ' (default: "%(default)s")'))
 
     parser.add_argument('input_file', metavar='INPUT_FILE',
             help='location of WXF or FEN file to render')

@@ -5,6 +5,8 @@ import argparse
 import inspect
 import os
 import sys
+import textwrap
+
 from pkg_resources import resource_filename
 
 from os import walk
@@ -73,6 +75,10 @@ def _discover_themes_in(directory):
         return [d for d in dirs if d != '__pycache__']
 
 
+def _format_right_help_column(text):
+    return '\n'.join(textwrap.wrap(text, width=55))
+
+
 def main():
     themes_home_dir = _get_themes_home_dir()
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
@@ -101,18 +107,28 @@ def main():
             if blank_line_after:
                 epilog_chunks.append('')
 
+    usage = textwrap.dedent("""\
+        xiangqi-setup [OPTIONS] INPUT_FILE OUTPUT_FILE
+               xiangqi-setup --help
+               xiangqi-setup --version
+    """)
+
     parser = argparse.ArgumentParser(
+            description='Generate razor-sharp Xiangqi (Chinese chess) setup graphics',
+            usage=usage,
             epilog='\n'.join(epilog_chunks),
-            formatter_class=argparse.RawDescriptionHelpFormatter,
+            formatter_class=argparse.RawTextHelpFormatter,
             )
 
     theme_options = parser.add_argument_group('theme selection')
     theme_options.add_argument('--board', dest='board_theme_dir', metavar='THEME',
             type=_theme_name, default='clean_alpha',
-            help='name of board theme to use (default: "%(default)s"; please check the list of available themes below')
+            help=_format_right_help_column('name of board theme to use (default: "%(default)s")'
+                                           '; please check the list of available themes below'))
     theme_options.add_argument('--pieces', dest='piece_theme_dir', metavar='THEME',
             type=_theme_name, default='retro_simple',
-            help='name of piece theme to use (default: "%(default)s"; please check the list of available themes below')
+            help=_format_right_help_column('name of piece theme to use (default: "%(default)s")'
+                                           '; please check the list of available themes below'))
 
     scaling_options = parser.add_argument_group('scaling')
     width_options = scaling_options.add_mutually_exclusive_group()

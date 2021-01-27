@@ -8,6 +8,16 @@ from setuptools import find_packages, setup
 from xiangqi_setup.version import VERSION_STR
 
 
+_tests_require = [
+    'parameterized',
+    'pytest',
+]
+
+_extras_require = {
+    'tests': _tests_require,
+}
+
+
 def _generate_package_data():
     return {
         root.replace(os.sep, '.'): files
@@ -46,6 +56,8 @@ if __name__ == '__main__':
                 # KEEP IN SYNC with painter.py and compose.py
                 'svgutils==0.3.2',
             ],
+            extras_require=_extras_require,
+            tests_require=_tests_require,
             classifiers=[
                 'Development Status :: 4 - Beta',
                 'Environment :: Console',

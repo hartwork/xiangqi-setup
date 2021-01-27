@@ -143,8 +143,7 @@ class _Board:
 
         return new_x, new_y
 
-    def _locate_piece(self, piece_code: str, former_column: str):
-        party = BLACK if piece_code.islower() else RED
+    def _locate_piece(self, party:int, piece_code: str, former_column: str):
         piece_type = PIECE_OF_UPPER_LETTER[piece_code.upper()]
         view = _PlayerRelativeView(party)
 
@@ -190,8 +189,8 @@ class _Board:
 
         return put_piece
 
-    def move(self, piece_code: str, former_column: str, operator: str, argument: str):
-        put_piece = self._locate_piece(piece_code, former_column)
+    def move(self, party: int, piece_code: str, former_column: str, operator: str, argument: str):
+        put_piece = self._locate_piece(party, piece_code, former_column)
 
         new_x, new_y = self._calculate_destination_of_move(put_piece, operator, argument)
 
@@ -249,7 +248,17 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
                 raise ValueError(f'Requested number of moves {slice_stop!r} outside of range of {-len(available_moves)} to {len(available_moves)}')
             included_moves = available_moves[:slice_stop]
 
+        # NOTE: We flip the party after every move rather than relying on
+        #       the case of the piece letter (upper- or lowercase) because
+        #       software XieXie seems to use uppercase letters all the time,
+        #       even when it is Black's turn.
+        party = RED
         for single_move in included_moves:
-            board.move(**single_move.groupdict())
+            board.move(party=party, **single_move.groupdict())
+
+            party = {
+                RED: BLACK,
+                BLACK: RED,
+            }[party]
 
     yield from board.iterate_tokens()

@@ -150,7 +150,7 @@ class BoardTest(TestCase):
             board.put(PutPiece(other_party, piece, x + diff_y, expected_y + 2))
         former_column = '6' if party == RED else '4'
 
-        put_piece = board._locate_piece(wanted_piece_code, former_column)
+        put_piece = board._locate_piece(party, wanted_piece_code, former_column)
 
         self.assertEqual(x, put_piece.x)
         self.assertEqual(expected_y, put_piece.y)
@@ -191,7 +191,7 @@ class BoardTest(TestCase):
         board.put(PutPiece(other_party, piece, x, y=2))
         board.put(PutPiece(party, other_piece, x, y=1))
 
-        put_piece = board._locate_piece(piece_code, former_column)
+        put_piece = board._locate_piece(party, piece_code, former_column)
 
         self.assertEqual(x, put_piece.x)
         self.assertEqual(expected_y, put_piece.y)

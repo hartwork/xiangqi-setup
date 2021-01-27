@@ -5,6 +5,7 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
+from xiangqi_setup.file_formats.fen import PIECE_OF_UPPER_LETTER
 from xiangqi_setup.file_formats.wxf import _PlayerRelativeView, _Board
 from xiangqi_setup.parties import RED, BLACK
 from xiangqi_setup.pieces import PutPiece, ELEPHANT, CHARIOT, CANNON, HORSE, ADVISOR, KING, PAWN
@@ -120,3 +121,38 @@ class BoardTest(TestCase):
         put_piece = PutPiece(party, piece, *cur_x_y)
         actual_new_x_y = _Board._calculate_destination_of_move(put_piece, operator, argument)
         self.assertEqual(actual_new_x_y, expected_new_x_y)
+
+    @parameterized.expand(list(PIECE_OF_UPPER_LETTER.keys())
+                          + [upper.lower() for upper in PIECE_OF_UPPER_LETTER.keys()])
+    def test_locate_piece__by_column(self, wanted_piece_code):
+        party = BLACK if wanted_piece_code.islower() else RED
+        other_party = BLACK if party == RED else RED
+
+        piece = PIECE_OF_UPPER_LETTER[wanted_piece_code.upper()]
+        other_piece = next((other_piece_type
+                            for other_piece_code, other_piece_type
+                            in PIECE_OF_UPPER_LETTER.items()
+                            if other_piece_code != wanted_piece_code.upper()))
+
+        # We're putting other pieces on the board so we know that
+        # the location algorithm is picky enough with regard to all of
+        # - piece type
+        # - party
+        # - column on the board
+        board = _Board()
+        x = 3  # arbitrary, with some room left and right
+        expected_y = 5  # arbitrary, with some room above and below
+        for diff_y in (-1, 0, +1):
+            board.put(PutPiece(other_party, piece, x + diff_y, expected_y - 2))
+            board.put(PutPiece(party, other_piece, x + diff_y, expected_y - 1))
+            board.put(PutPiece(party, piece, x + diff_y, expected_y))
+            board.put(PutPiece(party, other_piece, x + diff_y, expected_y + 1))
+            board.put(PutPiece(other_party, piece, x + diff_y, expected_y + 2))
+        former_column = '6' if party == RED else '4'
+
+        put_piece = board._locate_piece(wanted_piece_code, former_column)
+
+        self.assertEqual(x, put_piece.x)
+        self.assertEqual(expected_y, put_piece.y)
+        self.assertEqual(piece, put_piece.piece)
+        self.assertEqual(party, put_piece.party)

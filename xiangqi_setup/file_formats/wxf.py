@@ -9,6 +9,8 @@ from ..file_formats.fen import iterate_fen_tokens, PIECE_OF_UPPER_LETTER
 from ..parties import RED, BLACK
 from ..pieces import PutPiece, CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN
 
+ALL_MOVES = 'all'
+
 START_PARTY_RED = 'RED'
 START_PARTY_BLACK = 'BLACK'
 
@@ -240,7 +242,7 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
         moves_body = moves_match.group(1)
         available_moves = list(re.finditer(_SINGLE_MOVE_EXTRACTOR, moves_body))
 
-        if moves_to_play == 'all':
+        if moves_to_play == ALL_MOVES:
             included_moves = available_moves
         else:
             slice_stop = int(moves_to_play)

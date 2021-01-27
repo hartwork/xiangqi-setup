@@ -13,7 +13,7 @@ from os import walk
 
 from .compose import compose_svg, cm_to_pixel
 from .file_formats.fen import iterate_fen_tokens
-from .file_formats.wxf import iterate_wxf_tokens
+from .file_formats.wxf import iterate_wxf_tokens, ALL_MOVES
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 
@@ -77,6 +77,14 @@ def _discover_themes_in(directory):
 
 def _format_right_help_column(text):
     return '\n'.join(textwrap.wrap(text, width=55))
+
+
+def _type_moves_to_play(text):
+    if text != ALL_MOVES:
+        int(text)  # i.e. raise Value Error
+    return text
+
+_type_moves_to_play.__name__ = 'move count'
 
 
 def main():
@@ -145,12 +153,13 @@ def main():
             help='enable debugging (e.g. mark corners of the board)')
 
     parser.add_argument('--moves', default='0', dest='moves_to_play', metavar='COUNT',
+            type=_type_moves_to_play,
             help=_format_right_help_column(
                 'how many moves of a game in a WXF file to play'
                  ', e.g. "3" would play the first move of red,'
                  ' the first move of black and the second move of red'
                  ' and then skip any remaining moves,'
-                 ' "all" would play all moves,'
+                 f' "{ALL_MOVES}" would play all moves,'
                  ' "-1" all moves but the last, "-2" all but the last two'
                  ' (default: "%(default)s")'))
 

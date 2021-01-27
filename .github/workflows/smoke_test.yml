@@ -38,6 +38,8 @@ jobs:
 
           cd /tmp  # to not be in Git clone folder
 
+          set -x
+
           xiangqi-board --help
           xiangqi-board dummy-board.{svg,ini}
 

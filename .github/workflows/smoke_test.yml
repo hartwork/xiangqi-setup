@@ -32,8 +32,6 @@ jobs:
 
       - name: Smoke test
         run: |-
-          set -e
-
           ./test-for-rendering-regressions.sh
 
           cd /tmp  # to not be in Git clone folder

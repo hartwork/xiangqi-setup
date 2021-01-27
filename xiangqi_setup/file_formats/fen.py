@@ -17,6 +17,10 @@ PIECE_OF_UPPER_LETTER = {
     # As seen at https://www.chessdb.cn/query_en/
     'N': HORSE,  # "n" is for "k[n]ight"; "k" is taken by "king"
     'B': ELEPHANT,  # "b" for "bishop"
+
+    # As seen at http://wxf.ca/xq/computer/wxf_format.pdf
+    'G': ADVISOR,  # "g" for "guard"
+    'M': ELEPHANT,  # "m" for "minister"
 }
 
 

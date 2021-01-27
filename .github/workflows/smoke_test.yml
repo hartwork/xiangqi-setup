@@ -27,11 +27,13 @@ jobs:
             --disable-pip-version-check \
             --user \
             --no-warn-script-location \
-            .
+            .[tests]
           echo "PATH=${HOME}/.local/bin:${PATH}" >> "${GITHUB_ENV}"
 
       - name: Smoke test
         run: |-
+          pytest -v
+
           ./test-for-rendering-regressions.sh
 
           cd /tmp  # to not be in Git clone folder

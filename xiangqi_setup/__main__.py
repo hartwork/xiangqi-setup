@@ -5,13 +5,15 @@ import argparse
 import inspect
 import os
 import sys
+import textwrap
+
 from pkg_resources import resource_filename
 
 from os import walk
 
 from .compose import compose_svg, cm_to_pixel
 from .file_formats.fen import iterate_fen_tokens
-from .file_formats.wxf import iterate_wxf_tokens
+from .file_formats.wxf import iterate_wxf_tokens, ALL_MOVES
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 
@@ -53,7 +55,7 @@ def run(options):
     with open(options.input_file, 'r') as f:
         content = f.read()
         if 'WXF' in content:
-            pieces_to_put = list(iterate_wxf_tokens(content))
+            pieces_to_put = list(iterate_wxf_tokens(content, options.moves_to_play))
         else:
             pieces_to_put = list(iterate_fen_tokens(content))
     compose_svg(pieces_to_put, options)
@@ -71,6 +73,18 @@ _theme_name.__name__ = 'theme name'  # used by arparse error message
 def _discover_themes_in(directory):
     for _root, dirs, _files in walk(directory, topdown=True):
         return [d for d in dirs if d != '__pycache__']
+
+
+def _format_right_help_column(text):
+    return '\n'.join(textwrap.wrap(text, width=55))
+
+
+def _type_moves_to_play(text):
+    if text != ALL_MOVES:
+        int(text)  # i.e. raise Value Error
+    return text
+
+_type_moves_to_play.__name__ = 'move count'
 
 
 def main():
@@ -101,18 +115,28 @@ def main():
             if blank_line_after:
                 epilog_chunks.append('')
 
+    usage = textwrap.dedent("""\
+        xiangqi-setup [OPTIONS] INPUT_FILE OUTPUT_FILE
+               xiangqi-setup --help
+               xiangqi-setup --version
+    """)
+
     parser = argparse.ArgumentParser(
+            description='Generate razor-sharp Xiangqi (Chinese chess) setup graphics',
+            usage=usage,
             epilog='\n'.join(epilog_chunks),
-            formatter_class=argparse.RawDescriptionHelpFormatter,
+            formatter_class=argparse.RawTextHelpFormatter,
             )
 
     theme_options = parser.add_argument_group('theme selection')
     theme_options.add_argument('--board', dest='board_theme_dir', metavar='THEME',
             type=_theme_name, default='clean_alpha',
-            help='name of board theme to use (default: "%(default)s"; please check the list of available themes below')
+            help=_format_right_help_column('name of board theme to use (default: "%(default)s")'
+                                           '; please check the list of available themes below'))
     theme_options.add_argument('--pieces', dest='piece_theme_dir', metavar='THEME',
             type=_theme_name, default='retro_simple',
-            help='name of piece theme to use (default: "%(default)s"; please check the list of available themes below')
+            help=_format_right_help_column('name of piece theme to use (default: "%(default)s")'
+                                           '; please check the list of available themes below'))
 
     scaling_options = parser.add_argument_group('scaling')
     width_options = scaling_options.add_mutually_exclusive_group()
@@ -127,6 +151,17 @@ def main():
 
     parser.add_argument('--debug', action='store_true',
             help='enable debugging (e.g. mark corners of the board)')
+
+    parser.add_argument('--moves', default='0', dest='moves_to_play', metavar='COUNT',
+            type=_type_moves_to_play,
+            help=_format_right_help_column(
+                'how many moves of a game in a WXF file to play'
+                 ', e.g. "3" would play the first move of red,'
+                 ' the first move of black and the second move of red'
+                 ' and then skip any remaining moves,'
+                 f' "{ALL_MOVES}" would play all moves,'
+                 ' "-1" all moves but the last, "-2" all but the last two'
+                 ' (default: "%(default)s")'))
 
     parser.add_argument('input_file', metavar='INPUT_FILE',
             help='location of WXF or FEN file to render')

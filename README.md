@@ -4,6 +4,8 @@
 
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.2 to
 render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF and FEN files to SVG images.
+With WXF files that contain move history, **xiangqi-setup** can replay these moves on top of the initial setup —
+all of them, none, or any custom number of moves (using the `--moves COUNT` argument).
 
 The most simple way to render a given setup is:
 
@@ -64,10 +66,11 @@ please see https://github.com/hartwork/xiangqi-book-example .
 
 ```console
 # xiangqi-setup --help
-usage: xiangqi-setup [-h] [--board THEME] [--pieces THEME]
-                     [--width-px PIXEL | --width-cm CENTIMETER] [--dpi FLOAT]
-                     [--scale-pieces FACTOR] [--debug] [--version]
-                     INPUT_FILE OUTPUT_FILE
+usage: xiangqi-setup [OPTIONS] INPUT_FILE OUTPUT_FILE
+       xiangqi-setup --help
+       xiangqi-setup --version
+
+Generate razor-sharp Xiangqi (Chinese chess) setup graphics
 
 positional arguments:
   INPUT_FILE            location of WXF or FEN file to render
@@ -76,12 +79,18 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --debug               enable debugging (e.g. mark corners of the board)
+  --moves COUNT         how many moves of a game in a WXF file to play, e.g.
+                        "3" would play the first move of red, the first move of
+                        black and the second move of red and then skip any
+                        remaining moves, "all" would play all moves, "-1" all
+                        moves but the last, "-2" all but the last two (default:
+                        "0")
   --version             show program's version number and exit
 
 theme selection:
-  --board THEME         name of board theme to use (default: "clean_alpha";
+  --board THEME         name of board theme to use (default: "clean_alpha");
                         please check the list of available themes below
-  --pieces THEME        name of piece theme to use (default: "retro_simple";
+  --pieces THEME        name of piece theme to use (default: "retro_simple");
                         please check the list of available themes below
 
 scaling:

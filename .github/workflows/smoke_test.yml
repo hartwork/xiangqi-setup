@@ -27,16 +27,18 @@ jobs:
             --disable-pip-version-check \
             --user \
             --no-warn-script-location \
-            .
+            .[tests]
           echo "PATH=${HOME}/.local/bin:${PATH}" >> "${GITHUB_ENV}"
 
       - name: Smoke test
         run: |-
-          set -e
+          pytest -v
 
           ./test-for-rendering-regressions.sh
 
           cd /tmp  # to not be in Git clone folder
+
+          set -x
 
           xiangqi-board --help
           xiangqi-board dummy-board.{svg,ini}
@@ -44,3 +46,4 @@ jobs:
           xiangqi-setup --help
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.fen demo-fen.svg
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.wxf demo-wxf.svg
+          xiangqi-setup --debug --moves 54 "${GITHUB_WORKSPACE}"/doc/demo-with-history-playok.{wxf,svg}

@@ -21,3 +21,12 @@ class PutPiece(object):
     def __str__(self):
         return 'PutPiece(party=%s, piece=%s, x=%d, y=%d)' \
                 % (self.party, self.piece, self.x, self.y)
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, PutPiece)
+            and other.party == self.party
+            and other.piece == self.piece
+            and other.x == self.x
+            and other.y == self.y
+        )

@@ -49,3 +49,19 @@ for theme_name in xiangqi_setup/themes/pieces/* ; do
 
     render_and_compare pieces "${theme_name}"
 done
+
+# Annotation themes
+for theme_name in xiangqi_setup/themes/annotations/* ; do
+    theme_name="${theme_name##xiangqi_setup/themes/annotations/}"
+    [[ "${theme_name}" = __init__.py ]] && continue
+    [[ "${theme_name}" = __pycache__ ]] && continue
+
+    for input_file in \
+            doc/demo-last-two-moves.annofen \
+            doc/demo-movement-horse.xay \
+            ; do
+        suffix="${input_file##doc/demo}"
+        suffix="${suffix%%.*}"
+        render_and_compare annotations "${theme_name}" "${input_file}" "${suffix}"
+    done
+done

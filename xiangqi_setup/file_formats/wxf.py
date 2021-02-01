@@ -255,7 +255,13 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
         #       software XieXie seems to use uppercase letters all the time,
         #       even when it is Black's turn.
         party = RED
-        for single_move in included_moves:
+        for i, single_move in enumerate(included_moves):
+            party_human = 'Red' if party == RED else 'Black'
+            move_human = single_move.group(0)
+            if party == BLACK:
+                move_human = move_human.lower()  # again because of XieXie's all-uppercase
+            print(f'Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}')
+
             board.move(party=party, **single_move.groupdict())
 
             party = {

@@ -11,6 +11,7 @@
 # E222 multiple spaces after operator
 # E231 missing whitespace after ':'
 # E241 multiple spaces after ','
+# E251 unexpected spaces around keyword / parameter equals
 # E302 expected 2 blank lines, found X
 # E303 too many blank lines (X)
 # E305 expected 2 blank lines after class or function definition, found X
@@ -31,6 +32,7 @@ ignore =
     E222
     E231
     E241
+    E251
 
     E302
     E303

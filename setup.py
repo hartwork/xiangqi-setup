@@ -37,9 +37,7 @@ if __name__ == '__main__':
         author='Sebastian Pipping',
         author_email='sebastian@pipping.org',
         url='https://github.com/hartwork/xiangqi-setup',
-        download_url=
-        'https://github.com/hartwork/xiangqi-setup/archive/%s.tar.gz' %
-        VERSION_STR,
+        download_url='https://github.com/hartwork/xiangqi-setup/archive/%s.tar.gz' % VERSION_STR,
         packages=find_packages(),
         package_data=_generate_package_data(),
         entry_points={

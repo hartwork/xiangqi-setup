@@ -35,7 +35,6 @@ def iterate_xay_tokens(content: str):
                     yield PutPiece(party, piece, x, y)
                 elif atom_code in ANNOTATION_NAME_OF_ATOM_CODE:
                     annotation_name = ANNOTATION_NAME_OF_ATOM_CODE[atom_code]
-                    yield PutAnnotation(annotation_name=annotation_name,
-                                        x=x, y=y)
+                    yield PutAnnotation(annotation_name=annotation_name, x=x, y=y)
                 else:
                     raise ValueError(f'Unsupported atom code {atom_code!r}')

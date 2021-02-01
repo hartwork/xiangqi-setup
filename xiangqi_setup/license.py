@@ -9,27 +9,27 @@ _LICENSE_DETAILS = {
     'CC-BY-4.0': (
         'Creative Commons Attribution 4.0',
         'https://creativecommons.org/licenses/by/4.0/',
-        ),
+    ),
     'CC-BY-SA-4.0': (
         'Creative Commons Attribution-ShareAlike 4.0',
         'https://creativecommons.org/licenses/by-sa/4.0/',
-        ),
+    ),
     'CC0-1.0': (
         'CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
         'https://creativecommons.org/publicdomain/zero/1.0/',
-        ),
+    ),
     'FDL-1.2+': (
         'GNU Free Documentation License 1.2 or later',
         'https://gnu.org/licenses/fdl.html',
-        ),
+    ),
     'non-commercial': (
         'Non-commercial use only',
         None,
-        ),
+    ),
     'public-domain': (
         'Public domain',
         'https://en.wikipedia.org/wiki/Public_domain',
-        )
+    )
 }
 
 
@@ -78,12 +78,11 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
     print()
 
     for category, theme_dir in (
-            ('Board', board_theme_dir),
-            ('Piece', piece_theme_dir),
-            ('Annotations', annotation_theme_dir),
-            ):
+        ('Board', board_theme_dir),
+        ('Piece', piece_theme_dir),
+        ('Annotations', annotation_theme_dir),
+    ):
         top_work = _get_license_json(theme_dir)
-
 
         author_chunks = []
         for author_dict in top_work['authors']:
@@ -104,7 +103,6 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
                 author_chunks.append(author_display)
         authors = '\n'.join(('    ' + e) for e in author_chunks)
 
-
         try:
             license_ids_any_of = [top_work['license_id']]
         except KeyError:
@@ -121,8 +119,8 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
                     for i, e \
                     in enumerate(license_ids_any_of))
 
-
-        print(dedent("""\
+        print(
+            dedent("""\
             %s theme:
               Author(s):
             %s
@@ -130,6 +128,7 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
             %s
             """) % (category, authors, license_options))
 
-    print('If this license does not work for you, please pick a different board theme and/or piece theme.'
+    print(
+        'If this license does not work for you, please pick a different board theme and/or piece theme.'
         '  '
         'Thank you!')

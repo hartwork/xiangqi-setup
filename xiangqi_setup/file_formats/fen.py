@@ -2,8 +2,7 @@
 # Licensed under GNU Affero General Public License version 3.0 or later
 
 from ..parties import BLACK, RED
-from ..pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN,
-                      PutPiece)
+from ..pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece)
 
 PIECE_OF_UPPER_LETTER = {
     # Official letters from http://wxf.ca/xq/computer/fen.pdf

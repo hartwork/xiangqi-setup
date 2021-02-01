@@ -5,7 +5,6 @@ ANNOTATION_NAME_OF_ATOM_CODE = {
     'bb': 'blank_bad',
     'bg': 'blank_good',
     'bm': 'blank_move',
-
     'pb': 'piece_bad',
     'pg': 'piece_good',
     'pm': 'piece_move',

@@ -8,24 +8,27 @@ try:
     from svgutils.transform import LineElement, SVGFigure
 except ImportError:
     import sys
-    print('Please install version 0.3.2 of svgutils'
-          ' (https://github.com/btel/svg_utils) first,'
-          ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
+    print(
+        'Please install version 0.3.2 of svgutils'
+        ' (https://github.com/btel/svg_utils) first,'
+        ' e.g. by running "pip install svgutils==0.3.2".',
+        file=sys.stderr)
     sys.exit(1)
 
 
 class BoardPainter:
-    def __init__(self,
-            line_thickness_pixel,
-            field_width_px,
-            field_height_px,
-            border_thickness_pixel,
-            border_gap_width_pixel,
-            border_gap_height_pixel,
-            cross_length_pixel,
-            cross_thickness_pixel,
-            cross_gap_pixel,
-            ):
+    def __init__(
+        self,
+        line_thickness_pixel,
+        field_width_px,
+        field_height_px,
+        border_thickness_pixel,
+        border_gap_width_pixel,
+        border_gap_height_pixel,
+        cross_length_pixel,
+        cross_thickness_pixel,
+        cross_gap_pixel,
+    ):
         self._lines = []
 
         self._line_thickness_pixel = line_thickness_pixel
@@ -75,13 +78,13 @@ class BoardPainter:
         Y_BOTTOM_CENTER = HEIGHT - self._border_thickness_pixel / 2.0
         for start, end in (
                 # Vertical lines
-                ((X_LEFT_CENTER, 0), (X_LEFT_CENTER, HEIGHT)),
-                ((X_RIGHT_CENTER, 0), (X_RIGHT_CENTER, HEIGHT)),
+            ((X_LEFT_CENTER, 0), (X_LEFT_CENTER, HEIGHT)),
+            ((X_RIGHT_CENTER, 0), (X_RIGHT_CENTER, HEIGHT)),
 
                 # Horizontal lines
-                ((0, Y_TOP_CENTER), (WIDTH, Y_TOP_CENTER)),
-                ((0, Y_BOTTOM_CENTER), (WIDTH, Y_BOTTOM_CENTER)),
-                ):
+            ((0, Y_TOP_CENTER), (WIDTH, Y_TOP_CENTER)),
+            ((0, Y_BOTTOM_CENTER), (WIDTH, Y_BOTTOM_CENTER)),
+        ):
             line = LineElement([start, end], width=self._border_thickness_pixel)
             self._lines.append(line)
 
@@ -108,11 +111,11 @@ class BoardPainter:
         assert left or right
         center = self._cross((column, row))
         for x_factor, y_factor, wanted in (
-                (1, -1, right),  # top right
-                (1, 1, right),  # bottom right
-                (-1, 1, left),  # bottom left
-                (-1, -1, left),  # top left
-                ):
+            (1, -1, right),  # top right
+            (1, 1, right),  # bottom right
+            (-1, 1, left),  # bottom left
+            (-1, -1, left),  # top left
+        ):
             if not wanted:
                 continue
 
@@ -124,25 +127,37 @@ class BoardPainter:
             end_x = start_x
             end_y = start_y + y_factor * self._cross_width_pixel
             SHIFT_Y = y_factor * self._cross_thickness_pixel / 2.0
-            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y), self._cross_thickness_pixel)
+            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y),
+                           self._cross_thickness_pixel)
 
             # Horizontal part
             end_x = start_x + x_factor * self._cross_width_pixel
             end_y = start_y
             SHIFT_X = x_factor * self._cross_thickness_pixel / 2.0
-            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y), self._cross_thickness_pixel)
+            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y),
+                           self._cross_thickness_pixel)
 
     def _draw_setup_helpers(self):
         for column, row in (
                 # Black cannons
-                (1, 2), (7, 2),
+            (1, 2),
+            (7, 2),
                 # Black pawns
-                (0, 3),  (2, 3), (4, 3), (6, 3), (8, 3),
+            (0, 3),
+            (2, 3),
+            (4, 3),
+            (6, 3),
+            (8, 3),
                 # Red pawns
-                (0, 6),  (2, 6), (4, 6), (6, 6), (8, 6),
+            (0, 6),
+            (2, 6),
+            (4, 6),
+            (6, 6),
+            (8, 6),
                 # Red cannons
-                (1, 7), (7, 7),
-                ):
+            (1, 7),
+            (7, 7),
+        ):
             left = (column > 0)
             right = (column < 8)
             self._add_setup_helper(column, row, left, right)

@@ -1,0 +1,24 @@
+[flake8]
+# E122 continuation line missing indentation or outdented
+# E126 continuation line over-indented for hanging indent
+# E127 continuation line over-indented for visual indent
+# E128 continuation line under-indented for visual indent
+# E131 continuation line unaligned for hanging indent
+# E251 unexpected spaces around keyword / parameter equals
+# E501 line too long (X > 99 characters)
+# E502 the backslash is redundant between brackets
+# W503 line break before binary operator
+ignore =
+    E122
+    E126
+    E127
+    E128
+    E131
+
+    E251
+
+    E501
+    E502
+
+    W503
+max-line-length = 99

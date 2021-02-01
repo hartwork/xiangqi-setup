@@ -11,7 +11,7 @@ PAWN, \
 = list(range(7))
 
 
-class PutPiece(object):
+class PutPiece:
     def __init__(self, party, piece, x, y):
         self.party = party
         self.piece = piece
@@ -23,10 +23,5 @@ class PutPiece(object):
                 % (self.party, self.piece, self.x, self.y)
 
     def __eq__(self, other):
-        return (
-            isinstance(other, PutPiece)
-            and other.party == self.party
-            and other.piece == self.piece
-            and other.x == self.x
-            and other.y == self.y
-        )
+        return (isinstance(other, PutPiece) and other.party == self.party
+                and other.piece == self.piece and other.x == self.x and other.y == self.y)

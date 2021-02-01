@@ -5,22 +5,26 @@ import re
 import sys
 
 from ..default_setup import iterate_default_setup
-from ..file_formats.fen import iterate_fen_tokens, PIECE_OF_UPPER_LETTER
-from ..parties import RED, BLACK
-from ..pieces import PutPiece, CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN
+from ..file_formats.fen import PIECE_OF_UPPER_LETTER, iterate_fen_tokens
+from ..parties import BLACK, RED
+from ..pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 
 ALL_MOVES = 'all'
 
 START_PARTY_RED = 'RED'
 START_PARTY_BLACK = 'BLACK'
 
-
 _SETUP_EXTRACTOR = re.compile('SETUP\\{([^}]+)\\}', re.MULTILINE)
 _MOVES_EXTRACTOR = re.compile('START\\{([^}]+)\\}END', re.MULTILINE)
-_SINGLE_MOVE_EXTRACTOR = re.compile('(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])')
-_ITEM_ITERATOR = re.compile('(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)')
+_SINGLE_MOVE_EXTRACTOR = re.compile(
+    '(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])')
+_ITEM_ITERATOR = re.compile(
+    '(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)'
+)
 _FEN_ELEMENT_PATERN = '[RHEAKCPNBrheakcpnb1-9]+'
-_FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( (?P<starting_party>[rb]))?' % (_FEN_ELEMENT_PATERN, _FEN_ELEMENT_PATERN), re.MULTILINE)
+_FEN_EXTRACTOR = re.compile(
+    f'^FEN[ \\t]+(?P<field_state>{_FEN_ELEMENT_PATERN}(?:/{_FEN_ELEMENT_PATERN}){{9}})( (?P<starting_party>[rb]))?',
+    re.MULTILINE)
 
 _UPPER_PIECE, _MIDDLE_PIECE, _LOWER_PIECE, _SINGLE_PIECE = range(4)
 
@@ -97,10 +101,7 @@ class _PlayerRelativeView:
 
 class _Board:
     def __init__(self):
-        self._board = [
-            [None for _column in range(9)]
-            for _row in range(10)
-        ]
+        self._board = [[None for _column in range(9)] for _row in range(10)]
 
     def put(self, piece: PutPiece):
         self._board[piece.y][piece.x] = piece
@@ -145,7 +146,7 @@ class _Board:
 
         return new_x, new_y
 
-    def _locate_piece(self, party:int, piece_code: str, former_column: str):
+    def _locate_piece(self, party: int, piece_code: str, former_column: str):
         piece_type = PIECE_OF_UPPER_LETTER[piece_code.upper()]
         view = _PlayerRelativeView(party)
 
@@ -155,23 +156,19 @@ class _Board:
             elif former_column == '=':
                 look_for = _MIDDLE_PIECE
             else:
-                assert(former_column == '-')
+                assert (former_column == '-')
                 look_for = _LOWER_PIECE
                 piece_x = None
         else:
-            assert(former_column in (str(i) for i in range(1, 9 + 1)))
+            assert (former_column in (str(i) for i in range(1, 9 + 1)))
             look_for = _SINGLE_PIECE
             piece_x = view.x_index_from(int(former_column))
 
         candidates = []
         for y, row in enumerate(self._board):
             for x, field in enumerate(row):
-                if (
-                        field is None
-                        or (look_for == _SINGLE_PIECE and x != piece_x)
-                        or field.piece != piece_type
-                        or field.party != party
-                ):
+                if (field is None or (look_for == _SINGLE_PIECE and x != piece_x)
+                        or field.piece != piece_type or field.party != party):
                     continue
                 candidates.append(field)
 
@@ -249,7 +246,9 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
         else:
             slice_stop = int(moves_to_play)
             if (slice_stop > len(available_moves) or slice_stop < -len(available_moves)):
-                raise ValueError(f'Requested number of moves {slice_stop!r} outside of range of {-len(available_moves)} to {len(available_moves)}')
+                raise ValueError(
+                    f'Requested number of moves {slice_stop!r} outside of range of {-len(available_moves)} to {len(available_moves)}'
+                )
             included_moves = available_moves[:slice_stop]
 
         # NOTE: We flip the party after every move rather than relying on
@@ -262,7 +261,9 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
             move_human = single_move.group(0)
             if party == BLACK:
                 move_human = move_human.lower()  # again because of XieXie's all-uppercase
-            print(f'Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}')
+            print(
+                f'Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}'
+            )
 
             board.move(party=party, **single_move.groupdict())
 

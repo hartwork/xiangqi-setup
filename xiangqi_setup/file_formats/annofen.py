@@ -3,41 +3,42 @@
 
 import re
 
-from ..annotations import PutAnnotation, ANNOTATION_NAME_OF_ATOM_CODE
+from ..annotations import ANNOTATION_NAME_OF_ATOM_CODE, PutAnnotation
 from ..parties import BLACK, RED
 from ..pieces import PutPiece
 from .fen import PIECE_OF_UPPER_LETTER
 
-_piece_letters = list(PIECE_OF_UPPER_LETTER.keys()) + [letter.lower() for letter in PIECE_OF_UPPER_LETTER.keys()]
-_escaped_annotation_names = [re.escape(atom_code) for atom_code in ANNOTATION_NAME_OF_ATOM_CODE.keys()]
+_piece_letters = list(
+    PIECE_OF_UPPER_LETTER.keys()) + [letter.lower() for letter in PIECE_OF_UPPER_LETTER.keys()]
+_escaped_annotation_names = [
+    re.escape(atom_code) for atom_code in ANNOTATION_NAME_OF_ATOM_CODE.keys()
+]
 
 _single_piece_pattern = '[' + ''.join(_piece_letters) + ']'
 _single_annotation_pattern = '<(?:' + '|'.join(_escaped_annotation_names) + ')>'
-_single_annotation_plus_capture_pattern =  _single_annotation_pattern.replace('(?:', '(?P<atom_code>')
+_single_annotation_plus_capture_pattern = _single_annotation_pattern.replace(
+    '(?:', '(?P<atom_code>')
 _atom_pattern = f'(?:{_single_piece_pattern}|{_single_annotation_pattern})'
 _stacked_atoms_pattern = '\\[(?P<atoms>(?:' + _atom_pattern + ')+)\\]'
 
-_annofen_tokens_pattern = '(?:' + '|'.join(
-    f'(?P<{name}>{pattern})' for name, pattern in (
-        ('end_of_row', '/'),
-        ('empty_fields', '[0-9]'),
-        ('single_piece', _single_piece_pattern),
-        ('single_annotation', _single_annotation_plus_capture_pattern),
-        ('stacked_atoms', _stacked_atoms_pattern),
-        ('malformed', '.'),
-    )
-) + ')'
-_atoms_tokens_pattern = '(?:' + '|'.join(
-    f'(?P<{name}>{pattern})' for name, pattern in (
-        ('single_piece', _single_piece_pattern),
-        ('single_annotation', _single_annotation_plus_capture_pattern),
-        ('malformed', '.'),
-    )
-) + ')'
+_annofen_tokens_pattern = '(?:' + '|'.join(f'(?P<{name}>{pattern})' for name, pattern in (
+    ('end_of_row', '/'),
+    ('empty_fields', '[0-9]'),
+    ('single_piece', _single_piece_pattern),
+    ('single_annotation', _single_annotation_plus_capture_pattern),
+    ('stacked_atoms', _stacked_atoms_pattern),
+    ('malformed', '.'),
+)) + ')'
+_atoms_tokens_pattern = '(?:' + '|'.join(f'(?P<{name}>{pattern})' for name, pattern in (
+    ('single_piece', _single_piece_pattern),
+    ('single_annotation', _single_annotation_plus_capture_pattern),
+    ('malformed', '.'),
+)) + ')'
 
 
 def is_annofen_content(content: str) -> bool:
     return any(line.startswith('v1 ') for line in content.split('\n'))
+
 
 def iterate_annofen_tokens(content: str):
     def _create_piece(x: int, y: int, letter: str) -> PutPiece:
@@ -47,8 +48,7 @@ def iterate_annofen_tokens(content: str):
 
     def _create_annotation(x: int, y: int, atom_code: str) -> PutAnnotation:
         annotation_name = ANNOTATION_NAME_OF_ATOM_CODE[atom_code]
-        return PutAnnotation(annotation_name=annotation_name,
-                             x=x, y=y)
+        return PutAnnotation(annotation_name=annotation_name, x=x, y=y)
 
     seen_fen_before = False
     for i, line in enumerate(content.split('\n')):

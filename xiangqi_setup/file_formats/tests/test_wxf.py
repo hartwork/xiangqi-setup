@@ -5,11 +5,11 @@ from unittest import TestCase
 
 from parameterized import parameterized
 
-from xiangqi_setup.file_formats.fen import PIECE_OF_UPPER_LETTER
-from xiangqi_setup.file_formats.wxf import _Board, _PlayerRelativeView
-from xiangqi_setup.parties import BLACK, RED
-from xiangqi_setup.pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE,
-                                  KING, PAWN, PutPiece)
+from ...parties import BLACK, RED
+from ...pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN,
+                       PutPiece)
+from ..fen import PIECE_OF_UPPER_LETTER
+from ..wxf import _Board, _PlayerRelativeView
 
 
 class PlayerRelativeViewTest(TestCase):

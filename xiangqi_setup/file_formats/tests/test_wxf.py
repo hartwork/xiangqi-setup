@@ -6,7 +6,7 @@ from unittest import TestCase
 from parameterized import parameterized
 
 from ...parties import BLACK, RED
-from ...pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece)
+from ...pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 from ..fen import PIECE_OF_UPPER_LETTER
 from ..wxf import _Board, _PlayerRelativeView
 

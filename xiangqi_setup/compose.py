@@ -22,7 +22,7 @@ except ImportError:
 
 from .annotations import PutAnnotation
 from .parties import BLACK, RED
-from .pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece)
+from .pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 
 _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'

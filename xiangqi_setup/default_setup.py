@@ -2,7 +2,7 @@
 # Licensed under GNU Affero General Public License version 3.0 or later
 
 from .parties import BLACK, RED
-from .pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece)
+from .pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 
 
 def iterate_default_setup():

@@ -7,7 +7,7 @@ import sys
 from ..default_setup import iterate_default_setup
 from ..file_formats.fen import PIECE_OF_UPPER_LETTER, iterate_fen_tokens
 from ..parties import BLACK, RED
-from ..pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece)
+from ..pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 
 ALL_MOVES = 'all'
 

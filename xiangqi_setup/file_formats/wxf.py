@@ -20,7 +20,7 @@ _MOVES_EXTRACTOR = re.compile('START\\{([^}]+)\\}END', re.MULTILINE)
 _SINGLE_MOVE_EXTRACTOR = re.compile('(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])')
 _ITEM_ITERATOR = re.compile('(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)')
 _FEN_ELEMENT_PATERN = '[RHEAKCPNBrheakcpnb1-9]+'
-_FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( [rb])?' % (_FEN_ELEMENT_PATERN, _FEN_ELEMENT_PATERN), re.MULTILINE)
+_FEN_EXTRACTOR = re.compile('^FEN[ \\t]+(?P<field_state>%s(?:/%s){9})( (?P<starting_party>[rb]))?' % (_FEN_ELEMENT_PATERN, _FEN_ELEMENT_PATERN), re.MULTILINE)
 
 _UPPER_PIECE, _MIDDLE_PIECE, _LOWER_PIECE, _SINGLE_PIECE = range(4)
 
@@ -215,9 +215,11 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
     fen_match = _FEN_EXTRACTOR.search(content)
     if fen_match:
         field_state_raw = fen_match.groupdict()['field_state']
+        starting_party = RED if fen_match.groupdict()['starting_party'] != 'b' else BLACK
         for put_piece in iterate_fen_tokens(field_state_raw):
             board.put(put_piece)
     else:
+        starting_party = RED  # TODO
         setup_match = _SETUP_EXTRACTOR.search(content)
         if setup_match:
             setup_body = setup_match.group(1)
@@ -254,7 +256,7 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
         #       the case of the piece letter (upper- or lowercase) because
         #       software XieXie seems to use uppercase letters all the time,
         #       even when it is Black's turn.
-        party = RED
+        party = starting_party
         for i, single_move in enumerate(included_moves):
             party_human = 'Red' if party == RED else 'Black'
             move_human = single_move.group(0)

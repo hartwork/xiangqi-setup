@@ -17,11 +17,13 @@ assert_images_identical() {
 render_and_compare() {
     local theme_type="${1}"
     local theme_name="${2}"
-    local prefix_actual="tests/actual-${theme_type}-${theme_name}"
-    local prefix_expected="tests/expected-${theme_type}-${theme_name}"
-    local prefix_difference="tests/difference-${theme_type}-${theme_name}"
+    local input_file="${3:-doc/demo.wxf}"
+    local suffix="${4:-}"
+    local prefix_actual="tests/actual-${theme_type}-${theme_name}${suffix}"
+    local prefix_expected="tests/expected-${theme_type}-${theme_name}${suffix}"
+    local prefix_difference="tests/difference-${theme_type}-${theme_name}${suffix}"
 
-    xiangqi-setup "--${theme_type}" "${theme_name}" doc/demo.wxf "${prefix_actual}".svg > /dev/null
+    xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_actual}".svg > /dev/null
     convert -verbose -background none "${prefix_actual}".{svg,png}
     assert_images_identical {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
 
@@ -46,4 +48,20 @@ for theme_name in xiangqi_setup/themes/pieces/* ; do
     [[ "${theme_name}" = diamond.svg ]] && continue
 
     render_and_compare pieces "${theme_name}"
+done
+
+# Annotation themes
+for theme_name in xiangqi_setup/themes/annotations/* ; do
+    theme_name="${theme_name##xiangqi_setup/themes/annotations/}"
+    [[ "${theme_name}" = __init__.py ]] && continue
+    [[ "${theme_name}" = __pycache__ ]] && continue
+
+    for input_file in \
+            doc/demo-last-two-moves.annofen \
+            doc/demo-movement-horse.xay \
+            ; do
+        suffix="${input_file##doc/demo}"
+        suffix="${suffix%%.*}"
+        render_and_compare annotations "${theme_name}" "${input_file}" "${suffix}"
+    done
 done

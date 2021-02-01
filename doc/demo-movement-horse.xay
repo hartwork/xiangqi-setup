@@ -1,0 +1,16 @@
+# Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under GNU Affero General Public License version 3.0 or later
+
+# This is a [x]iangqi-setup [a]nnotated setup [Y]AML file ("XAY" file for short)
+version: '1'
+setup: [
+  [],
+  [],
+  [],
+  [[], [], [], [bg], [], [R, pg]],
+  [[], [], [bg], [], [], [], [bb]],
+  # river
+  [[], [], [], [], [n], [c, pb]],
+  [[], [], [bg], [], [], [], [bb]],
+  [[], [], [], [bg], [], [bg]],
+]

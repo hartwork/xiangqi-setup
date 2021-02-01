@@ -12,8 +12,10 @@ from pkg_resources import resource_filename
 from os import walk
 
 from .compose import compose_svg, cm_to_pixel
+from .file_formats.annofen import is_annofen_content, iterate_annofen_tokens
 from .file_formats.fen import iterate_fen_tokens
 from .file_formats.wxf import iterate_wxf_tokens, ALL_MOVES
+from .file_formats.xay import is_xay_content, iterate_xay_tokens
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 
@@ -54,12 +56,17 @@ def check(options):
 def run(options):
     with open(options.input_file, 'r') as f:
         content = f.read()
-        if 'WXF' in content:
-            pieces_to_put = list(iterate_wxf_tokens(content, options.moves_to_play))
+        if is_annofen_content(content):
+            atoms_to_put = list(iterate_annofen_tokens(content))
+        elif is_xay_content(content):
+            atoms_to_put = list(iterate_xay_tokens(content))
+        elif 'WXF' in content:
+            atoms_to_put = list(iterate_wxf_tokens(content, options.moves_to_play))
         else:
-            pieces_to_put = list(iterate_fen_tokens(content))
-    compose_svg(pieces_to_put, options)
-    inform_license(options.board_theme_dir, options.piece_theme_dir)
+            atoms_to_put = list(iterate_fen_tokens(content))
+
+    compose_svg(atoms_to_put, options)
+    inform_license(options.board_theme_dir, options.piece_theme_dir, options.annotation_theme_dir)
 
 
 def _theme_name(text):
@@ -91,6 +98,7 @@ def main():
     themes_home_dir = _get_themes_home_dir()
     board_themes_home_dir = os.path.join(themes_home_dir, 'board')
     piece_themes_home_dir = os.path.join(themes_home_dir, 'pieces')
+    annotation_themes_home_dir = os.path.join(themes_home_dir, 'annotations')
 
     epilog_chunks = []
 
@@ -98,15 +106,18 @@ def main():
     if '--help' in sys.argv[1:] or '-h' in sys.argv[1:]:
         board_theme_choices = []
         piece_theme_choices = []
+        annotation_theme_choices = []
         for directory, target_list in (
                 (board_themes_home_dir, board_theme_choices),
                 (piece_themes_home_dir, piece_theme_choices),
+                (annotation_themes_home_dir, annotation_theme_choices),
                 ):
             target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
                 ('board themes', board_themes_home_dir, board_theme_choices, True),
-                ('piece themes', piece_themes_home_dir, piece_theme_choices, False),
+                ('piece themes', piece_themes_home_dir, piece_theme_choices, True),
+                ('annotation themes', annotation_themes_home_dir, annotation_theme_choices, False),
                 ):
             epilog_chunks.append('%s (%d available, in alphabetic order):' % (category, len(source_list)))
             for name in sorted(source_list, key=lambda x: x.lower()):
@@ -137,6 +148,10 @@ def main():
             type=_theme_name, default='retro_simple',
             help=_format_right_help_column('name of piece theme to use (default: "%(default)s")'
                                            '; please check the list of available themes below'))
+    theme_options.add_argument('--annotations', dest='annotation_theme_dir', metavar='THEME',
+            type=_theme_name, default='colors_alpha',
+            help=_format_right_help_column('name of annotation theme to use (default: "%(default)s")'
+                                           '; please check the list of available themes below'))
 
     scaling_options = parser.add_argument_group('scaling')
     width_options = scaling_options.add_mutually_exclusive_group()
@@ -148,6 +163,8 @@ def main():
             help='resolution of the output in dots per inch')
     scaling_options.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9,
             help='factor to scale pieces by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
+    scaling_options.add_argument('--scale-annotations', dest='annotation_scale', metavar='FACTOR', type=float, default=0.9,
+            help='factor to scale annotations by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
 
     parser.add_argument('--debug', action='store_true',
             help='enable debugging (e.g. mark corners of the board)')
@@ -164,7 +181,7 @@ def main():
                  ' (default: "%(default)s")'))
 
     parser.add_argument('input_file', metavar='INPUT_FILE',
-            help='location of WXF or FEN file to render')
+            help='location of WXF/FEN/annoFEN/XAY file to render')
     parser.add_argument('output_file', metavar='OUTPUT_FILE',
             help='location of SVG output file to write')
 
@@ -175,6 +192,7 @@ def main():
     # Turn theme names into paths
     options.board_theme_dir = os.path.join(board_themes_home_dir, options.board_theme_dir)
     options.piece_theme_dir = os.path.join(piece_themes_home_dir, options.piece_theme_dir)
+    options.annotation_theme_dir = os.path.join(annotation_themes_home_dir, options.annotation_theme_dir)
 
     check(options)
     run(options)

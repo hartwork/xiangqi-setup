@@ -1,0 +1,18 @@
+# Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under CC0-1.0
+
+allow_scaling:
+  blank_bad: true
+  blank_good: true
+  blank_move: true
+  piece_bad: true
+  piece_good: true
+  piece_move: false
+
+draw_above_pieces:
+  blank_bad: true
+  blank_good: true
+  blank_move: true
+  piece_bad: true
+  piece_good: true
+  piece_move: true

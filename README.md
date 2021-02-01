@@ -3,7 +3,7 @@
 ## Overview
 
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.2 to
-render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF and FEN files to SVG images.
+render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF/FEN/annoFEN/XAY files to SVG images.
 With WXF files that contain move history, **xiangqi-setup** can replay these moves on top of the initial setup —
 all of them, none, or any custom number of moves (using the `--moves COUNT` argument).
 
@@ -13,7 +13,7 @@ The most simple way to render a given setup is:
 # xiangqi-setup input.wxf output.svg
 ```
 
-For [demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wxf), the result is:
+For file [doc/demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wxf), the result is:
 
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_retro_simple.svg)
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_euro_xiangqi_js.svg)
@@ -62,7 +62,7 @@ please see https://github.com/hartwork/xiangqi-book-example .
 
 # Usage in Detail
 
-## `xiangqi-setup` — Renders WXF and FEN Files to SVG Images
+## `xiangqi-setup` — Renders WXF/FEN/annoFEN/XAY Files to SVG Images
 
 ```console
 # xiangqi-setup --help
@@ -73,7 +73,7 @@ usage: xiangqi-setup [OPTIONS] INPUT_FILE OUTPUT_FILE
 Generate razor-sharp Xiangqi (Chinese chess) setup graphics
 
 positional arguments:
-  INPUT_FILE            location of WXF or FEN file to render
+  INPUT_FILE            location of WXF/FEN/annoFEN/XAY file to render
   OUTPUT_FILE           location of SVG output file to write
 
 optional arguments:

@@ -4,7 +4,9 @@
 import configparser
 import errno
 import os
-from typing import Optional, Tuple
+from typing import Tuple
+
+import yaml
 
 try:
     from svgutils.compose import Unit
@@ -16,8 +18,9 @@ except ImportError:
           ' e.g. by running "pip install svgutils==0.3.2".', file=sys.stderr)
     sys.exit(1)
 
+from .annotations import PutAnnotation
 from .parties import RED, BLACK
-from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN
+from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, PutPiece
 
 _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'
@@ -94,7 +97,7 @@ def cm_to_pixel(cm, resolution_dpi):
     return _cm_to_inch(cm) * resolution_dpi
 
 
-def compose_svg(pieces_to_put, options):
+def compose_svg(atoms_to_put, options):
     board_svg_filename = os.path.join(options.board_theme_dir, _BOARD_SVG_BASENAME)
     board_ini_filename = os.path.join(options.board_theme_dir, _BOARD_INI_BASENAME)
 
@@ -112,18 +115,41 @@ def compose_svg(pieces_to_put, options):
     output_board_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'height')
     output_board_river_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'river')
 
-    jobs = []
-    for put_piece in pieces_to_put:
-        x_rel = float(put_piece.x) / _MAX_X
-        y_rel = float(_MAX_Y - put_piece.y) / _MAX_Y
-        basename = _FILENAME_OF_PARTY_PIECE[put_piece.party][put_piece.piece]
-        filename = os.path.join(options.piece_theme_dir, basename)
-        jobs.append((x_rel, y_rel, filename))
+    jobs_below_piece_level = []
+    jobs_at_piece_level = []
+    jobs_above_piece_level = []
+
+    annotation_theme_config_filename = os.path.join(options.annotation_theme_dir, 'config.yml')
+    with open(annotation_theme_config_filename) as f:
+        annotation_theme_config = yaml.safe_load(f)
+
+    for put_atom in atoms_to_put:
+        if isinstance(put_atom, PutAnnotation):
+            put_annotation: PutAnnotation = put_atom
+            x_rel = float(put_annotation.x) / _MAX_X
+            y_rel = float(_MAX_Y - put_annotation.y) / _MAX_Y
+            filename = os.path.join(options.annotation_theme_dir, f'{put_annotation.annotation_name}.svg')
+            annotation_scale = options.annotation_scale if annotation_theme_config['allow_scaling'][put_annotation.annotation_name] else 1.0
+            annotation_draw_above_pieces = annotation_theme_config['draw_above_pieces'][put_annotation.annotation_name]
+            if annotation_draw_above_pieces:
+                job_container = jobs_above_piece_level
+            else:
+                job_container = jobs_below_piece_level
+            job_container.append((x_rel, y_rel, filename, annotation_scale))
+        else:
+            assert isinstance(put_atom, PutPiece)
+            put_piece: PutPiece = put_atom
+            x_rel = float(put_piece.x) / _MAX_X
+            y_rel = float(_MAX_Y - put_piece.y) / _MAX_Y
+            basename = _FILENAME_OF_PARTY_PIECE[put_piece.party][put_piece.piece]
+            filename = os.path.join(options.piece_theme_dir, basename)
+            jobs_at_piece_level.append((x_rel, y_rel, filename, options.piece_scale))
 
     if options.debug:
         for x_rel in (0.0, 1.0):
             for y_rel in (0.0, 1.0):
-                jobs.append((x_rel, y_rel, os.path.join(options.piece_theme_dir, _DIAMOND_FILE_NAME)))
+                jobs_above_piece_level.append((x_rel, y_rel, os.path.join(options.piece_theme_dir, _DIAMOND_FILE_NAME),
+                                               options.piece_scale))
 
     # Read board
     board_fig = fromfile(board_svg_filename)
@@ -148,7 +174,9 @@ def compose_svg(pieces_to_put, options):
             Unit(f'{options.width_pixel * height_factor}px'))
     output_fig.append([board_root, ])
 
-    for (x_rel, y_rel, filename) in jobs:
+    jobs = jobs_below_piece_level + jobs_at_piece_level + jobs_above_piece_level
+
+    for (x_rel, y_rel, filename, element_scale) in jobs:
         piece_fig = fromfile(filename)
         piece_root = piece_fig.getroot()
         original_piece_width_pixel, original_piece_height_pixel = \
@@ -159,8 +187,8 @@ def compose_svg(pieces_to_put, options):
         center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
                 + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
 
-        maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * options.piece_scale
-        maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * options.piece_scale
+        maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * element_scale
+        maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * element_scale
 
         scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel, maximum_future_piece_height_pixel / original_piece_height_pixel)
 

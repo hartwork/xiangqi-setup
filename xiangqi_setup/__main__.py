@@ -52,7 +52,7 @@ def check(options):
 
 
 def run(options):
-    with open(options.input_file, 'r') as f:
+    with open(options.input_file) as f:
         content = f.read()
         if is_annofen_content(content):
             atoms_to_put = list(iterate_annofen_tokens(content))
@@ -120,7 +120,7 @@ def main():
             epilog_chunks.append('%s (%d available, in alphabetic order):' % (category, len(source_list)))
             for name in sorted(source_list, key=lambda x: x.lower()):
                 license_choices = get_license_choices_of_theme(os.path.join(category_home_dir, name))
-                epilog_chunks.append('  %-42s (license: %s)' % (name, ' / '.join(license_choices)))
+                epilog_chunks.append('  {:<42} (license: {})'.format(name, ' / '.join(license_choices)))
             if blank_line_after:
                 epilog_chunks.append('')
 
@@ -160,9 +160,9 @@ def main():
     scaling_options.add_argument('--dpi', dest='resolution_dpi', metavar='FLOAT', type=float, default=90.0,
             help='resolution of the output in dots per inch')
     scaling_options.add_argument('--scale-pieces', dest='piece_scale', metavar='FACTOR', type=float, default=0.9,
-            help='factor to scale pieces by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
+            help=f'factor to scale pieces by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)')
     scaling_options.add_argument('--scale-annotations', dest='annotation_scale', metavar='FACTOR', type=float, default=0.9,
-            help='factor to scale annotations by (%.1f to %.1f, default: %%(default)s)' % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX))
+            help=f'factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)')
 
     parser.add_argument('--debug', action='store_true',
             help='enable debugging (e.g. mark corners of the board)')

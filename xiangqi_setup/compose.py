@@ -105,7 +105,7 @@ def compose_svg(atoms_to_put, options):
     # Check for existance ourselves since configparser would throw NoSectionError
     # at us for a missing file.
     if not os.path.exists(board_ini_filename):
-        raise IOError(errno.ENOENT, "No such file or directory: '%s'" % board_ini_filename)
+        raise OSError(errno.ENOENT, "No such file or directory: '%s'" % board_ini_filename)
 
     config = configparser.RawConfigParser(defaults={'river': 0.0})
     config.read(board_ini_filename)

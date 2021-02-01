@@ -14,7 +14,7 @@ except ImportError:
     sys.exit(1)
 
 
-class BoardPainter(object):
+class BoardPainter:
     def __init__(self,
             line_thickness_pixel,
             field_width_px,

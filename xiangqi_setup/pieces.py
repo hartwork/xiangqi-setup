@@ -11,7 +11,7 @@ PAWN, \
 = list(range(7))
 
 
-class PutPiece(object):
+class PutPiece:
     def __init__(self, party, piece, x, y):
         self.party = party
         self.piece = piece

@@ -39,12 +39,12 @@ def _get_license_json_path(single_theme_dir):
 
 def _get_license_json(single_theme_dir):
     license_json_path = _get_license_json_path(single_theme_dir)
-    f = open(license_json_path, 'r')
+    f = open(license_json_path)
     content = f.read()
     try:
         doc = json.loads(content)
     except ValueError as e:
-        raise ValueError('%s (file "%s")' % (e, license_json_path))
+        raise ValueError(f'{e} (file "{license_json_path}")')
     f.close()
     return doc['work']
 
@@ -70,7 +70,7 @@ def _describe_license(license_id):
     if details_url is None:
         return long_name
     else:
-        return '%s  (%s)' % (long_name, details_url)
+        return f'{long_name}  ({details_url})'
 
 
 def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
@@ -97,7 +97,7 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
                     contact_infos.append('%s@%s' % tuple(details_dict['email']))
 
                 if contact_infos:
-                    author_display = '%s (%s)' % (author_name, ', '.join(contact_infos))
+                    author_display = '{} ({})'.format(author_name, ', '.join(contact_infos))
                 else:
                     author_display = author_name
 
@@ -117,7 +117,7 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
             license_options = '    %s' % _describe_license(license_ids_any_of[0])
         else:
             license_options = '\n'.join(
-                    ('    %s) %s' % (chr(ord('a') + i), _describe_license(e))) \
+                    ('    {}) {}'.format(chr(ord('a') + i), _describe_license(e))) \
                     for i, e \
                     in enumerate(license_ids_any_of))
 

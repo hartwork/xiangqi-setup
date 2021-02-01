@@ -13,7 +13,7 @@ The most simple way to render a given setup is:
 # xiangqi-setup input.wxf output.svg
 ```
 
-For [demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wxf), the result is:
+For file [doc/demo.wxf](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo.wxf), the result is:
 
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_retro_simple.png "demo_retro_simple.{png,svg}, CC0 1.0 Universal: Public Domain Dedication")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_retro_simple.svg)
 [![](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/doc/demo_euro_xiangqi_js.png "demo_euro_xiangqi_js.{png,svg}, Creative Commons Attribution 4.0: Jasmin Scharrer, Sebastian Pipping")](https://github.com/hartwork/xiangqi-setup/blob/master/doc/demo_euro_xiangqi_js.svg)

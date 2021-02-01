@@ -3,7 +3,7 @@
 
 import yaml
 
-from ..annotations import PutAnnotation, ANNOTATION_NAME_OF_ATOM_CODE
+from ..annotations import ANNOTATION_NAME_OF_ATOM_CODE, PutAnnotation
 from ..parties import BLACK, RED
 from ..pieces import PutPiece
 from .fen import PIECE_OF_UPPER_LETTER

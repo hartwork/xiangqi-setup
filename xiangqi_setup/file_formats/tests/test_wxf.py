@@ -6,9 +6,10 @@ from unittest import TestCase
 from parameterized import parameterized
 
 from xiangqi_setup.file_formats.fen import PIECE_OF_UPPER_LETTER
-from xiangqi_setup.file_formats.wxf import _PlayerRelativeView, _Board
-from xiangqi_setup.parties import RED, BLACK
-from xiangqi_setup.pieces import PutPiece, ELEPHANT, CHARIOT, CANNON, HORSE, ADVISOR, KING, PAWN
+from xiangqi_setup.file_formats.wxf import _Board, _PlayerRelativeView
+from xiangqi_setup.parties import BLACK, RED
+from xiangqi_setup.pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE,
+                                  KING, PAWN, PutPiece)
 
 
 class PlayerRelativeViewTest(TestCase):

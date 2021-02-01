@@ -1,8 +1,9 @@
 # Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
-from .parties import RED, BLACK
-from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, PutPiece
+from .parties import BLACK, RED
+from .pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN,
+                     PutPiece)
 
 
 def iterate_default_setup():

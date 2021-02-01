@@ -3,10 +3,10 @@
 # Licensed under GNU Affero General Public License version 3.0 or later
 
 import os
+
 from setuptools import find_packages, setup
 
 from xiangqi_setup.version import VERSION_STR
-
 
 _tests_require = [
     'parameterized',

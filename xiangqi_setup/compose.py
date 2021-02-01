@@ -10,7 +10,7 @@ import yaml
 
 try:
     from svgutils.compose import Unit
-    from svgutils.transform import fromfile, SVGFigure
+    from svgutils.transform import SVGFigure, fromfile
 except ImportError:
     import sys
     print('Please install version 0.3.2 of svgutils'
@@ -19,8 +19,9 @@ except ImportError:
     sys.exit(1)
 
 from .annotations import PutAnnotation
-from .parties import RED, BLACK
-from .pieces import CHARIOT, HORSE, ELEPHANT, ADVISOR, KING, CANNON, PAWN, PutPiece
+from .parties import BLACK, RED
+from .pieces import (ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN,
+                     PutPiece)
 
 _BOARD_SVG_BASENAME = 'board.svg'
 _BOARD_INI_BASENAME = 'board.ini'

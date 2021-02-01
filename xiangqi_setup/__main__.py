@@ -6,19 +6,17 @@ import inspect
 import os
 import sys
 import textwrap
+from os import walk
 
 from pkg_resources import resource_filename
 
-from os import walk
-
-from .compose import compose_svg, cm_to_pixel
+from .compose import cm_to_pixel, compose_svg
 from .file_formats.annofen import is_annofen_content, iterate_annofen_tokens
 from .file_formats.fen import iterate_fen_tokens
-from .file_formats.wxf import iterate_wxf_tokens, ALL_MOVES
+from .file_formats.wxf import ALL_MOVES, iterate_wxf_tokens
 from .file_formats.xay import is_xay_content, iterate_xay_tokens
 from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
-
 
 _DEFAULT_WIDTH_CM = 7.0
 

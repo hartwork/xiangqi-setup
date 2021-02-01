@@ -17,11 +17,13 @@ assert_images_identical() {
 render_and_compare() {
     local theme_type="${1}"
     local theme_name="${2}"
-    local prefix_actual="tests/actual-${theme_type}-${theme_name}"
-    local prefix_expected="tests/expected-${theme_type}-${theme_name}"
-    local prefix_difference="tests/difference-${theme_type}-${theme_name}"
+    local input_file="${3:-doc/demo.wxf}"
+    local suffix="${4:-}"
+    local prefix_actual="tests/actual-${theme_type}-${theme_name}${suffix}"
+    local prefix_expected="tests/expected-${theme_type}-${theme_name}${suffix}"
+    local prefix_difference="tests/difference-${theme_type}-${theme_name}${suffix}"
 
-    xiangqi-setup "--${theme_type}" "${theme_name}" doc/demo.wxf "${prefix_actual}".svg > /dev/null
+    xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_actual}".svg > /dev/null
     convert -verbose -background none "${prefix_actual}".{svg,png}
     assert_images_identical {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
 

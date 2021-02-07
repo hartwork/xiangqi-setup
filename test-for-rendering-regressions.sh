@@ -69,6 +69,7 @@ for theme_name in xiangqi_setup/themes/annotations/* ; do
     [[ "${theme_name}" = __pycache__ ]] && continue
 
     for input_file in \
+            doc/demo-arrows-*.xay \
             doc/demo-last-two-moves.annofen \
             doc/demo-movement-horse.xay \
             ; do

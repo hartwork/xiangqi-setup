@@ -7,7 +7,7 @@ allow_scaling:
   blank_move: true
   piece_bad: true
   piece_good: true
-  piece_move: true
+  piece_move: false
 
 draw_above_pieces:
   blank_bad: true

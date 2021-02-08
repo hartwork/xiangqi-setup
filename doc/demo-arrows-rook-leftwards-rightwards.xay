@@ -1,0 +1,18 @@
+# Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under GNU Affero General Public License version 3.0 or later
+
+# This is a [x]iangqi-setup [a]nnotated setup [Y]AML file ("XAY" file for short)
+version: '1'
+setup: [
+  [[r], [], [], [], [], [], [], [], [a-8+0]],
+  [[R], [r], [], [], [], [], [], [], [a-7+0]],
+  [[a+1+0], [R], [r], [], [], [], [], [], [a-6+0]],
+  [[a+2+0], [], [R], [r], [], [], [], [], [a-5+0]],
+  [[a+3+0], [], [], [R], [r], [], [], [], [a-4+0]],
+  # river
+  [[a+4+0], [], [], [], [R], [r], [], [], [a-3+0]],
+  [[a+5+0], [], [], [], [], [R], [r], [], [a-2+0]],
+  [[a+6+0], [], [], [], [], [], [R], [r], [a-1+0]],
+  [[a+7+0], [], [], [], [], [], [], [R], [r]],
+  [[a+8+0], [], [], [], [], [], [], [], [R]],
+]

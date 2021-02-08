@@ -5,6 +5,8 @@
 set -e
 set -x
 
+any_file_missing=0
+
 convert -version
 
 assert_images_identical() {
@@ -23,12 +25,22 @@ render_and_compare() {
     local prefix_expected="tests/expected-${theme_type}-${theme_name}${suffix}"
     local prefix_difference="tests/difference-${theme_type}-${theme_name}${suffix}"
 
-    xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_actual}".svg > /dev/null
-    convert -verbose -background none "${prefix_actual}".{svg,png}
-    assert_images_identical {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
+    if [[ -e "${prefix_expected}".png ]]; then
+        # We have an image to compare to, so let's do that
+        xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_actual}".svg > /dev/null
+        convert -verbose -background none "${prefix_actual}".{svg,png}
+        assert_images_identical {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
 
-    rm "${prefix_actual}".{png,svg}
-    rm "${prefix_difference}".png
+        rm "${prefix_actual}".{png,svg}
+        rm "${prefix_difference}".png
+    else
+        # We do not have an image to compare to, so let's generate it and signal failure to the outside
+        any_file_missing=1
+        xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_expected}".svg > /dev/null
+        convert -verbose -background none "${prefix_expected}".{svg,png}
+        zopflipng -y "${prefix_expected}".png{,}
+        rm "${prefix_expected}".svg
+    fi
 }
 
 # Board themes
@@ -57,6 +69,7 @@ for theme_name in xiangqi_setup/themes/annotations/* ; do
     [[ "${theme_name}" = __pycache__ ]] && continue
 
     for input_file in \
+            doc/demo-arrows-*.xay \
             doc/demo-last-two-moves.annofen \
             doc/demo-movement-horse.xay \
             ; do
@@ -65,3 +78,5 @@ for theme_name in xiangqi_setup/themes/annotations/* ; do
         render_and_compare annotations "${theme_name}" "${input_file}" "${suffix}"
     done
 done
+
+exit "${any_file_missing}"

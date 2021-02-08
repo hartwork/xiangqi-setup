@@ -185,33 +185,32 @@ def compose_svg(atoms_to_put, options):
         board_root,
     ])
 
-    jobs = jobs_below_piece_level + jobs_at_piece_level + jobs_above_piece_level
+    for jobs in (jobs_below_piece_level, jobs_at_piece_level, jobs_above_piece_level):
+        for (x_rel, y_rel, filename, element_scale) in jobs:
+            piece_fig = fromfile(filename)
+            piece_root = piece_fig.getroot()
+            original_piece_width_pixel, original_piece_height_pixel = \
+                _pixel_viewbox_of_figure(piece_fig, options.resolution_dpi)[2:]
 
-    for (x_rel, y_rel, filename, element_scale) in jobs:
-        piece_fig = fromfile(filename)
-        piece_root = piece_fig.getroot()
-        original_piece_width_pixel, original_piece_height_pixel = \
-            _pixel_viewbox_of_figure(piece_fig, options.resolution_dpi)[2:]
+            # Scale and put piece onto board
+            center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
+            center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
+                    + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
 
-        # Scale and put piece onto board
-        center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
-        center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
-                + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
+            maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * element_scale
+            maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * element_scale
 
-        maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * element_scale
-        maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * element_scale
+            scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel,
+                        maximum_future_piece_height_pixel / original_piece_height_pixel)
 
-        scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel,
-                    maximum_future_piece_height_pixel / original_piece_height_pixel)
+            future_piece_width_pixel = original_piece_width_pixel * scale
+            future_piece_height_pixel = original_piece_height_pixel * scale
 
-        future_piece_width_pixel = original_piece_width_pixel * scale
-        future_piece_height_pixel = original_piece_height_pixel * scale
-
-        x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
-        y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
-        piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
-        output_fig.append([
-            piece_root,
-        ])
+            x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
+            y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
+            piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
+            output_fig.append([
+                piece_root,
+            ])
 
     output_fig.save(options.output_file)

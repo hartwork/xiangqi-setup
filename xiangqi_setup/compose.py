@@ -4,6 +4,7 @@
 import configparser
 import errno
 import os
+from collections import defaultdict
 from typing import Tuple
 
 import yaml
@@ -32,6 +33,9 @@ _DIAMOND_FILE_NAME = os.path.join('..', 'diamond.svg')
 
 _MAX_X = 8
 _MAX_Y = 9
+
+_Z_INDEX_PIECE_LEVEL = 0
+_Z_INDEX_DEBUG_DIAMOND = 1000  # i.e. way above piece level and assumed sane annotation levels
 
 _FILENAME_OF_PARTY_PIECE = {
     RED: {
@@ -121,9 +125,9 @@ def compose_svg(atoms_to_put, options):
     output_board_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'height')
     output_board_river_height_pixel = config.getfloat(_BOARD_CONFIG_SECTION, 'river')
 
-    jobs_below_piece_level = []
-    jobs_at_piece_level = []
-    jobs_above_piece_level = []
+    # Regular pieces are at level 0; level 1 and above is drawn on top of (i.e. after)
+    # the pieces while -1 and below is drawn below (i.e. before) the pieces.
+    jobs_at_z_index = defaultdict(list)
 
     annotation_theme_config_filename = os.path.join(options.annotation_theme_dir, 'config.yml')
     with open(annotation_theme_config_filename) as f:
@@ -138,13 +142,8 @@ def compose_svg(atoms_to_put, options):
                                     f'{put_annotation.annotation_name}.svg')
             annotation_scale = options.annotation_scale if annotation_theme_config[
                 'allow_scaling'][put_annotation.annotation_name] else 1.0
-            annotation_draw_above_pieces = annotation_theme_config['draw_above_pieces'][
-                put_annotation.annotation_name]
-            if annotation_draw_above_pieces:
-                job_container = jobs_above_piece_level
-            else:
-                job_container = jobs_below_piece_level
-            job_container.append((x_rel, y_rel, filename, annotation_scale))
+            atom_z_index = int(annotation_theme_config['z_index'][put_annotation.annotation_name])
+            jobs_at_z_index[atom_z_index].append((x_rel, y_rel, filename, annotation_scale))
         else:
             assert isinstance(put_atom, PutPiece)
             put_piece: PutPiece = put_atom
@@ -152,12 +151,13 @@ def compose_svg(atoms_to_put, options):
             y_rel = float(_MAX_Y - put_piece.y) / _MAX_Y
             basename = _FILENAME_OF_PARTY_PIECE[put_piece.party][put_piece.piece]
             filename = os.path.join(options.piece_theme_dir, basename)
-            jobs_at_piece_level.append((x_rel, y_rel, filename, options.piece_scale))
+            jobs_at_z_index[_Z_INDEX_PIECE_LEVEL].append(
+                (x_rel, y_rel, filename, options.piece_scale))
 
     if options.debug:
         for x_rel in (0.0, 1.0):
             for y_rel in (0.0, 1.0):
-                jobs_above_piece_level.append(
+                jobs_at_z_index[_Z_INDEX_DEBUG_DIAMOND].append(
                     (x_rel, y_rel, os.path.join(options.piece_theme_dir,
                                                 _DIAMOND_FILE_NAME), options.piece_scale))
 
@@ -185,33 +185,32 @@ def compose_svg(atoms_to_put, options):
         board_root,
     ])
 
-    jobs = jobs_below_piece_level + jobs_at_piece_level + jobs_above_piece_level
+    for _z_index, jobs in sorted(jobs_at_z_index.items()):
+        for (x_rel, y_rel, filename, element_scale) in jobs:
+            piece_fig = fromfile(filename)
+            piece_root = piece_fig.getroot()
+            original_piece_width_pixel, original_piece_height_pixel = \
+                _pixel_viewbox_of_figure(piece_fig, options.resolution_dpi)[2:]
 
-    for (x_rel, y_rel, filename, element_scale) in jobs:
-        piece_fig = fromfile(filename)
-        piece_root = piece_fig.getroot()
-        original_piece_width_pixel, original_piece_height_pixel = \
-            _pixel_viewbox_of_figure(piece_fig, options.resolution_dpi)[2:]
+            # Scale and put piece onto board
+            center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
+            center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
+                    + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
 
-        # Scale and put piece onto board
-        center_x_pixel = output_board_offset_left_pixel + output_board_width_pixel * x_rel
-        center_y_pixel = output_board_offset_top_pixel + (output_board_height_pixel - output_board_river_height_pixel) * y_rel \
-                + (output_board_river_height_pixel if (y_rel >= 0.5) else 0.0)
+            maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * element_scale
+            maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * element_scale
 
-        maximum_future_piece_width_pixel = output_board_width_pixel / _MAX_X * element_scale
-        maximum_future_piece_height_pixel = output_board_height_pixel / _MAX_Y * element_scale
+            scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel,
+                        maximum_future_piece_height_pixel / original_piece_height_pixel)
 
-        scale = min(maximum_future_piece_width_pixel / original_piece_width_pixel,
-                    maximum_future_piece_height_pixel / original_piece_height_pixel)
+            future_piece_width_pixel = original_piece_width_pixel * scale
+            future_piece_height_pixel = original_piece_height_pixel * scale
 
-        future_piece_width_pixel = original_piece_width_pixel * scale
-        future_piece_height_pixel = original_piece_height_pixel * scale
-
-        x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
-        y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
-        piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
-        output_fig.append([
-            piece_root,
-        ])
+            x_pixel = center_x_pixel - future_piece_width_pixel / 2.0
+            y_pixel = center_y_pixel - future_piece_height_pixel / 2.0
+            piece_root.moveto(x_pixel, y_pixel, scale_x=scale, scale_y=scale)
+            output_fig.append([
+                piece_root,
+            ])
 
     output_fig.save(options.output_file)

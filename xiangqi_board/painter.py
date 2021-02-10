@@ -9,9 +9,9 @@ try:
 except ImportError:
     import sys
     print(
-        'Please install version 0.3.2 of svgutils'
+        'Please install version 0.3.4 of svgutils'
         ' (https://github.com/btel/svg_utils) first,'
-        ' e.g. by running "pip install svgutils==0.3.2".',
+        ' e.g. by running "pip install svgutils==0.3.4".',
         file=sys.stderr)
     sys.exit(1)
 

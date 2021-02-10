@@ -2,7 +2,7 @@
 
 ## Overview
 
-**xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.2 to
+**xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.4 to
 render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF/FEN/annoFEN/XAY files to SVG images.
 With WXF files that contain move history, **xiangqi-setup** can replay these moves on top of the initial setup —
 all of them, none, or any custom number of moves (using the `--moves COUNT` argument).

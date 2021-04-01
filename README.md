@@ -95,6 +95,9 @@ theme selection:
                         please check the list of available themes below
   --pieces THEME        name of piece theme to use (default: "retro_simple");
                         please check the list of available themes below
+  --annotations THEME   name of annotation theme to use (default:
+                        "colors_alpha"); please check the list of available
+                        themes below
 
 scaling:
   --width-px PIXEL      width of the output in pixels
@@ -103,6 +106,8 @@ scaling:
   --dpi FLOAT           resolution of the output in dots per inch
   --scale-pieces FACTOR
                         factor to scale pieces by (0.0 to 1.2, default: 0.9)
+  --scale-annotations FACTOR
+                        factor to scale annotations by (0.0 to 1.2, default: 0.9)
 
 board themes (16 available, in alphabetic order):
   a4_blank_2cm_margin                        (license: CC0-1.0)
@@ -132,6 +137,10 @@ piece themes (9 available, in alphabetic order):
   playok_2014_chinese                        (license: CC0-1.0)
   playok_2014_chinese_noshadow               (license: CC0-1.0)
   retro_simple                               (license: CC0-1.0)
+
+annotation themes (2 available, in alphabetic order):
+  colors_alpha                               (license: CC0-1.0)
+  gray_alpha                                 (license: CC0-1.0)
 ```
 
 

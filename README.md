@@ -3,9 +3,12 @@
 ## Overview
 
 **xiangqi-setup** is a command line tool using [svgutils](https://pypi.org/project/svgutils/) 0.3.4 to
-render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF/FEN/annoFEN/XAY files to SVG images.
+render [Xiangqi](https://en.wikipedia.org/wiki/Xiangqi) (Chinese chess) board setups from WXF/FEN/[annoFEN](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#annofen)/[XAY](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#xay) files to SVG images.
 With WXF files that contain move history, **xiangqi-setup** can replay these moves on top of the initial setup —
 all of them, none, or any custom number of moves (using the `--moves COUNT` argument).
+With [XAY](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#xay)/[annoFEN](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#annofen) files
+it can also draw [arrows](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#arrows), mark a field as "good", "bad" or involved in a move —
+it can add [annotations](https://github.com/hartwork/xiangqi-setup/blob/master/doc/file_formats.md#annotations).
 
 The most simple way to render a given setup is:
 

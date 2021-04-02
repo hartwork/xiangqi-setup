@@ -169,7 +169,7 @@ and `<dx>` and `<dy>` are the distance in columns (dx) and rows (dy).
 So `a+8+0` is a arrow for a move that travels 8 columns to the right and remains on the same row, likely by a rook or a cannon.
 For another example, code `a+2-1` would be one of 8 possible arrows to indicate a knight-like move.
 
-This example demonstrates all available downwards arrows common to rooks, cannons, and kings:
+This example demonstrates all available downwards arrows common to rooks, cannons, pawns and kings:
 
 ![expected-annotations-colors_alpha-arrows-rook-downwards.png](https://raw.githubusercontent.com/hartwork/xiangqi-setup/master/tests/expected-annotations-colors_alpha-arrows-rook-downwards.png)
 

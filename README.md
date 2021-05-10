@@ -100,10 +100,10 @@ theme selection:
                         themes below
 
 scaling:
-  --width-px PIXEL      width of the output in pixels
+  --width-px PIXEL      width of the output in pixels (default: ~248.03, i.e. 7.0cm at 90.0dpi)
   --width-cm CENTIMETER
-                        width of the output in centimeters
-  --dpi FLOAT           resolution of the output in dots per inch
+                        width of the output in centimeters (default: 7.0)
+  --dpi FLOAT           resolution of the output in dots per inch (default: 90.0)
   --scale-pieces FACTOR
                         factor to scale pieces by (0.0 to 1.2, default: 0.9)
   --scale-annotations FACTOR

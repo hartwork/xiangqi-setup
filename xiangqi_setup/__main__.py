@@ -19,6 +19,7 @@ from .license import get_license_choices_of_theme, inform_license
 from .version import VERSION_STR
 
 _DEFAULT_WIDTH_CM = 7.0
+_DEFAULT_RESOLUTION_DPI = 90.0
 
 _PIECE_SCALE_MIN = 0.0
 _PIECE_SCALE_MAX = 1.2
@@ -184,7 +185,7 @@ def main():
                                  dest='resolution_dpi',
                                  metavar='FLOAT',
                                  type=float,
-                                 default=90.0,
+                                 default=_DEFAULT_RESOLUTION_DPI,
                                  help='resolution of the output in dots per inch')
     scaling_options.add_argument(
         '--scale-pieces',

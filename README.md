@@ -110,6 +110,8 @@ WXF format arguments:
                         any remaining moves, "all" would play all moves, "-1"
                         all moves but the last, "-2" all but the last two
                         (default: "0")
+  --annotate-last-move  Add annotations "blank_move" and "piece_move" to the
+                        source and target locations of the last move
 
 board themes (16 available, in alphabetic order):
   a4_blank_2cm_margin                        (license: CC0-1.0)

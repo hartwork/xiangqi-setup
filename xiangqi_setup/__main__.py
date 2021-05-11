@@ -61,7 +61,8 @@ def run(options):
         elif is_xay_content(content):
             atoms_to_put = list(iterate_xay_tokens(content))
         elif 'WXF' in content:
-            atoms_to_put = list(iterate_wxf_tokens(content, options.moves_to_play))
+            atoms_to_put = list(
+                iterate_wxf_tokens(content, options.moves_to_play, options.annotate_last_move))
         else:
             atoms_to_put = list(iterate_fen_tokens(content))
 
@@ -226,6 +227,13 @@ def main():
                                  f' "{ALL_MOVES}" would play all moves,'
                                  ' "-1" all moves but the last, "-2" all but the last two'
                                  ' (default: "%(default)s")'))
+    wxf_options.add_argument('--annotate-last-move',
+                             default=False,
+                             dest='annotate_last_move',
+                             action='store_true',
+                             help=_format_right_help_column(
+                                 'Add annotations "blank_move" and "piece_move"'
+                                 ' to the source and target locations of the last move'))
 
     parser.add_argument('--debug',
                         action='store_true',

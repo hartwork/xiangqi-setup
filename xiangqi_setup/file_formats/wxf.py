@@ -4,6 +4,7 @@
 import re
 import sys
 
+from ..annotations import ANNOTATION_NAME_BLANK_MOVE, ANNOTATION_NAME_PIECE_MOVE, PutAnnotation
 from ..default_setup import iterate_default_setup
 from ..file_formats.fen import PIECE_OF_UPPER_LETTER, iterate_fen_tokens
 from ..parties import BLACK, RED
@@ -102,6 +103,7 @@ class _PlayerRelativeView:
 class _Board:
     def __init__(self):
         self._board = [[None for _column in range(9)] for _row in range(10)]
+        self._move_locations = set()
 
     def put(self, piece: PutPiece):
         self._board[piece.y][piece.x] = piece
@@ -188,13 +190,19 @@ class _Board:
 
         return put_piece
 
-    def move(self, party: int, piece_code: str, former_column: str, operator: str, argument: str):
+    def move(self, party: int, piece_code: str, former_column: str, operator: str, argument: str,
+             annotate: bool):
         put_piece = self._locate_piece(party, piece_code, former_column)
 
         new_x, new_y = self._calculate_destination_of_move(put_piece, operator, argument)
 
         self._board[put_piece.y][put_piece.x] = None
         self._board[new_y][new_x] = put_piece
+
+        if annotate:
+            self._move_locations.add((put_piece.x, put_piece.y))
+            self._move_locations.add((new_x, new_y))
+
         put_piece.x = new_x
         put_piece.y = new_y
 
@@ -205,8 +213,14 @@ class _Board:
                     continue
                 yield piece
 
+        for move_location in self._move_locations:
+            x, y = move_location
+            location_blank = self._board[y][x] is None
+            annotation_name = ANNOTATION_NAME_BLANK_MOVE if location_blank else ANNOTATION_NAME_PIECE_MOVE
+            yield PutAnnotation(annotation_name, x, y)
 
-def iterate_wxf_tokens(content: str, moves_to_play: str):
+
+def iterate_wxf_tokens(content: str, moves_to_play: str, annotate_last_move: bool):
     board = _Board()
 
     fen_match = _FEN_EXTRACTOR.search(content)
@@ -264,8 +278,9 @@ def iterate_wxf_tokens(content: str, moves_to_play: str):
             print(
                 f'Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}'
             )
+            annotate = annotate_last_move and (i == len(included_moves) - 1)
 
-            board.move(party=party, **single_move.groupdict())
+            board.move(party=party, annotate=annotate, **single_move.groupdict())
 
             party = {
                 RED: BLACK,

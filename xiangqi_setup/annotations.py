@@ -1,6 +1,9 @@
 # Copyright (C) 2021 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under GNU Affero General Public License version 3.0 or later
 
+ANNOTATION_NAME_BLANK_MOVE = 'blank_move'
+ANNOTATION_NAME_PIECE_MOVE = 'piece_move'
+
 ANNOTATION_NAME_OF_ATOM_CODE = {
     'a+0+1': 'arrow_plus_0_plus_1',
     'a+0+2': 'arrow_plus_0_plus_2',
@@ -54,10 +57,10 @@ ANNOTATION_NAME_OF_ATOM_CODE = {
     'a-8+0': 'arrow_minus_8_plus_0',
     'bb': 'blank_bad',
     'bg': 'blank_good',
-    'bm': 'blank_move',
+    'bm': ANNOTATION_NAME_BLANK_MOVE,
     'pb': 'piece_bad',
     'pg': 'piece_good',
-    'pm': 'piece_move',
+    'pm': ANNOTATION_NAME_PIECE_MOVE,
 }
 
 

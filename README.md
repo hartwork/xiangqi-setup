@@ -82,12 +82,6 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --debug               enable debugging (e.g. mark corners of the board)
-  --moves COUNT         how many moves of a game in a WXF file to play, e.g.
-                        "3" would play the first move of red, the first move of
-                        black and the second move of red and then skip any
-                        remaining moves, "all" would play all moves, "-1" all
-                        moves but the last, "-2" all but the last two (default:
-                        "0")
   --version             show program's version number and exit
 
 theme selection:
@@ -108,6 +102,14 @@ scaling:
                         factor to scale pieces by (0.0 to 1.2, default: 0.9)
   --scale-annotations FACTOR
                         factor to scale annotations by (0.0 to 1.2, default: 0.9)
+
+WXF format arguments:
+  --moves COUNT         how many moves to play (for a file with moves history),
+                        e.g. "3" would play the first move of red, the first
+                        move of black and the second move of red and then skip
+                        any remaining moves, "all" would play all moves, "-1"
+                        all moves but the last, "-2" all but the last two
+                        (default: "0")
 
 board themes (16 available, in alphabetic order):
   a4_blank_2cm_margin                        (license: CC0-1.0)

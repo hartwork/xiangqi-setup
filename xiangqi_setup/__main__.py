@@ -212,23 +212,24 @@ def main():
         f'factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
     )
 
+    wxf_options = parser.add_argument_group('WXF format arguments')
+    wxf_options.add_argument('--moves',
+                             default='0',
+                             dest='moves_to_play',
+                             metavar='COUNT',
+                             type=_type_moves_to_play,
+                             help=_format_right_help_column(
+                                 'how many moves to play (for a file with moves history)'
+                                 ', e.g. "3" would play the first move of red,'
+                                 ' the first move of black and the second move of red'
+                                 ' and then skip any remaining moves,'
+                                 f' "{ALL_MOVES}" would play all moves,'
+                                 ' "-1" all moves but the last, "-2" all but the last two'
+                                 ' (default: "%(default)s")'))
+
     parser.add_argument('--debug',
                         action='store_true',
                         help='enable debugging (e.g. mark corners of the board)')
-
-    parser.add_argument('--moves',
-                        default='0',
-                        dest='moves_to_play',
-                        metavar='COUNT',
-                        type=_type_moves_to_play,
-                        help=_format_right_help_column(
-                            'how many moves of a game in a WXF file to play'
-                            ', e.g. "3" would play the first move of red,'
-                            ' the first move of black and the second move of red'
-                            ' and then skip any remaining moves,'
-                            f' "{ALL_MOVES}" would play all moves,'
-                            ' "-1" all moves but the last, "-2" all but the last two'
-                            ' (default: "%(default)s")'))
 
     parser.add_argument('input_file',
                         metavar='INPUT_FILE',

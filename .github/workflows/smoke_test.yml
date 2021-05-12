@@ -49,4 +49,4 @@ jobs:
           xiangqi-setup --help
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.fen demo-fen.svg
           xiangqi-setup --debug "${GITHUB_WORKSPACE}"/doc/demo.wxf demo-wxf.svg
-          xiangqi-setup --debug --moves 54 "${GITHUB_WORKSPACE}"/doc/demo-with-history-playok.{wxf,svg}
+          xiangqi-setup --debug --moves 54 --annotate-last-move "${GITHUB_WORKSPACE}"/doc/demo-with-history-playok.{wxf,svg}

@@ -17,6 +17,7 @@ except ImportError:
 
 
 class BoardPainter:
+
     def __init__(
         self,
         line_thickness_pixel,

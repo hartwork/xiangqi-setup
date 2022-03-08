@@ -84,6 +84,7 @@ class _PlayerRelativeView:
        .     . . . . . . .     .
     (1, ?+9) . . . . . . . (9, ?+9)  # red player home base
     """
+
     def __init__(self, party):
         self._party = party
 
@@ -101,6 +102,7 @@ class _PlayerRelativeView:
 
 
 class _Board:
+
     def __init__(self):
         self._board = [[None for _column in range(9)] for _row in range(10)]
         self._move_locations = set()

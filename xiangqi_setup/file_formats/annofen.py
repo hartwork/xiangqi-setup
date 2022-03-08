@@ -41,6 +41,7 @@ def is_annofen_content(content: str) -> bool:
 
 
 def iterate_annofen_tokens(content: str):
+
     def _create_piece(x: int, y: int, letter: str) -> PutPiece:
         party = BLACK if letter.islower() else RED
         piece = PIECE_OF_UPPER_LETTER[letter.upper()]

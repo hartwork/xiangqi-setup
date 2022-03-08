@@ -65,6 +65,7 @@ ANNOTATION_NAME_OF_ATOM_CODE = {
 
 
 class PutAnnotation:
+
     def __init__(self, annotation_name: str, x: float, y: float):
         self.annotation_name = annotation_name
         self.x = x

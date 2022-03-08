@@ -12,6 +12,7 @@ PAWN, \
 
 
 class PutPiece:
+
     def __init__(self, party, piece, x, y):
         self.party = party
         self.piece = piece

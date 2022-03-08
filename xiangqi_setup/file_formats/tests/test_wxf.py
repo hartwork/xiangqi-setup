@@ -12,6 +12,7 @@ from ..wxf import _Board, _PlayerRelativeView
 
 
 class PlayerRelativeViewTest(TestCase):
+
     @parameterized.expand([
         (RED, 1, 8),
         (RED, 9, 0),
@@ -50,6 +51,7 @@ class PlayerRelativeViewTest(TestCase):
 
 
 class BoardTest(TestCase):
+
     @parameterized.expand([
         (CHARIOT, RED, (3, 5), '+', '3', (3, 8)),
         (CHARIOT, BLACK, (3, 5), '+', '3', (3, 2)),

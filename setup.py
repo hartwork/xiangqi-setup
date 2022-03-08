@@ -46,7 +46,7 @@ if __name__ == '__main__':
                 'xiangqi-setup = xiangqi_setup.__main__:main',
             ],
         },
-        python_requires='>=3.6',
+        python_requires='>=3.7',
         setup_requires=[
             'setuptools>=38.6.0',  # for long_description_content_type
         ],
@@ -68,9 +68,10 @@ if __name__ == '__main__':
             'Natural Language :: English',
             'Programming Language :: Python',
             'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 3.6',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
+            'Programming Language :: Python :: 3.9',
+            'Programming Language :: Python :: 3.10',
             'Programming Language :: Python :: 3 :: Only',
             'Topic :: Artistic Software',
             'Topic :: Games/Entertainment :: Board Games',

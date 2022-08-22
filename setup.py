@@ -28,8 +28,7 @@ def _generate_package_data():
 if __name__ == '__main__':
     setup(
         name='xiangqi-setup',
-        description=
-        'Command line tool to generate razor-sharp Xiangqi (Chinese chess) setup graphics',
+        description='Command line tool to generate razor-sharp Xiangqi (Chinese chess) setup graphics',
         long_description=open('README.md').read(),
         long_description_content_type='text/markdown',
         license='GNU Affero General Public License version 3.0 or later',

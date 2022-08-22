@@ -200,8 +200,7 @@ def main():
         metavar='FACTOR',
         type=float,
         default=0.9,
-        help=
-        f'factor to scale pieces by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
+        help=f'factor to scale pieces by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
     )
     scaling_options.add_argument(
         '--scale-annotations',
@@ -209,8 +208,7 @@ def main():
         metavar='FACTOR',
         type=float,
         default=0.9,
-        help=
-        f'factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
+        help=f'factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
     )
 
     wxf_options = parser.add_argument_group('WXF format arguments')

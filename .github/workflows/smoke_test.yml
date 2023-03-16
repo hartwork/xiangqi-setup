@@ -4,8 +4,10 @@
 name: Build and smoke test
 
 on:
-- pull_request
-- push
+  pull_request:
+  push:
+  schedule:
+    - cron: '0 16 * * 5'  # Every Friday 4pm
 
 jobs:
   build_and_test:

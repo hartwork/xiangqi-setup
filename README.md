@@ -131,11 +131,12 @@ board themes (16 available, in alphabetic order):
   western_red_wine                           (license: CC0-1.0)
   xiexie_2_5_0_remake_minimal                (license: CC0-1.0)
 
-piece themes (9 available, in alphabetic order):
+piece themes (10 available, in alphabetic order):
   ccbridge_3_0_beta4_default_preview_remake  (license: CC0-1.0)
   commons_xiangqi_pieces_print_2010          (license: FDL-1.2+ / CC-BY-SA-4.0)
   commons_xiangqi_pieces_print_2010_bw_heavy (license: FDL-1.2+ / CC-BY-SA-4.0)
   euro_xiangqi_js                            (license: CC-BY-4.0)
+  euro_xiangqi_js_tricolor                   (license: CC-BY-4.0)
   latex_xqlarge_2006_chinese_autotrace       (license: non-commercial)
   latex_xqlarge_2006_chinese_potrace         (license: non-commercial)
   playok_2014_chinese                        (license: CC0-1.0)

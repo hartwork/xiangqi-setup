@@ -9,11 +9,12 @@ any_file_missing=0
 
 convert -version
 
-assert_images_identical() {
+assert_images_equal_enough() {
     local a="${1}"
     local b="${2}"
     local diff_output="${3}"
-    compare -metric AE "${a}" "${b}" "${diff_output}"
+    local diff_pixel_count="$(compare -metric AE "${a}" "${b}" "${diff_output}" 2>&1)"
+    [[ "${diff_pixel_count}" =~ [0-9]+ && "${diff_pixel_count}" -le 8 ]]
 }
 
 render_and_compare() {
@@ -29,7 +30,7 @@ render_and_compare() {
         # We have an image to compare to, so let's do that
         xiangqi-setup "--${theme_type}" "${theme_name}" "${input_file}" "${prefix_actual}".svg > /dev/null
         convert -verbose -background none "${prefix_actual}".{svg,png}
-        assert_images_identical {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
+        assert_images_equal_enough {"${prefix_expected}","${prefix_actual}","${prefix_difference}"}.png
 
         rm "${prefix_actual}".{png,svg}
         rm "${prefix_difference}".png

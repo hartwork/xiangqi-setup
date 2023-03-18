@@ -1,3 +1,7 @@
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Build and smoke test](https://github.com/hartwork/xiangqi-setup/actions/workflows/smoke_test.yml/badge.svg)](https://github.com/hartwork/xiangqi-setup/actions/workflows/smoke_test.yml)
+
+
 # xiangqi-setup (and xiangqi-board)
 
 ## Overview

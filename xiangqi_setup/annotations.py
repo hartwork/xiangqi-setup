@@ -70,3 +70,9 @@ class PutAnnotation:
         self.annotation_name = annotation_name
         self.x = x
         self.y = y
+
+
+class InvalidAnnotationCode(ValueError):
+
+    def __init__(self, atom_code):
+        super().__init__(f'Invalid annotation code {atom_code!r}')

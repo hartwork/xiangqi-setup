@@ -3,19 +3,15 @@
 
 import re
 
-from ..annotations import ANNOTATION_NAME_OF_ATOM_CODE, PutAnnotation
+from ..annotations import ANNOTATION_NAME_OF_ATOM_CODE, InvalidAnnotationCode, PutAnnotation
 from ..parties import BLACK, RED
 from ..pieces import PutPiece
 from .fen import PIECE_OF_UPPER_LETTER
 
 _piece_letters = list(
     PIECE_OF_UPPER_LETTER.keys()) + [letter.lower() for letter in PIECE_OF_UPPER_LETTER.keys()]
-_escaped_annotation_names = [
-    re.escape(atom_code) for atom_code in ANNOTATION_NAME_OF_ATOM_CODE.keys()
-]
-
 _single_piece_pattern = '[' + ''.join(_piece_letters) + ']'
-_single_annotation_pattern = '<(?:' + '|'.join(_escaped_annotation_names) + ')>'
+_single_annotation_pattern = '<(?:[^>]+)>'
 _single_annotation_plus_capture_pattern = _single_annotation_pattern.replace(
     '(?:', '(?P<atom_code>')
 _atom_pattern = f'(?:{_single_piece_pattern}|{_single_annotation_pattern})'
@@ -48,7 +44,10 @@ def iterate_annofen_tokens(content: str):
         return PutPiece(party, piece, x, y)
 
     def _create_annotation(x: int, y: int, atom_code: str) -> PutAnnotation:
-        annotation_name = ANNOTATION_NAME_OF_ATOM_CODE[atom_code]
+        try:
+            annotation_name = ANNOTATION_NAME_OF_ATOM_CODE[atom_code]
+        except KeyError:
+            raise InvalidAnnotationCode(atom_code)
         return PutAnnotation(annotation_name=annotation_name, x=x, y=y)
 
     seen_fen_before = False

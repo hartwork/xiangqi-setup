@@ -8,7 +8,7 @@ If you consider contributing a new feature, please [open a new issue](https://gi
 
 In order to develop or debug **xiangqi-setup** locally, you could do:
 
-```console
+```shell
 cd "$(mktemp -d)"
 git clone --depth 1 https://github.com/hartwork/xiangqi-setup  # or your clone's repo URI
 cd xiangqi-setup/

@@ -51,6 +51,7 @@ if __name__ == '__main__':
         ],
         install_requires=[
             'pyyaml',
+            'setuptools',  # due to use of pkg_resources
             # NOTE: svgutils 0.3.2 was incompatible to 0.3.1 plus semver guarantees
             #       start from >=1.0.0 only (rule 4) so svgutils is pinned here.
             # KEEP IN SYNC with README.md, painter.py and compose.py
@@ -71,6 +72,7 @@ if __name__ == '__main__':
             'Programming Language :: Python :: 3.9',
             'Programming Language :: Python :: 3.10',
             'Programming Language :: Python :: 3.11',
+            'Programming Language :: Python :: 3.12',
             'Programming Language :: Python :: 3 :: Only',
             'Topic :: Artistic Software',
             'Topic :: Games/Entertainment :: Board Games',

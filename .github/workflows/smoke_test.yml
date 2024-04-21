@@ -3,11 +3,16 @@
 
 name: Build and smoke test
 
+# Drop permissions to minimum, for security
+permissions:
+  contents: read
+
 on:
   pull_request:
   push:
   schedule:
     - cron: '0 16 * * 5'  # Every Friday 4pm
+  workflow_dispatch:
 
 jobs:
   build_and_test:

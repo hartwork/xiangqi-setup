@@ -20,7 +20,7 @@ repos:
         exclude: '\.wxf$'
 
   - repo: https://github.com/pycqa/flake8
-    rev: 7.1.0
+    rev: 7.1.1
     hooks:
       - id: flake8
 

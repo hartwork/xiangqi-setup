@@ -32,23 +32,26 @@ def _get_self_dir():
 
 def _get_themes_home_dir():
     self_dir = _get_self_dir()
-    if os.path.exists(os.path.join(self_dir, '..', '.git')):
-        return os.path.join(self_dir, 'themes')
+    if os.path.exists(os.path.join(self_dir, "..", ".git")):
+        return os.path.join(self_dir, "themes")
     else:
-        return resource_filename('xiangqi_setup', 'themes')
+        return resource_filename("xiangqi_setup", "themes")
 
 
 def check(options):
     if _PIECE_SCALE_MIN < options.piece_scale <= _PIECE_SCALE_MAX:
         pass
     else:
-        print('ERROR: Piece scale must be larger than %.1f and greater or equal %.1f .' \
-                % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX), file=sys.stderr)
+        print(
+            "ERROR: Piece scale must be larger than %.1f and greater or equal %.1f ."
+            % (_PIECE_SCALE_MIN, _PIECE_SCALE_MAX),
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     if options.width_centimeter is not None:
         options.width_pixel = cm_to_pixel(options.width_centimeter, options.resolution_dpi)
-    delattr(options, 'width_centimeter')
+    delattr(options, "width_centimeter")
     if options.width_pixel is None:
         options.width_pixel = cm_to_pixel(_DEFAULT_WIDTH_CM, options.resolution_dpi)
 
@@ -60,9 +63,10 @@ def run(options):
             atoms_to_put = list(iterate_annofen_tokens(content))
         elif is_xay_content(content):
             atoms_to_put = list(iterate_xay_tokens(content))
-        elif 'WXF' in content:
+        elif "WXF" in content:
             atoms_to_put = list(
-                iterate_wxf_tokens(content, options.moves_to_play, options.annotate_last_move))
+                iterate_wxf_tokens(content, options.moves_to_play, options.annotate_last_move)
+            )
         else:
             atoms_to_put = list(iterate_fen_tokens(content))
 
@@ -71,21 +75,21 @@ def run(options):
 
 
 def _theme_name(text):
-    if '/' in text:
-        raise ValueError('Theme name cannot contain slashes')
+    if "/" in text:
+        raise ValueError("Theme name cannot contain slashes")
     return text
 
 
-_theme_name.__name__ = 'theme name'  # used by arparse error message
+_theme_name.__name__ = "theme name"  # used by arparse error message
 
 
 def _discover_themes_in(directory):
     for _root, dirs, _files in walk(directory, topdown=True):
-        return [d for d in dirs if d != '__pycache__']
+        return [d for d in dirs if d != "__pycache__"]
 
 
 def _format_right_help_column(text):
-    return '\n'.join(textwrap.wrap(text, width=55))
+    return "\n".join(textwrap.wrap(text, width=55))
 
 
 def _type_moves_to_play(text):
@@ -94,19 +98,19 @@ def _type_moves_to_play(text):
     return text
 
 
-_type_moves_to_play.__name__ = 'move count'
+_type_moves_to_play.__name__ = "move count"
 
 
 def main():
     themes_home_dir = _get_themes_home_dir()
-    board_themes_home_dir = os.path.join(themes_home_dir, 'board')
-    piece_themes_home_dir = os.path.join(themes_home_dir, 'pieces')
-    annotation_themes_home_dir = os.path.join(themes_home_dir, 'annotations')
+    board_themes_home_dir = os.path.join(themes_home_dir, "board")
+    piece_themes_home_dir = os.path.join(themes_home_dir, "pieces")
+    annotation_themes_home_dir = os.path.join(themes_home_dir, "annotations")
 
     epilog_chunks = []
 
     # Are we in --help mode (or can we save wasting time collecting all that data)
-    if '--help' in sys.argv[1:] or '-h' in sys.argv[1:]:
+    if "--help" in sys.argv[1:] or "-h" in sys.argv[1:]:
         board_theme_choices = []
         piece_theme_choices = []
         annotation_theme_choices = []
@@ -118,19 +122,22 @@ def main():
             target_list += _discover_themes_in(directory)
 
         for category, category_home_dir, source_list, blank_line_after in (
-            ('board themes', board_themes_home_dir, board_theme_choices, True),
-            ('piece themes', piece_themes_home_dir, piece_theme_choices, True),
-            ('annotation themes', annotation_themes_home_dir, annotation_theme_choices, False),
+            ("board themes", board_themes_home_dir, board_theme_choices, True),
+            ("piece themes", piece_themes_home_dir, piece_theme_choices, True),
+            ("annotation themes", annotation_themes_home_dir, annotation_theme_choices, False),
         ):
-            epilog_chunks.append('%s (%d available, in alphabetic order):' %
-                                 (category, len(source_list)))
+            epilog_chunks.append(
+                "%s (%d available, in alphabetic order):" % (category, len(source_list))
+            )
             for name in sorted(source_list, key=lambda x: x.lower()):
                 license_choices = get_license_choices_of_theme(
-                    os.path.join(category_home_dir, name))
-                epilog_chunks.append('  {:<42} (license: {})'.format(name,
-                                                                     ' / '.join(license_choices)))
+                    os.path.join(category_home_dir, name)
+                )
+                epilog_chunks.append(
+                    "  {:<42} (license: {})".format(name, " / ".join(license_choices))
+                )
             if blank_line_after:
-                epilog_chunks.append('')
+                epilog_chunks.append("")
 
     usage = textwrap.dedent("""\
         xiangqi-setup [OPTIONS] INPUT_FILE OUTPUT_FILE
@@ -139,124 +146,146 @@ def main():
     """)
 
     parser = argparse.ArgumentParser(
-        description='Generate razor-sharp Xiangqi (Chinese chess) setup graphics',
+        description="Generate razor-sharp Xiangqi (Chinese chess) setup graphics",
         usage=usage,
-        epilog='\n'.join(epilog_chunks),
+        epilog="\n".join(epilog_chunks),
         formatter_class=argparse.RawTextHelpFormatter,
     )
 
-    theme_options = parser.add_argument_group('theme selection')
-    theme_options.add_argument('--board',
-                               dest='board_theme_dir',
-                               metavar='THEME',
-                               type=_theme_name,
-                               default='clean_alpha',
-                               help=_format_right_help_column(
-                                   'name of board theme to use (default: "%(default)s")'
-                                   '; please check the list of available themes below'))
-    theme_options.add_argument('--pieces',
-                               dest='piece_theme_dir',
-                               metavar='THEME',
-                               type=_theme_name,
-                               default='retro_simple',
-                               help=_format_right_help_column(
-                                   'name of piece theme to use (default: "%(default)s")'
-                                   '; please check the list of available themes below'))
-    theme_options.add_argument('--annotations',
-                               dest='annotation_theme_dir',
-                               metavar='THEME',
-                               type=_theme_name,
-                               default='colors_alpha',
-                               help=_format_right_help_column(
-                                   'name of annotation theme to use (default: "%(default)s")'
-                                   '; please check the list of available themes below'))
+    theme_options = parser.add_argument_group("theme selection")
+    theme_options.add_argument(
+        "--board",
+        dest="board_theme_dir",
+        metavar="THEME",
+        type=_theme_name,
+        default="clean_alpha",
+        help=_format_right_help_column(
+            'name of board theme to use (default: "%(default)s")'
+            "; please check the list of available themes below"
+        ),
+    )
+    theme_options.add_argument(
+        "--pieces",
+        dest="piece_theme_dir",
+        metavar="THEME",
+        type=_theme_name,
+        default="retro_simple",
+        help=_format_right_help_column(
+            'name of piece theme to use (default: "%(default)s")'
+            "; please check the list of available themes below"
+        ),
+    )
+    theme_options.add_argument(
+        "--annotations",
+        dest="annotation_theme_dir",
+        metavar="THEME",
+        type=_theme_name,
+        default="colors_alpha",
+        help=_format_right_help_column(
+            'name of annotation theme to use (default: "%(default)s")'
+            "; please check the list of available themes below"
+        ),
+    )
 
-    scaling_options = parser.add_argument_group('scaling')
+    scaling_options = parser.add_argument_group("scaling")
     width_options = scaling_options.add_mutually_exclusive_group()
-    width_options.add_argument('--width-px',
-                               dest='width_pixel',
-                               metavar='PIXEL',
-                               type=float,
-                               help=('width of the output in pixels'
-                                     f' (default: ~{_DEFAULT_WIDTH_PIXEL:.2f},'
-                                     f' i.e. {_DEFAULT_WIDTH_CM}cm'
-                                     f' at {_DEFAULT_RESOLUTION_DPI}dpi)'))
-    width_options.add_argument('--width-cm',
-                               dest='width_centimeter',
-                               metavar='CENTIMETER',
-                               type=float,
-                               help=('width of the output in centimeters'
-                                     f' (default: {_DEFAULT_WIDTH_CM})'))
-    scaling_options.add_argument('--dpi',
-                                 dest='resolution_dpi',
-                                 metavar='FLOAT',
-                                 type=float,
-                                 default=_DEFAULT_RESOLUTION_DPI,
-                                 help=('resolution of the output in dots per inch'
-                                       ' (default: %(default)s)'))
-    scaling_options.add_argument(
-        '--scale-pieces',
-        dest='piece_scale',
-        metavar='FACTOR',
+    width_options.add_argument(
+        "--width-px",
+        dest="width_pixel",
+        metavar="PIXEL",
         type=float,
-        default=0.9,
-        help=f'factor to scale pieces by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
+        help=(
+            "width of the output in pixels"
+            f" (default: ~{_DEFAULT_WIDTH_PIXEL:.2f},"
+            f" i.e. {_DEFAULT_WIDTH_CM}cm"
+            f" at {_DEFAULT_RESOLUTION_DPI}dpi)"
+        ),
+    )
+    width_options.add_argument(
+        "--width-cm",
+        dest="width_centimeter",
+        metavar="CENTIMETER",
+        type=float,
+        help=("width of the output in centimeters" f" (default: {_DEFAULT_WIDTH_CM})"),
     )
     scaling_options.add_argument(
-        '--scale-annotations',
-        dest='annotation_scale',
-        metavar='FACTOR',
+        "--dpi",
+        dest="resolution_dpi",
+        metavar="FLOAT",
+        type=float,
+        default=_DEFAULT_RESOLUTION_DPI,
+        help=("resolution of the output in dots per inch" " (default: %(default)s)"),
+    )
+    scaling_options.add_argument(
+        "--scale-pieces",
+        dest="piece_scale",
+        metavar="FACTOR",
         type=float,
         default=0.9,
-        help=f'factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)'
+        help=f"factor to scale pieces by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)",
+    )
+    scaling_options.add_argument(
+        "--scale-annotations",
+        dest="annotation_scale",
+        metavar="FACTOR",
+        type=float,
+        default=0.9,
+        help=f"factor to scale annotations by ({_PIECE_SCALE_MIN:.1f} to {_PIECE_SCALE_MAX:.1f}, default: %(default)s)",
     )
 
-    wxf_options = parser.add_argument_group('WXF format arguments')
-    wxf_options.add_argument('--moves',
-                             default='0',
-                             dest='moves_to_play',
-                             metavar='COUNT',
-                             type=_type_moves_to_play,
-                             help=_format_right_help_column(
-                                 'how many moves to play (for a file with moves history)'
-                                 ', e.g. "3" would play the first move of red,'
-                                 ' the first move of black and the second move of red'
-                                 ' and then skip any remaining moves,'
-                                 f' "{ALL_MOVES}" would play all moves,'
-                                 ' "-1" all moves but the last, "-2" all but the last two'
-                                 ' (default: "%(default)s")'))
-    wxf_options.add_argument('--annotate-last-move',
-                             default=False,
-                             dest='annotate_last_move',
-                             action='store_true',
-                             help=_format_right_help_column(
-                                 'Add annotations "blank_move" and "piece_move"'
-                                 ' to the source and target locations of the last move'))
+    wxf_options = parser.add_argument_group("WXF format arguments")
+    wxf_options.add_argument(
+        "--moves",
+        default="0",
+        dest="moves_to_play",
+        metavar="COUNT",
+        type=_type_moves_to_play,
+        help=_format_right_help_column(
+            "how many moves to play (for a file with moves history)"
+            ', e.g. "3" would play the first move of red,'
+            " the first move of black and the second move of red"
+            " and then skip any remaining moves,"
+            f' "{ALL_MOVES}" would play all moves,'
+            ' "-1" all moves but the last, "-2" all but the last two'
+            ' (default: "%(default)s")'
+        ),
+    )
+    wxf_options.add_argument(
+        "--annotate-last-move",
+        default=False,
+        dest="annotate_last_move",
+        action="store_true",
+        help=_format_right_help_column(
+            'Add annotations "blank_move" and "piece_move"'
+            " to the source and target locations of the last move"
+        ),
+    )
 
-    parser.add_argument('--debug',
-                        action='store_true',
-                        help='enable debugging (e.g. mark corners of the board)')
+    parser.add_argument(
+        "--debug", action="store_true", help="enable debugging (e.g. mark corners of the board)"
+    )
 
-    parser.add_argument('input_file',
-                        metavar='INPUT_FILE',
-                        help='location of WXF/FEN/annoFEN/XAY file to render')
-    parser.add_argument('output_file',
-                        metavar='OUTPUT_FILE',
-                        help='location of SVG output file to write')
+    parser.add_argument(
+        "input_file", metavar="INPUT_FILE", help="location of WXF/FEN/annoFEN/XAY file to render"
+    )
+    parser.add_argument(
+        "output_file", metavar="OUTPUT_FILE", help="location of SVG output file to write"
+    )
 
-    parser.add_argument('--version', action='version', version='%(prog)s ' + VERSION_STR)
+    parser.add_argument("--version", action="version", version="%(prog)s " + VERSION_STR)
 
     options = parser.parse_args()
 
     # Turn theme names into paths
     options.board_theme_dir = os.path.join(board_themes_home_dir, options.board_theme_dir)
     options.piece_theme_dir = os.path.join(piece_themes_home_dir, options.piece_theme_dir)
-    options.annotation_theme_dir = os.path.join(annotation_themes_home_dir,
-                                                options.annotation_theme_dir)
+    options.annotation_theme_dir = os.path.join(
+        annotation_themes_home_dir, options.annotation_theme_dir
+    )
 
     check(options)
     run(options)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

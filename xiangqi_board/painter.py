@@ -8,16 +8,17 @@ try:
     from svgutils.transform import LineElement, SVGFigure
 except ImportError:
     import sys
+
     print(
-        'Please install version 0.3.4 of svgutils'
-        ' (https://github.com/btel/svg_utils) first,'
+        "Please install version 0.3.4 of svgutils"
+        " (https://github.com/btel/svg_utils) first,"
         ' e.g. by running "pip install svgutils==0.3.4".',
-        file=sys.stderr)
+        file=sys.stderr,
+    )
     sys.exit(1)
 
 
 class BoardPainter:
-
     def __init__(
         self,
         line_thickness_pixel,
@@ -43,10 +44,18 @@ class BoardPainter:
         self._cross_gap_pixel = cross_gap_pixel
 
     def _playing_field_offset_left(self):
-        return self._border_thickness_pixel + self._border_gap_width_pixel + self._line_thickness_pixel / 2.0
+        return (
+            self._border_thickness_pixel
+            + self._border_gap_width_pixel
+            + self._line_thickness_pixel / 2.0
+        )
 
     def _playing_field_offset_top(self):
-        return self._border_thickness_pixel + self._border_gap_height_pixel + self._line_thickness_pixel / 2.0
+        return (
+            self._border_thickness_pixel
+            + self._border_gap_height_pixel
+            + self._line_thickness_pixel / 2.0
+        )
 
     def _cross(self, location):
         column, row = location
@@ -62,12 +71,20 @@ class BoardPainter:
         self._raw_line(self._cross(start), self._cross(end), self._line_thickness_pixel)
 
     def _outer_board_width_pixel(self):
-        return 2 * self._border_thickness_pixel + 2 * self._border_gap_width_pixel + self._line_thickness_pixel \
-                + 8 * self._field_width_px
+        return (
+            2 * self._border_thickness_pixel
+            + 2 * self._border_gap_width_pixel
+            + self._line_thickness_pixel
+            + 8 * self._field_width_px
+        )
 
     def _outer_board_height_pixel(self):
-        return 2 * self._border_thickness_pixel + 2 * self._border_gap_height_pixel + self._line_thickness_pixel \
-                + 9 * self._field_height_px
+        return (
+            2 * self._border_thickness_pixel
+            + 2 * self._border_gap_height_pixel
+            + self._line_thickness_pixel
+            + 9 * self._field_height_px
+        )
 
     def _draw_border(self):
         # Vertical lines
@@ -78,11 +95,10 @@ class BoardPainter:
         Y_TOP_CENTER = self._border_thickness_pixel / 2.0
         Y_BOTTOM_CENTER = HEIGHT - self._border_thickness_pixel / 2.0
         for start, end in (
-                # Vertical lines
+            # Vertical lines
             ((X_LEFT_CENTER, 0), (X_LEFT_CENTER, HEIGHT)),
             ((X_RIGHT_CENTER, 0), (X_RIGHT_CENTER, HEIGHT)),
-
-                # Horizontal lines
+            # Horizontal lines
             ((0, Y_TOP_CENTER), (WIDTH, Y_TOP_CENTER)),
             ((0, Y_BOTTOM_CENTER), (WIDTH, Y_BOTTOM_CENTER)),
         ):
@@ -120,7 +136,11 @@ class BoardPainter:
             if not wanted:
                 continue
 
-            GAP = self._line_thickness_pixel / 2.0 + self._cross_gap_pixel + self._cross_thickness_pixel / 2.0
+            GAP = (
+                self._line_thickness_pixel / 2.0
+                + self._cross_gap_pixel
+                + self._cross_thickness_pixel / 2.0
+            )
             start_x = center[0] + x_factor * GAP
             start_y = center[1] + y_factor * GAP
 
@@ -128,39 +148,41 @@ class BoardPainter:
             end_x = start_x
             end_y = start_y + y_factor * self._cross_width_pixel
             SHIFT_Y = y_factor * self._cross_thickness_pixel / 2.0
-            self._raw_line((start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y),
-                           self._cross_thickness_pixel)
+            self._raw_line(
+                (start_x, start_y - SHIFT_Y), (end_x, end_y - SHIFT_Y), self._cross_thickness_pixel
+            )
 
             # Horizontal part
             end_x = start_x + x_factor * self._cross_width_pixel
             end_y = start_y
             SHIFT_X = x_factor * self._cross_thickness_pixel / 2.0
-            self._raw_line((start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y),
-                           self._cross_thickness_pixel)
+            self._raw_line(
+                (start_x - SHIFT_X, start_y), (end_x - SHIFT_X, end_y), self._cross_thickness_pixel
+            )
 
     def _draw_setup_helpers(self):
         for column, row in (
-                # Black cannons
+            # Black cannons
             (1, 2),
             (7, 2),
-                # Black pawns
+            # Black pawns
             (0, 3),
             (2, 3),
             (4, 3),
             (6, 3),
             (8, 3),
-                # Red pawns
+            # Red pawns
             (0, 6),
             (2, 6),
             (4, 6),
             (6, 6),
             (8, 6),
-                # Red cannons
+            # Red cannons
             (1, 7),
             (7, 7),
         ):
-            left = (column > 0)
-            right = (column < 8)
+            left = column > 0
+            right = column < 8
             self._add_setup_helper(column, row, left, right)
 
     def draw(self):
@@ -173,17 +195,17 @@ class BoardPainter:
     def write_svg(self, filename):
         WIDTH = self._outer_board_width_pixel()
         HEIGHT = self._outer_board_height_pixel()
-        output_fig = SVGFigure(Unit(f'{WIDTH}px'), Unit(f'{HEIGHT}px'))
+        output_fig = SVGFigure(Unit(f"{WIDTH}px"), Unit(f"{HEIGHT}px"))
         output_fig.append(self._lines)
         output_fig.save(filename)
 
     def write_board_ini(self, filename):
-        f = open(filename, 'w')
+        f = open(filename, "w")
         config = configparser.RawConfigParser()
-        config.add_section('Board')
-        config.set('Board', 'left', str(self._playing_field_offset_left()))
-        config.set('Board', 'top', str(self._playing_field_offset_top()))
-        config.set('Board', 'width', str(self._field_width_px * 8))
-        config.set('Board', 'height', str(self._field_height_px * 9))
+        config.add_section("Board")
+        config.set("Board", "left", str(self._playing_field_offset_left()))
+        config.set("Board", "top", str(self._playing_field_offset_top()))
+        config.set("Board", "width", str(self._field_width_px * 8))
+        config.set("Board", "height", str(self._field_height_px * 9))
         config.write(f)
         f.close()

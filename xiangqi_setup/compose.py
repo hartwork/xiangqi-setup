@@ -5,7 +5,6 @@ import configparser
 import errno
 import os
 from collections import defaultdict
-from typing import Tuple
 
 import yaml
 
@@ -79,7 +78,7 @@ def _length_string_to_pixel(text: str, resolution_dpi: float) -> float:
     return raw_value
 
 
-def _pixel_viewbox_of_figure(figure: SVGFigure, resolution_dpi: float) -> Tuple[float, float]:
+def _pixel_viewbox_of_figure(figure: SVGFigure, resolution_dpi: float) -> tuple[float, float]:
     # NOTE: Attribute "viewbox" (with lowercase "b") is ignored by Inkscape 1.0.1
     #       in practice so I'm following Inkscape here and ignore the lowercase
     #       edition, too.

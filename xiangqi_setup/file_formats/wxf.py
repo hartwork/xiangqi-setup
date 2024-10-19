@@ -10,22 +10,24 @@ from ..file_formats.fen import PIECE_OF_UPPER_LETTER, iterate_fen_tokens
 from ..parties import BLACK, RED
 from ..pieces import ADVISOR, CANNON, CHARIOT, ELEPHANT, HORSE, KING, PAWN, PutPiece
 
-ALL_MOVES = 'all'
+ALL_MOVES = "all"
 
-START_PARTY_RED = 'RED'
-START_PARTY_BLACK = 'BLACK'
+START_PARTY_RED = "RED"
+START_PARTY_BLACK = "BLACK"
 
-_SETUP_EXTRACTOR = re.compile('SETUP\\{([^}]+)\\}', re.MULTILINE)
-_MOVES_EXTRACTOR = re.compile('START\\{([^}]+)\\}END', re.MULTILINE)
+_SETUP_EXTRACTOR = re.compile("SETUP\\{([^}]+)\\}", re.MULTILINE)
+_MOVES_EXTRACTOR = re.compile("START\\{([^}]+)\\}END", re.MULTILINE)
 _SINGLE_MOVE_EXTRACTOR = re.compile(
-    '(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])')
-_ITEM_ITERATOR = re.compile(
-    '(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)'
+    "(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])"
 )
-_FEN_ELEMENT_PATERN = '[RHEAKCPNBrheakcpnb1-9]+'
+_ITEM_ITERATOR = re.compile(
+    "(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)"
+)
+_FEN_ELEMENT_PATERN = "[RHEAKCPNBrheakcpnb1-9]+"
 _FEN_EXTRACTOR = re.compile(
-    f'^FEN[ \\t]+(?P<field_state>{_FEN_ELEMENT_PATERN}(?:/{_FEN_ELEMENT_PATERN}){{9}})( (?P<starting_party>[rb]))?',
-    re.MULTILINE)
+    f"^FEN[ \\t]+(?P<field_state>{_FEN_ELEMENT_PATERN}(?:/{_FEN_ELEMENT_PATERN}){{9}})( (?P<starting_party>[rb]))?",
+    re.MULTILINE,
+)
 
 _UPPER_PIECE, _MIDDLE_PIECE, _LOWER_PIECE, _SINGLE_PIECE = range(4)
 
@@ -102,7 +104,6 @@ class _PlayerRelativeView:
 
 
 class _Board:
-
     def __init__(self):
         self._board = [[None for _column in range(9)] for _row in range(10)]
         self._move_locations = set()
@@ -116,12 +117,12 @@ class _Board:
         view = _PlayerRelativeView(put_piece.party)
 
         if put_piece.piece in (CHARIOT, KING, CANNON, PAWN):
-            if operator == '+':
+            if operator == "+":
                 new_x, new_y = put_piece.x, put_piece.y + view.y_diff_from(argument)
-            elif operator == '-':
+            elif operator == "-":
                 new_x, new_y = put_piece.x, put_piece.y - view.y_diff_from(argument)
             else:
-                assert operator == '.'
+                assert operator == "."
                 new_x, new_y = view.x_index_from(argument), put_piece.y
         elif put_piece.piece in (ADVISOR, ELEPHANT):
             diff_y = {
@@ -130,23 +131,23 @@ class _Board:
             }[put_piece.piece]
 
             new_x = view.x_index_from(argument)
-            if operator == '+':
+            if operator == "+":
                 new_y = put_piece.y + view.y_diff_from(diff_y)
-            elif operator == '-':
+            elif operator == "-":
                 new_y = put_piece.y - view.y_diff_from(diff_y)
             else:
-                raise ValueError(f'Bad operator: {operator!r}')
+                raise ValueError(f"Bad operator: {operator!r}")
         else:
             assert put_piece.piece == HORSE
             new_x = view.x_index_from(argument)
             diff_x = abs(put_piece.x - new_x)
             diff_y = 1 if diff_x == 2 else 2
-            if operator == '+':
+            if operator == "+":
                 new_y = put_piece.y + view.y_diff_from(diff_y)
-            elif operator == '-':
+            elif operator == "-":
                 new_y = put_piece.y - view.y_diff_from(diff_y)
             else:
-                raise ValueError(f'Bad operator: {operator!r}')
+                raise ValueError(f"Bad operator: {operator!r}")
 
         return new_x, new_y
 
@@ -154,25 +155,29 @@ class _Board:
         piece_type = PIECE_OF_UPPER_LETTER[piece_code.upper()]
         view = _PlayerRelativeView(party)
 
-        if former_column in ('+', '=', '-'):  # with two pieces on same column/file
-            if former_column == '+':
+        if former_column in ("+", "=", "-"):  # with two pieces on same column/file
+            if former_column == "+":
                 look_for = _UPPER_PIECE
-            elif former_column == '=':
+            elif former_column == "=":
                 look_for = _MIDDLE_PIECE
             else:
-                assert (former_column == '-')
+                assert former_column == "-"
                 look_for = _LOWER_PIECE
                 piece_x = None
         else:
-            assert (former_column in (str(i) for i in range(1, 9 + 1)))
+            assert former_column in (str(i) for i in range(1, 9 + 1))
             look_for = _SINGLE_PIECE
             piece_x = view.x_index_from(int(former_column))
 
         candidates = []
         for y, row in enumerate(self._board):
             for x, field in enumerate(row):
-                if (field is None or (look_for == _SINGLE_PIECE and x != piece_x)
-                        or field.piece != piece_type or field.party != party):
+                if (
+                    field is None
+                    or (look_for == _SINGLE_PIECE and x != piece_x)
+                    or field.piece != piece_type
+                    or field.party != party
+                ):
                     continue
                 candidates.append(field)
 
@@ -192,8 +197,15 @@ class _Board:
 
         return put_piece
 
-    def move(self, party: int, piece_code: str, former_column: str, operator: str, argument: str,
-             annotate: bool):
+    def move(
+        self,
+        party: int,
+        piece_code: str,
+        former_column: str,
+        operator: str,
+        argument: str,
+        annotate: bool,
+    ):
         put_piece = self._locate_piece(party, piece_code, former_column)
 
         new_x, new_y = self._calculate_destination_of_move(put_piece, operator, argument)
@@ -218,7 +230,9 @@ class _Board:
         for move_location in self._move_locations:
             x, y = move_location
             location_blank = self._board[y][x] is None
-            annotation_name = ANNOTATION_NAME_BLANK_MOVE if location_blank else ANNOTATION_NAME_PIECE_MOVE
+            annotation_name = (
+                ANNOTATION_NAME_BLANK_MOVE if location_blank else ANNOTATION_NAME_PIECE_MOVE
+            )
             yield PutAnnotation(annotation_name, x, y)
 
 
@@ -227,8 +241,8 @@ def iterate_wxf_tokens(content: str, moves_to_play: str, annotate_last_move: boo
 
     fen_match = _FEN_EXTRACTOR.search(content)
     if fen_match:
-        field_state_raw = fen_match.groupdict()['field_state']
-        starting_party = RED if fen_match.groupdict()['starting_party'] != 'b' else BLACK
+        field_state_raw = fen_match.groupdict()["field_state"]
+        starting_party = RED if fen_match.groupdict()["starting_party"] != "b" else BLACK
         for put_piece in iterate_fen_tokens(field_state_raw):
             board.put(put_piece)
     else:
@@ -238,17 +252,17 @@ def iterate_wxf_tokens(content: str, moves_to_play: str, annotate_last_move: boo
             setup_body = setup_match.group(1)
             for item_match in re.finditer(_ITEM_ITERATOR, setup_body):
                 gd = item_match.groupdict()
-                if gd['put_piece']:
-                    piece_letter, x_lower_alpha, y_0_9 = gd['put_piece']
+                if gd["put_piece"]:
+                    piece_letter, x_lower_alpha, y_0_9 = gd["put_piece"]
 
                     party = BLACK if piece_letter.islower() else RED
                     piece = PIECE_OF_UPPER_LETTER[piece_letter.upper()]
-                    x = ord(x_lower_alpha) - ord('a')
+                    x = ord(x_lower_alpha) - ord("a")
                     y = int(y_0_9)
 
                     board.put(PutPiece(party, piece, x, y))
         else:
-            print('No custom setup found, assuming default setup.', file=sys.stderr)
+            print("No custom setup found, assuming default setup.", file=sys.stderr)
             for put_piece in iterate_default_setup():
                 board.put(put_piece)
 
@@ -261,9 +275,9 @@ def iterate_wxf_tokens(content: str, moves_to_play: str, annotate_last_move: boo
             included_moves = available_moves
         else:
             slice_stop = int(moves_to_play)
-            if (slice_stop > len(available_moves) or slice_stop < -len(available_moves)):
+            if slice_stop > len(available_moves) or slice_stop < -len(available_moves):
                 raise ValueError(
-                    f'Requested number of moves {slice_stop!r} outside of range of {-len(available_moves)} to {len(available_moves)}'
+                    f"Requested number of moves {slice_stop!r} outside of range of {-len(available_moves)} to {len(available_moves)}"
                 )
             included_moves = available_moves[:slice_stop]
 
@@ -273,12 +287,12 @@ def iterate_wxf_tokens(content: str, moves_to_play: str, annotate_last_move: boo
         #       even when it is Black's turn.
         party = starting_party
         for i, single_move in enumerate(included_moves):
-            party_human = 'Red' if party == RED else 'Black'
+            party_human = "Red" if party == RED else "Black"
             move_human = single_move.group(0)
             if party == BLACK:
                 move_human = move_human.lower()  # again because of XieXie's all-uppercase
             print(
-                f'Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}'
+                f"Applying move {i + 1:>2}: Move {i // 2 + 1:>2} of {party_human:<5}: {move_human}"
             )
             annotate = annotate_last_move and (i == len(included_moves) - 1)
 

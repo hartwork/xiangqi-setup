@@ -6,35 +6,35 @@ import os
 from textwrap import dedent
 
 _LICENSE_DETAILS = {
-    'CC-BY-4.0': (
-        'Creative Commons Attribution 4.0',
-        'https://creativecommons.org/licenses/by/4.0/',
+    "CC-BY-4.0": (
+        "Creative Commons Attribution 4.0",
+        "https://creativecommons.org/licenses/by/4.0/",
     ),
-    'CC-BY-SA-4.0': (
-        'Creative Commons Attribution-ShareAlike 4.0',
-        'https://creativecommons.org/licenses/by-sa/4.0/',
+    "CC-BY-SA-4.0": (
+        "Creative Commons Attribution-ShareAlike 4.0",
+        "https://creativecommons.org/licenses/by-sa/4.0/",
     ),
-    'CC0-1.0': (
-        'CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
-        'https://creativecommons.org/publicdomain/zero/1.0/',
+    "CC0-1.0": (
+        "CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+        "https://creativecommons.org/publicdomain/zero/1.0/",
     ),
-    'FDL-1.2+': (
-        'GNU Free Documentation License 1.2 or later',
-        'https://gnu.org/licenses/fdl.html',
+    "FDL-1.2+": (
+        "GNU Free Documentation License 1.2 or later",
+        "https://gnu.org/licenses/fdl.html",
     ),
-    'non-commercial': (
-        'Non-commercial use only',
+    "non-commercial": (
+        "Non-commercial use only",
         None,
     ),
-    'public-domain': (
-        'Public domain',
-        'https://en.wikipedia.org/wiki/Public_domain',
-    )
+    "public-domain": (
+        "Public domain",
+        "https://en.wikipedia.org/wiki/Public_domain",
+    ),
 }
 
 
 def _get_license_json_path(single_theme_dir):
-    return os.path.join(single_theme_dir, 'LICENSE.json')
+    return os.path.join(single_theme_dir, "LICENSE.json")
 
 
 def _get_license_json(single_theme_dir):
@@ -46,19 +46,20 @@ def _get_license_json(single_theme_dir):
     except ValueError as e:
         raise ValueError(f'{e} (file "{license_json_path}")')
     f.close()
-    return doc['work']
+    return doc["work"]
 
 
 def get_license_choices_of_theme(single_theme_dir):
     top_work = _get_license_json(single_theme_dir)
     try:
-        return [top_work['license_id']]
+        return [top_work["license_id"]]
     except KeyError:
         try:
-            return top_work['license_ids_any_of']
+            return top_work["license_ids_any_of"]
         except KeyError:
-            raise ValueError('Malformed license file "%s"' \
-                    % _get_license_json_path(single_theme_dir))
+            raise ValueError(
+                'Malformed license file "%s"' % _get_license_json_path(single_theme_dir)
+            )
 
 
 def _describe_license(license_id):
@@ -70,54 +71,54 @@ def _describe_license(license_id):
     if details_url is None:
         return long_name
     else:
-        return f'{long_name}  ({details_url})'
+        return f"{long_name}  ({details_url})"
 
 
 def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
-    print('The license of the themes used apply to the generated image.  In detail:')
+    print("The license of the themes used apply to the generated image.  In detail:")
     print()
 
     for category, theme_dir in (
-        ('Board', board_theme_dir),
-        ('Piece', piece_theme_dir),
-        ('Annotations', annotation_theme_dir),
+        ("Board", board_theme_dir),
+        ("Piece", piece_theme_dir),
+        ("Annotations", annotation_theme_dir),
     ):
         top_work = _get_license_json(theme_dir)
 
         author_chunks = []
-        for author_dict in top_work['authors']:
+        for author_dict in top_work["authors"]:
             for author_name, details_dict in list(author_dict.items()):
                 contact_infos = []
 
-                if 'website' in details_dict:
-                    contact_infos.append(details_dict['website'])
+                if "website" in details_dict:
+                    contact_infos.append(details_dict["website"])
 
-                if 'email' in details_dict:
-                    contact_infos.append('%s@%s' % tuple(details_dict['email']))
+                if "email" in details_dict:
+                    contact_infos.append("%s@%s" % tuple(details_dict["email"]))
 
                 if contact_infos:
-                    author_display = '{} ({})'.format(author_name, ', '.join(contact_infos))
+                    author_display = "{} ({})".format(author_name, ", ".join(contact_infos))
                 else:
                     author_display = author_name
 
                 author_chunks.append(author_display)
-        authors = '\n'.join(('    ' + e) for e in author_chunks)
+        authors = "\n".join(("    " + e) for e in author_chunks)
 
         try:
-            license_ids_any_of = [top_work['license_id']]
+            license_ids_any_of = [top_work["license_id"]]
         except KeyError:
             try:
-                license_ids_any_of = top_work['license_ids_any_of']
+                license_ids_any_of = top_work["license_ids_any_of"]
             except KeyError:
                 raise ValueError('Malformed license file "%s"' % _get_license_json_path(theme_dir))
 
         if len(license_ids_any_of) == 1:
-            license_options = '    %s' % _describe_license(license_ids_any_of[0])
+            license_options = "    %s" % _describe_license(license_ids_any_of[0])
         else:
-            license_options = '\n'.join(
-                    ('    {}) {}'.format(chr(ord('a') + i), _describe_license(e))) \
-                    for i, e \
-                    in enumerate(license_ids_any_of))
+            license_options = "\n".join(
+                ("    {}) {}".format(chr(ord("a") + i), _describe_license(e)))
+                for i, e in enumerate(license_ids_any_of)
+            )
 
         print(
             dedent("""\
@@ -126,9 +127,12 @@ def inform_license(board_theme_dir, piece_theme_dir, annotation_theme_dir):
             %s
               License options:
             %s
-            """) % (category, authors, license_options))
+            """)
+            % (category, authors, license_options)
+        )
 
     print(
-        'If this license does not work for you, please pick a different board theme and/or piece theme.'
-        '  '
-        'Thank you!')
+        "If this license does not work for you, please pick a different board theme and/or piece theme."
+        "  "
+        "Thank you!"
+    )

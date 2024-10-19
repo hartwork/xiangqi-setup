@@ -12,18 +12,18 @@ from .fen import PIECE_OF_UPPER_LETTER
 def is_xay_content(content: str) -> bool:
     try:
         document = yaml.safe_load(content)
-        return isinstance(document, dict) and 'setup' in document
+        return isinstance(document, dict) and "setup" in document
     except yaml.error.MarkedYAMLError:
         return False
 
 
 def iterate_xay_tokens(content: str):
     document = yaml.safe_load(content)
-    xay_format_version = document['version']
-    if xay_format_version != '1':
-        raise ValueError(f'Unsupported XAY file format version {xay_format_version!r}')
+    xay_format_version = document["version"]
+    if xay_format_version != "1":
+        raise ValueError(f"Unsupported XAY file format version {xay_format_version!r}")
 
-    annotation_matrix = document['setup']
+    annotation_matrix = document["setup"]
     for row_index, annotations_of_column in enumerate(annotation_matrix):
         for column_index, atom_codes in enumerate(annotations_of_column):
             x = column_index
@@ -37,4 +37,4 @@ def iterate_xay_tokens(content: str):
                     annotation_name = ANNOTATION_NAME_OF_ATOM_CODE[atom_code]
                     yield PutAnnotation(annotation_name=annotation_name, x=x, y=y)
                 else:
-                    raise ValueError(f'Unsupported atom code {atom_code!r}')
+                    raise ValueError(f"Unsupported atom code {atom_code!r}")

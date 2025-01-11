@@ -206,7 +206,7 @@ def main():
         dest="width_centimeter",
         metavar="CENTIMETER",
         type=float,
-        help=("width of the output in centimeters" f" (default: {_DEFAULT_WIDTH_CM})"),
+        help=(f"width of the output in centimeters (default: {_DEFAULT_WIDTH_CM})"),
     )
     scaling_options.add_argument(
         "--dpi",
@@ -214,7 +214,7 @@ def main():
         metavar="FLOAT",
         type=float,
         default=_DEFAULT_RESOLUTION_DPI,
-        help=("resolution of the output in dots per inch" " (default: %(default)s)"),
+        help=("resolution of the output in dots per inch (default: %(default)s)"),
     )
     scaling_options.add_argument(
         "--scale-pieces",

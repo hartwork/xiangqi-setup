@@ -6,9 +6,8 @@ import inspect
 import os
 import sys
 import textwrap
+from importlib import resources
 from os import walk
-
-from pkg_resources import resource_filename
 
 from .compose import cm_to_pixel, compose_svg
 from .file_formats.annofen import is_annofen_content, iterate_annofen_tokens
@@ -35,7 +34,7 @@ def _get_themes_home_dir():
     if os.path.exists(os.path.join(self_dir, "..", ".git")):
         return os.path.join(self_dir, "themes")
     else:
-        return resource_filename("xiangqi_setup", "themes")
+        return str(resources.files("xiangqi_setup") / "themes")
 
 
 def check(options):

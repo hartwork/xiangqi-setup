@@ -50,7 +50,6 @@ if __name__ == "__main__":
         ],
         install_requires=[
             "pyyaml",
-            "setuptools",  # due to use of pkg_resources
             # NOTE: svgutils 0.3.2 was incompatible to 0.3.1 plus semver guarantees
             #       start from >=1.0.0 only (rule 4) so svgutils is pinned here.
             # KEEP IN SYNC with README.md, painter.py and compose.py

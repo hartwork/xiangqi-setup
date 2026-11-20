@@ -181,6 +181,14 @@ class _Board:
                     continue
                 candidates.append(field)
 
+        if look_for != _SINGLE_PIECE:
+            # Front/middle/rear notation only refers to pieces sharing a file
+            candidates = [
+                candidate
+                for candidate in candidates
+                if sum(other.x == candidate.x for other in candidates) > 1
+            ]
+
         if look_for == _UPPER_PIECE:
             assert len(candidates) in (2, 3)
             put_piece = sorted(candidates, key=view.further_up_the_board_sort_key)[-1]

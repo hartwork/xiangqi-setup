@@ -18,7 +18,7 @@ START_PARTY_BLACK = "BLACK"
 _SETUP_EXTRACTOR = re.compile("SETUP\\{([^}]+)\\}", re.MULTILINE)
 _MOVES_EXTRACTOR = re.compile("START\\{([^}]+)\\}END", re.MULTILINE)
 _SINGLE_MOVE_EXTRACTOR = re.compile(
-    "(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-])(?P<argument>[1-9])"
+    "(?P<piece_code>[A-Za-z])(?P<former_column>[1-9+=-])(?P<operator>[.+-=])(?P<argument>[1-9])"
 )
 _ITEM_ITERATOR = re.compile(
     "(?P<put_piece>[RHEAKCPrheakcp][a-i][0-9])|(?P<move_offset>MOVE [1-9][0-9]*)|(?P<start_party>RED|BLACK)"
@@ -122,7 +122,7 @@ class _Board:
             elif operator == "-":
                 new_x, new_y = put_piece.x, put_piece.y - view.y_diff_from(argument)
             else:
-                assert operator == "."
+                assert operator in (".", "=")
                 new_x, new_y = view.x_index_from(argument), put_piece.y
         elif put_piece.piece in (ADVISOR, ELEPHANT):
             diff_y = {

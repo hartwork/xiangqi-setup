@@ -62,7 +62,7 @@ def run(options):
             atoms_to_put = list(iterate_annofen_tokens(content))
         elif is_xay_content(content):
             atoms_to_put = list(iterate_xay_tokens(content))
-        elif "WXF" in content:
+        elif "SETUP{" in content or "START{" in content:
             atoms_to_put = list(
                 iterate_wxf_tokens(content, options.moves_to_play, options.annotate_last_move)
             )
